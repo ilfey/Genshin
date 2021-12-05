@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DictionaryFragment">
+
+    <ScrollView style="@style/Scroller">
+
+        <LinearLayout 
+            android:padding="12dp"
+            style="@style/ScrollerContainer">
+
+            <TextView
+                style="@style/DictionaryTitle"
+                android:text="biat"/>
+            
+            <TextView
+                style="@style/DictionaryContent"
+                android:text="[int] Damn it [v] fuck"/>
+            
+            <TextView
+                style="@style/DictionaryDescription"
+                android:text="Russian: Блять(blyad') (Damn it)"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

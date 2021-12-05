@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutFragment">
+
+    <ScrollView style="@style/Scroller">
+
+        <LinearLayout style="@style/ScrollerContainer">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:src="@mipmap/about"/>
+
+            <LinearLayout style="@style/About">
+
+                <TextView
+                    style="@style/AboutTitle"
+                    android:text="@string/about_title"/>
+
+                <TextView
+                    style="@style/AboutContent"
+                    android:text="@string/about_content" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/AboutDescription"
+                android:text="@string/rights" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

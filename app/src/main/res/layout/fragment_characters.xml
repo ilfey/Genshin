@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CharactersFragment">
+
+    <ScrollView style="@style/Scroller">
+
+        <LinearLayout style="@style/ScrollerContainer">
+
+            <Spinner
+                android:id="@+id/sort"
+                style="@style/ScrollerContainerSpinner"/>
+
+            <LinearLayout style="@style/Characters">
+
+                <ImageView
+                    style="@style/CharactersIco"
+                    android:src="@mipmap/tartaglia" />
+
+                <LinearLayout style="@style/CharactersContainerContent">
+
+                    <TextView
+                        style="@style/CharactersText"
+                        android:text="Тарталья" />
+
+                    <TextView
+                        style="@style/CharactersStarRate"
+                        android:text="5*" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/Characters">
+
+                <ImageView
+                    style="@style/CharactersIco"
+                    android:src="@mipmap/tartaglia" />
+
+                <LinearLayout style="@style/CharactersContainerContent">
+
+                    <TextView
+                        style="@style/CharactersText"
+                        android:text="Тарталья" />
+
+                    <TextView
+                        style="@style/CharactersStarRate"
+                        android:text="5*" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/Characters">
+
+                <ImageView
+                    style="@style/CharactersIco"
+                    android:src="@mipmap/tartaglia" />
+
+                <LinearLayout style="@style/CharactersContainerContent">
+
+                    <TextView
+                        style="@style/CharactersText"
+                        android:text="Тарталья" />
+
+                    <TextView
+                        style="@style/CharactersStarRate"
+                        android:text="5*" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/Characters">
+
+                <ImageView
+                    style="@style/CharactersIco"
+                    android:src="@mipmap/tartaglia" />
+
+                <LinearLayout style="@style/CharactersContainerContent">
+
+                    <TextView
+                        style="@style/CharactersText"
+                        android:text="Тарталья" />
+
+                    <TextView
+                        style="@style/CharactersStarRate"
+                        android:text="5*" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/Characters">
+
+                <ImageView
+                    style="@style/CharactersIco"
+                    android:src="@mipmap/tartaglia" />
+
+                <LinearLayout style="@style/CharactersContainerContent">
+
+                    <TextView
+                        style="@style/CharactersText"
+                        android:text="Тарталья" />
+
+                    <TextView
+                        style="@style/CharactersStarRate"
+                        android:text="5*" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/Characters">
+
+                <ImageView
+                    style="@style/CharactersIco"
+                    android:src="@mipmap/tartaglia" />
+
+                <LinearLayout style="@style/CharactersContainerContent">
+
+                    <TextView
+                        style="@style/CharactersText"
+                        android:text="Тарталья" />
+
+                    <TextView
+                        style="@style/CharactersStarRate"
+                        android:text="5*" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/Characters">
+
+                <ImageView
+                    style="@style/CharactersIco"
+                    android:src="@mipmap/tartaglia" />
+
+                <LinearLayout style="@style/CharactersContainerContent">
+
+                    <TextView
+                        style="@style/CharactersText"
+                        android:text="Тарталья" />
+
+                    <TextView
+                        style="@style/CharactersStarRate"
+                        android:text="5*" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/Characters">
+
+                <ImageView
+                    style="@style/CharactersIco"
+                    android:src="@mipmap/tartaglia" />
+
+                <LinearLayout style="@style/CharactersContainerContent">
+
+                    <TextView
+                        style="@style/CharactersText"
+                        android:text="Тарталья" />
+
+                    <TextView
+                        style="@style/CharactersStarRate"
+                        android:text="5*" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/Characters">
+
+                <ImageView
+                    style="@style/CharactersIco"
+                    android:src="@mipmap/tartaglia" />
+
+                <LinearLayout style="@style/CharactersContainerContent">
+
+                    <TextView
+                        style="@style/CharactersText"
+                        android:text="Тарталья" />
+
+                    <TextView
+                        style="@style/CharactersStarRate"
+                        android:text="5*" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/Characters">
+
+                <ImageView
+                    style="@style/CharactersIco"
+                    android:src="@mipmap/tartaglia" />
+
+                <LinearLayout style="@style/CharactersContainerContent">
+
+                    <TextView
+                        style="@style/CharactersText"
+                        android:text="Тарталья" />
+
+                    <TextView
+                        style="@style/CharactersStarRate"
+                        android:text="5*" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>
