@@ -3,11 +3,7 @@
     <item>
         <shape android:shape="rectangle">
             <corners android:radius="10dp"/>
-            <solid android:color="@color/window_light_bg"/>
+            <solid  android:color="@color/nav_fg"/>
         </shape>
     </item>
-
-    <item
-        android:drawable="@drawable/ic_logo"
-        android:gravity="center"/>
 </layer-list>
