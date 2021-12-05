@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fromRareToLess"
+        android:title="От редких к менее"/>
+
+    <item
+        android:id="@+id/fromLessRare"
+        android:title="От менее редких"/>
+
+    <item
+        android:id="@+id/alphabetically"
+        android:title="По алфавиту"/>
+
+    <item
+        android:id="@+id/fromTheEndOfTheAlphabet"
+        android:title="С конца алфавита"/>
+
+    <item
+        android:id="@+id/byTheElements"
+        android:title="По стихиям"/>
+
+    <item
+        android:id="@+id/byIdInDb"
+        android:title="По ID в БД"/>
+</menu>
