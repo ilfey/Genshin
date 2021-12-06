@@ -25,7 +25,7 @@
     <style name="AboutDescription">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/text_description</item>
         <item name="android:textAlignment">center</item>
     </style>
