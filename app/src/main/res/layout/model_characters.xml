@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Characters">
+
+    <ImageView
+        android:id="@+id/characters_model_logo"
+        style="@style/CharactersIco"
+        android:src="@mipmap/tartaglia" />
+
+    <LinearLayout style="@style/CharactersContainerContent">
+
+        <TextView
+            android:id="@+id/model_characters_title"
+            style="@style/CharactersText"
+            android:text="Тарталья" />
+
+        <TextView
+            android:id="@+id/model_characters_star"
+            style="@style/CharactersStarRate"
+            android:text="5*" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Dictionary">
+
+    <TextView
+        android:id="@+id/model_dictionary_title"
+        style="@style/DictionaryTitle"
+        android:text="biat"/>
+
+    <TextView
+        android:id="@+id/model_dictionary_content"
+        style="@style/DictionaryContent"
+        android:text="[int] Damn it [v] fuck"/>
+
+    <TextView
+        android:id="@+id/model_dictionary_description"
+        style="@style/DictionaryDescription"
+        android:text="Russian: Блять(blyad') (Damn it)"/>
+
+</LinearLayout>

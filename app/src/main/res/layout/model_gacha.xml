@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Gacha">
+
+    <ImageView
+        android:id="@+id/model_gacha_logo"
+        style="@style/GachaImage"
+        android:src="@mipmap/eola" />
+
+    <TextView
+        android:id="@+id/model_gacha_title"
+        style="@style/GachaTitle"
+        android:text="@string/title" />
+
+    <TextView
+        android:id="@+id/model_gacha_skills"
+        style="@style/GachaDescription"
+        android:text="@string/description" />
+
+</LinearLayout>

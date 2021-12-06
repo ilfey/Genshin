@@ -5,41 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".MainFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <ScrollView style="@style/Scroller">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingHorizontal="24dp">
+        <LinearLayout style="@style/ScrollerContainer">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:orientation="horizontal"
-                android:background="@drawable/item_bg"
-                android:layout_marginBottom="12dp">
-
-                <ImageView
-                    android:layout_margin="12dp"
-                    android:layout_width="76dp"
-                    android:layout_height="76dp"
-                    android:src="@mipmap/icon_ch"/>
-
-                <TextView
-                    android:layout_marginLeft="24dp"
-                    android:textSize="18sp"
-                    android:textColor="@android:color/black"
-                    android:layout_width="match_parent"
-                    android:text="Персонажи"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/inter_val" />
-            </LinearLayout>
+            <include layout="@layout/model_main"/>
+            <include layout="@layout/model_main"/>
+            <include layout="@layout/model_main"/>
+            <include layout="@layout/model_main"/>
+            <include layout="@layout/model_main"/>
 
         </LinearLayout>
+
     </ScrollView>
 
 </FrameLayout>
