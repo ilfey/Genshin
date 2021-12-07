@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CharacterImage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">320dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_marginBottom">24dp</item>
+    </style>
+
+    <style name="CharacterSkillsContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/item_bg</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginBottom">12dp</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="CharacterName">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/inter_val</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="CharacterSkills">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/inter_val</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="CharacterDescription">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/item_bg</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="CharacterTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/inter_val</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="CharacterContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/inter_val</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+</resources>
