@@ -5,6 +5,7 @@
         <item name="android:background">@drawable/item_bg</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
+        <item name="android:fontFamily">@font/inter_val</item>
         <item name="android:orientation">vertical</item>
         <item name="android:padding">24dp</item>
         <item name="android:layout_margin">12dp</item>
@@ -13,21 +14,24 @@
     <style name="AboutTitle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/inter_val</item>
         <item name="android:textSize">22sp</item>
     </style>
 
     <style name="AboutContent">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/inter_val</item>
         <item name="android:textSize">16sp</item>
     </style>
 
     <style name="AboutDescription">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/text_description</item>
+        <item name="android:fontFamily">@font/inter_val</item>
         <item name="android:textAlignment">center</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
 </resources>
