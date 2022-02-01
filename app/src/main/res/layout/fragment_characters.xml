@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".CharactersFragment">
 
-    <ScrollView style="@style/Scroller">
+    <Spinner
+        android:id="@+id/sort"
+        android:layout_marginRight="24dp"
+        style="@style/ScrollerContainerSpinner" />
 
-        <LinearLayout style="@style/ScrollerContainer">
+    <androidx.recyclerview.widget.RecyclerView
 
-            <Spinner
-                android:id="@+id/sort"
-                style="@style/ScrollerContainerSpinner"/>
+        android:id="@+id/characters_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-            <include layout="@layout/model_characters"/>
-            <include layout="@layout/model_characters"/>
-            <include layout="@layout/model_characters"/>
-            <include layout="@layout/model_characters"/>
-            <include layout="@layout/model_characters"/>
 
-        </LinearLayout>
-
-    </ScrollView>
-
-</FrameLayout>
+    </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

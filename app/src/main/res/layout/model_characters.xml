@@ -4,7 +4,7 @@
 
     <ImageView
         android:id="@+id/characters_model_logo"
-        style="@style/CharactersIco"
+        style="@style/CharactersIcon"
         android:src="@mipmap/tartaglia" />
 
     <LinearLayout style="@style/CharactersContainerContent">

@@ -6,10 +6,12 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/item_bg</item>
         <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginLeft">24dp</item>
+        <item name="android:layout_marginRight">24dp</item>
         <item name="android:layout_marginBottom">12dp</item>
     </style>
 
-    <style name="CharactersIco">
+    <style name="CharactersIcon">
         <item name="android:layout_width">116dp</item>
         <item name="android:layout_height">116dp</item>
         <item name="android:layout_margin">12dp</item>
