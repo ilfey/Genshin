@@ -3,7 +3,7 @@
     style="@style/Gacha">
 
     <ImageView
-        android:id="@+id/model_gacha_logo"
+        android:id="@+id/model_gacha_icon"
         style="@style/GachaImage"
         android:src="@mipmap/eola" />
 

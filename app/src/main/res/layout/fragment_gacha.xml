@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".GachaFragment">
 
-    <ScrollView style="@style/Scroller">
+    <Spinner
+        android:id="@+id/sort_gacha"
+        android:layout_marginRight="24dp"
+        style="@style/ScrollerContainerSpinner"/>
 
-        <LinearLayout style="@style/ScrollerContainer">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/gacha_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-            <Spinner
-                android:id="@+id/sort_gacha"
-                style="@style/ScrollerContainerSpinner"/>
+    </androidx.recyclerview.widget.RecyclerView>
 
-            <include layout="@layout/model_gacha"/>
-            <include layout="@layout/model_gacha"/>
-            <include layout="@layout/model_gacha"/>
-            <include layout="@layout/model_gacha"/>
-            <include layout="@layout/model_gacha"/>
-
-        </LinearLayout>
-
-    </ScrollView>
-
-</FrameLayout>
+</LinearLayout>
