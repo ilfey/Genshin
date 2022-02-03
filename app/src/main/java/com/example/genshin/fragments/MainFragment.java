@@ -1,4 +1,4 @@
-package com.example.genshin;
+package com.example.genshin.fragments;
 
 import android.os.Bundle;
 
@@ -12,7 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.adapters.MainAdapter;
-import com.example.models.MainModel;
+import com.example.genshin.R;
+import com.example.genshin.models.MainModel;
 
 import java.util.ArrayList;
 import java.util.List;

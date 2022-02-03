@@ -1,4 +1,4 @@
-package com.example.models;
+package com.example.genshin.models;
 
 public class GachaModel {
     int id;

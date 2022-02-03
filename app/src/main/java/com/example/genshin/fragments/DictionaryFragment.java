@@ -1,4 +1,4 @@
-package com.example.genshin;
+package com.example.genshin.fragments;
 
 import android.os.Bundle;
 
@@ -10,10 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.adapters.CharacterAdapter;
 import com.example.adapters.DictionaryAdapter;
-import com.example.models.DictionaryModel;
-import com.example.models.MenuCharacter;
+import com.example.genshin.R;
+import com.example.genshin.models.DictionaryModel;
 
 import java.util.ArrayList;
 import java.util.List;

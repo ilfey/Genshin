@@ -6,6 +6,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.example.genshin.fragments.AboutFragment;
+import com.example.genshin.fragments.CharactersFragment;
+import com.example.genshin.fragments.DictionaryFragment;
+import com.example.genshin.fragments.GachaFragment;
+import com.example.genshin.fragments.MainFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

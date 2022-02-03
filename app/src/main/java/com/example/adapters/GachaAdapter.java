@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.genshin.R;
-import com.example.models.GachaModel;
+import com.example.genshin.models.GachaModel;
 
 import java.util.List;
 

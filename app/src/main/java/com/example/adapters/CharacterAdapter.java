@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.genshin.R;
-import com.example.models.MenuCharacter;
+import com.example.genshin.models.MenuCharacter;
 
 import java.util.List;
 

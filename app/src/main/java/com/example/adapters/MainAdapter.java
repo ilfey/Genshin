@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.genshin.R;
-import com.example.models.MainModel;
+import com.example.genshin.models.MainModel;
 
 import java.util.List;
 

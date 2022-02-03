@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.genshin.R;
-import com.example.models.DictionaryModel;
+import com.example.genshin.models.DictionaryModel;
 
 import java.util.List;
 
