@@ -1,4 +1,4 @@
-package com.example.data.remote;
+package com.example.data.remote.characters;
 
 import java.util.List;
 

@@ -2,6 +2,7 @@ package com.example.genshin.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,18 +11,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.GenshinApp;
 import com.example.adapters.DictionaryAdapter;
+import com.example.data.remote.dictionary.DictionaryEntry;
+import com.example.data.remote.dictionary.DictionaryResponse;
 import com.example.genshin.R;
-import com.example.genshin.models.DictionaryModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class DictionaryFragment extends Fragment {
 
-    RecyclerView dictionary_recycler;
-    DictionaryAdapter dictionaryAdapter;
-    List<DictionaryModel> dictionaryModels = new ArrayList<>();
+    private RecyclerView dictionary_recycler;
+    private DictionaryAdapter dictionaryAdapter;
+    private List<DictionaryEntry> dictionaryModels = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,10 +37,26 @@ public class DictionaryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
 
         dictionary_recycler = view.findViewById(R.id.dictionary_recycler);
-        dictionaryAdapter = new DictionaryAdapter(getContext(), dictionaryModels);
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         dictionary_recycler.setLayoutManager(layoutManager);
+
+        dictionaryAdapter = new DictionaryAdapter(getContext(), dictionaryModels);
         dictionary_recycler.setAdapter(dictionaryAdapter);
+
+        ((GenshinApp) getActivity().getApplication()).dictionary.getDictionary().enqueue(new Callback<DictionaryResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<DictionaryResponse> call, @NonNull Response<DictionaryResponse> response) {
+                if(response.code() == 200 && response.body() != null) {
+                    dictionaryAdapter.setListDictionaryModels(response.body().entries);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<DictionaryResponse> call, @NonNull Throwable t) {
+                dictionaryModels.add(new DictionaryEntry("1", "Проблемы с полдлючением", "Проверьте подключение к интернету", ""));
+            }
+        });
 
         return view;
     }
@@ -41,11 +64,5 @@ public class DictionaryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        dictionaryModels.add(new DictionaryModel(1, "aba", "[prep] before", ""));
-        dictionaryModels.add(new DictionaryModel(2, "beru", "[v] talk; speak", "Japanese: しゃべる(shyaberu) speak"));
-        dictionaryModels.add(new DictionaryModel(3, "biat", "[int] Damn it [v] fuck", "Russian: блядь(blyad') (Damn it)"));
-        dictionaryModels.add(new DictionaryModel(4, "boya *", "[n] colour\n· celi boya red · unu boya yellow · gusha boya green · lata boya blue · nini boya white · nunu/sama boya black", "Turkish: boya (paint; dye)"));
-        dictionaryModels.add(new DictionaryModel(5, "buka", "[n] belly", ""));
     }
 }

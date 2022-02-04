@@ -9,19 +9,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.data.remote.dictionary.DictionaryEntry;
 import com.example.genshin.R;
-import com.example.genshin.models.DictionaryModel;
 
 import java.util.List;
 
 public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.DictionaryViewHolder> {
 
-    Context ctx;
-    List<DictionaryModel> models;
+    private Context ctx;
+    private List<DictionaryEntry> models;
 
-    public DictionaryAdapter(Context ctx, List<DictionaryModel> models) {
+    public DictionaryAdapter(Context ctx, List<DictionaryEntry> models) {
         this.ctx = ctx;
         this.models = models;
+    }
+
+    public void setListDictionaryModels(List<DictionaryEntry> listDictionaryModels){
+        this.models = listDictionaryModels;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -34,28 +39,31 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Di
 
     @Override
     public void onBindViewHolder(@NonNull DictionaryViewHolder holder, int position) {
-        holder.title.setText(models.get(position).getTitle());
-        holder.content.setText(models.get(position).getContent());
-        holder.description.setText(models.get(position).getDescription());
+        holder.word.setText(models.get(position).getWord());
+        holder.content.setText(models.get(position).getTranslate());
+        holder.subinf.setText(models.get(position).getSubinf());
     }
 
     @Override
     public int getItemCount() {
-        return models.size();
+        if(models != null){
+            return models.size();
+        }
+        return 0;
     }
 
     public final class DictionaryViewHolder extends RecyclerView.ViewHolder{
 
-        TextView title;
+        TextView word;
         TextView content;
-        TextView description;
+        TextView subinf;
 
         public DictionaryViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            title = (TextView) itemView.findViewById(R.id.model_dictionary_title);
+            word = (TextView) itemView.findViewById(R.id.model_dictionary_title);
             content = (TextView) itemView.findViewById(R.id.model_dictionary_content);
-            description = (TextView) itemView.findViewById(R.id.model_dictionary_description);
+            subinf = (TextView) itemView.findViewById(R.id.model_dictionary_description);
         }
     }
 }

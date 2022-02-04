@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Application;
 import android.os.Bundle;
 
+import com.example.GenshinApp;
 import com.example.genshin.fragments.AboutFragment;
 import com.example.genshin.fragments.CharactersFragment;
 import com.example.genshin.fragments.DictionaryFragment;
@@ -53,9 +55,5 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frame, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
-    }
-
-    public void loadCharacter(Fragment fragment) {
-        loadFragment(fragment);
     }
 }

@@ -10,19 +10,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.data.remote.characters.CharacterEntry;
 import com.example.genshin.R;
-import com.example.genshin.models.MenuCharacter;
 
 import java.util.List;
 
 public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder> {
 
-    Context ctx;
-    private final List<MenuCharacter> models;
+    private Context ctx;
+    private List<CharacterEntry> models;
 
-    public CharacterAdapter(Context ctx, List<MenuCharacter> models) {
+    public CharacterAdapter(Context ctx, List<CharacterEntry> models) {
         this.ctx = ctx;
         this.models = models;
+    }
+
+    public void setListCharactersModels(List<CharacterEntry> listCharactersModels){
+        this.models = listCharactersModels;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -36,27 +41,33 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
     @Override
     public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
         holder.name.setText(models.get(position).getName());
-        holder.star.setText(models.get(position).getStar());
-        holder.icon.setImageResource(models.get(position).getIcon());
+        holder.rarity.setText(models.get(position).getRarity());
+
+//        holder.ico.setImageResource(models.get(position).getIco());
+        holder.ico.setImageResource(R.mipmap.tartaglia);  // FIX THIS!!!
+//        holder.ico.setImageResource(models.get(position).getIco());
     }
 
     @Override
     public int getItemCount() {
-        return models.size();
+        if(models != null){
+            return models.size();
+        }
+        return 0;
     }
 
     public final class CharacterViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView icon;
+        ImageView ico;
         TextView name;
-        TextView star;
+        TextView rarity;
 
         public CharacterViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            icon = (ImageView) itemView.findViewById(R.id.characters_model_logo);
+            ico = (ImageView) itemView.findViewById(R.id.characters_model_logo);
             name = (TextView) itemView.findViewById(R.id.model_characters_title);
-            star = (TextView) itemView.findViewById(R.id.model_characters_star);
+            rarity = (TextView) itemView.findViewById(R.id.model_characters_star);
         }
     }
 }

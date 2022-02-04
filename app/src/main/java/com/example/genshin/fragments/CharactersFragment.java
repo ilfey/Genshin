@@ -11,18 +11,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.GenshinApp;
 import com.example.adapters.CharacterAdapter;
+import com.example.data.remote.characters.CharacterEntry;
+import com.example.data.remote.characters.CharactersResponse;
+import com.example.data.remote.dictionary.DictionaryEntry;
 import com.example.genshin.R;
 import com.example.genshin.models.MenuCharacter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class CharactersFragment extends Fragment {
 
-    RecyclerView characters_recycler;
-    CharacterAdapter charactersAdapter;
-    List<MenuCharacter> menuCharacters = new ArrayList<>();
+    private RecyclerView characters_recycler;
+    private CharacterAdapter charactersAdapter;
+    private List<CharacterEntry> menuCharacters = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,26 +44,25 @@ public class CharactersFragment extends Fragment {
         characters_recycler.setLayoutManager(layoutManager);
         characters_recycler.setAdapter(charactersAdapter);
 
+        ((GenshinApp) getActivity().getApplication()).characters.getCharacters().enqueue(new Callback<CharactersResponse>() {
+            @Override
+            public void onResponse(Call<CharactersResponse> call, Response<CharactersResponse> response) {
+                if(response.code() == 200 && response.body() != null) {
+                    charactersAdapter.setListCharactersModels(response.body().entries);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CharactersResponse> call, Throwable t) {
+                menuCharacters.add(new CharacterEntry("1", "Проблемы с полдлючением", "Проверьте подключение к интернету", null));
+            }
+        });
+
         return view;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        menuCharacters.add(new MenuCharacter(1, R.mipmap.tartaglia, "Тарталия", "5*"));
-        menuCharacters.add(new MenuCharacter(2, R.mipmap.tartaglia, "Ке Цин", "5*"));
-        menuCharacters.add(new MenuCharacter(3, R.mipmap.tartaglia, "Чжун Ли", "5*"));
-        menuCharacters.add(new MenuCharacter(4, R.mipmap.tartaglia, "Гань Юй", "5*"));
-        menuCharacters.add(new MenuCharacter(5, R.mipmap.tartaglia, "Венти", "5*"));
-        menuCharacters.add(new MenuCharacter(6, R.mipmap.tartaglia, "Сяо", "5*"));
-        menuCharacters.add(new MenuCharacter(7, R.mipmap.tartaglia, "Аяка", "5*"));
-        menuCharacters.add(new MenuCharacter(8, R.mipmap.tartaglia, "Ци Ци", "5*"));
-        menuCharacters.add(new MenuCharacter(9, R.mipmap.tartaglia, "Дилюк", "5*"));
-        menuCharacters.add(new MenuCharacter(10, R.mipmap.tartaglia, "Мона", "5*"));
-        menuCharacters.add(new MenuCharacter(11, R.mipmap.tartaglia, "Джин", "5*"));
-        menuCharacters.add(new MenuCharacter(12, R.mipmap.tartaglia, "Кли", "5*"));
-        menuCharacters.add(new MenuCharacter(12, R.mipmap.tartaglia, "Фишиль", "4*"));
-
     }
 }

@@ -2,7 +2,8 @@ package com.example;
 
 import android.app.Application;
 
-import com.example.data.remote.Dictionary;
+import com.example.data.remote.characters.Characters;
+import com.example.data.remote.dictionary.Dictionary;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -10,6 +11,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GenshinApp extends Application {
+
+    public Dictionary dictionary;
+    public Characters characters;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -29,5 +34,8 @@ public class GenshinApp extends Application {
             .baseUrl("https://sushicat.pp.ua/api/genshin/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
+
+        dictionary = retrofit.create(Dictionary.class);
+        characters = retrofit.create(Characters.class);
     }
 }
