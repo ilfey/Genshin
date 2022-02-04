@@ -2,7 +2,6 @@ package com.example.genshin.fragments;
 
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,9 +19,9 @@ import java.util.List;
 
 public class GachaFragment extends Fragment {
 
-    RecyclerView gacha_recycler;
-    GachaAdapter gachaAdapter;
-    List<GachaModel> gachaModels = new ArrayList<>();
+    private RecyclerView gacha_recycler;
+    private GachaAdapter gachaAdapter;
+    private List<GachaModel> gachaModels = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,15 +35,10 @@ public class GachaFragment extends Fragment {
         gacha_recycler.setLayoutManager(layoutManager);
         gacha_recycler.setAdapter(gachaAdapter);
 
-        return view;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
         gachaModels.add(new GachaModel(1, R.mipmap.eola, "Эола", "Эола 5*\nРозария 4*\nНоэль 4*\nБеннет 4*"));
         gachaModels.add(new GachaModel(2, R.mipmap.eola, "Эола", "Эола 5*\nРозария 4*\nНоэль 4*\nБеннет 4*"));
         gachaModels.add(new GachaModel(3, R.mipmap.eola, "Эола", "Эола 5*\nРозария 4*\nНоэль 4*\nБеннет 4*"));
+
+        return view;
     }
 }

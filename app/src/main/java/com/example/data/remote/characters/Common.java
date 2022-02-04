@@ -4,10 +4,10 @@ import java.util.List;
 
 public class Common {
     public static class Field{
-        String name;
-        String type;
-        boolean localize;
-        List options;
+        private String name;
+        private String type;
+        private boolean localize;
+        private List options;
     }
 
 }

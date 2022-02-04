@@ -2,7 +2,6 @@ package com.example.genshin.fragments;
 
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,9 +19,9 @@ import java.util.List;
 
 public class MainFragment extends Fragment {
 
-    RecyclerView mainRecycler;
-    MainAdapter mainAdapter;
-    List<MainModel> models = new ArrayList<>();
+    private RecyclerView mainRecycler;
+    private MainAdapter mainAdapter;
+    private List<MainModel> models = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,12 +36,6 @@ public class MainFragment extends Fragment {
 
         mainRecycler.setLayoutManager(layoutManager);
         mainRecycler.setAdapter(mainAdapter);
-        return view;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
         models.add(new MainModel(1, R.mipmap.icon_ch, "Персонажи"));
         models.add(new MainModel(1, R.mipmap.icon_ch, "Хиличурлский"));
@@ -51,5 +44,7 @@ public class MainFragment extends Fragment {
         models.add(new MainModel(1, R.mipmap.icon_ch, "Полезное"));
         models.add(new MainModel(1, R.mipmap.icon_ch, "Карта"));
         models.add(new MainModel(1, R.mipmap.icon_ch, "О проекте"));
+
+        return view;
     }
 }

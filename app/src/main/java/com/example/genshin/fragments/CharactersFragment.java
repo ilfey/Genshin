@@ -15,9 +15,7 @@ import com.example.GenshinApp;
 import com.example.adapters.CharacterAdapter;
 import com.example.data.remote.characters.CharacterEntry;
 import com.example.data.remote.characters.CharactersResponse;
-import com.example.data.remote.dictionary.DictionaryEntry;
 import com.example.genshin.R;
-import com.example.genshin.models.MenuCharacter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,10 +57,5 @@ public class CharactersFragment extends Fragment {
         });
 
         return view;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 }

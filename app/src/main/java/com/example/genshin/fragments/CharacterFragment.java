@@ -11,9 +11,6 @@ import android.view.ViewGroup;
 import com.example.genshin.R;
 
 public class CharacterFragment extends Fragment {
-    public CharacterFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

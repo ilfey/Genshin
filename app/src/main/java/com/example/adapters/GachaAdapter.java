@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.data.remote.dictionary.DictionaryEntry;
 import com.example.genshin.R;
 import com.example.genshin.models.GachaModel;
 
@@ -17,12 +18,17 @@ import java.util.List;
 
 public class GachaAdapter extends RecyclerView.Adapter<GachaAdapter.GachaViewHolder>{
 
-    Context ctx;
-    private final List<GachaModel> models;
+    private Context ctx;
+    private List<GachaModel> models;
 
     public GachaAdapter(Context ctx, List<GachaModel> models) {
         this.ctx = ctx;
         this.models = models;
+    }
+
+    public void setListGachaModels(List<GachaModel> listGachaModels){
+        this.models = listGachaModels;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -41,7 +47,10 @@ public class GachaAdapter extends RecyclerView.Adapter<GachaAdapter.GachaViewHol
 
     @Override
     public int getItemCount() {
-        return models.size();
+        if(models != null){
+            return models.size();
+        }
+        return 0;
     }
 
     public final class GachaViewHolder extends RecyclerView.ViewHolder {

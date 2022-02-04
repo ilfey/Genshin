@@ -17,12 +17,17 @@ import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder> {
 
-    Context ctx;
-    private final List<MainModel> models;
+    private Context ctx;
+    private List<MainModel> models;
 
     public MainAdapter(Context ctx, List<MainModel> models) {
         this.ctx = ctx;
         this.models = models;
+    }
+
+    public void setListMainModels(List<MainModel> listMainModels){
+        this.models = listMainModels;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -41,7 +46,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
 
     @Override
     public int getItemCount() {
-        return models.size();
+        if(models != null){
+            return models.size();
+        }
+        return 0;
     }
 
     public final class MainViewHolder extends RecyclerView.ViewHolder{
