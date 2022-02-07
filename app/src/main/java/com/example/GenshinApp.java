@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.example.data.remote.characters.Characters;
 import com.example.data.remote.dictionary.Dictionary;
+import com.example.data.remote.gacha.Gacha;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -14,6 +15,7 @@ public class GenshinApp extends Application {
 
     public Dictionary dictionary;
     public Characters characters;
+    public Gacha gacha;
 
     @Override
     public void onCreate() {
@@ -37,5 +39,7 @@ public class GenshinApp extends Application {
 
         dictionary = retrofit.create(Dictionary.class);
         characters = retrofit.create(Characters.class);
+        gacha = retrofit.create(Gacha.class);
+
     }
 }

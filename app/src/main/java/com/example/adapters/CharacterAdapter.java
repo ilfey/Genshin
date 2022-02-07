@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.data.remote.characters.CharacterEntry;
 import com.example.genshin.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -43,9 +44,9 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
         holder.name.setText(models.get(position).getName());
         holder.rarity.setText(models.get(position).getRarity());
 
-//        holder.ico.setImageResource(models.get(position).getIco());
-        holder.ico.setImageResource(R.mipmap.tartaglia);  // FIX THIS!!!
-//        holder.ico.setImageResource(models.get(position).getIco());
+        Picasso.with(ctx)
+                .load("https://sushicat.pp.ua/api" + models.get(position).getIco())
+                .into(holder.ico);
     }
 
     @Override

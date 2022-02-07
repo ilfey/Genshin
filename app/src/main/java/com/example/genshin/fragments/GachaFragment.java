@@ -10,18 +10,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.GenshinApp;
 import com.example.adapters.GachaAdapter;
+import com.example.data.remote.gacha.GachaEntry;
+import com.example.data.remote.gacha.GachaResponse;
 import com.example.genshin.R;
-import com.example.genshin.models.GachaModel;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class GachaFragment extends Fragment {
 
     private RecyclerView gacha_recycler;
     private GachaAdapter gachaAdapter;
-    private List<GachaModel> gachaModels = new ArrayList<>();
+    private List<GachaEntry> models = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,14 +36,24 @@ public class GachaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_gacha, container, false);
 
         gacha_recycler = view.findViewById(R.id.gacha_recycler);
-        gachaAdapter = new GachaAdapter(getContext(), gachaModels);
+        gachaAdapter = new GachaAdapter(getContext(), models);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         gacha_recycler.setLayoutManager(layoutManager);
         gacha_recycler.setAdapter(gachaAdapter);
 
-        gachaModels.add(new GachaModel(1, R.mipmap.eola, "Эола", "Эола 5*\nРозария 4*\nНоэль 4*\nБеннет 4*"));
-        gachaModels.add(new GachaModel(2, R.mipmap.eola, "Эола", "Эола 5*\nРозария 4*\nНоэль 4*\nБеннет 4*"));
-        gachaModels.add(new GachaModel(3, R.mipmap.eola, "Эола", "Эола 5*\nРозария 4*\nНоэль 4*\nБеннет 4*"));
+        ((GenshinApp) getActivity().getApplication()).gacha.getGacha().enqueue(new Callback<GachaResponse>() {
+            @Override
+            public void onResponse(Call<GachaResponse> call, Response<GachaResponse> response) {
+                if(response.code() == 200 && response.body() != null) {
+                    gachaAdapter.setListGachaModels(response.body().entries);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GachaResponse> call, Throwable t) {
+                models.add(new GachaEntry("1", "", "Проблемы с подключением", "Проверьте подключение к интернету", "Розария", "Ноэль", "Беннет"));
+            }
+        });
 
         return view;
     }

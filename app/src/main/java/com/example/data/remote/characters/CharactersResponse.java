@@ -1,5 +1,7 @@
 package com.example.data.remote.characters;
 
+import com.example.data.remote.Common;
+
 import java.util.List;
 
 public class CharactersResponse {

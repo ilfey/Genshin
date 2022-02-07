@@ -1,11 +1,13 @@
 package com.example.data.remote.characters;
 
+import com.example.data.remote.Common;
+
 public class CharacterEntry {
     private String name;
     private String nameeng;
     private String href;
     private String rarity;
-    private ObjectWithStringPath ico;
+    private Common.ObjectWithStringPath ico;
     private String weapon;
     private String eye;
     private String fullname;
@@ -13,7 +15,7 @@ public class CharacterEntry {
     private String birthday;
     private String region;
     private String affiliation;
-    private ObjectWithStringPath portrait;
+    private Common.ObjectWithStringPath portrait;
     private String _mby;
     private String _by;
     private int _modified;
@@ -21,7 +23,7 @@ public class CharacterEntry {
     private String _id;
     private String desk;
 
-    public CharacterEntry(String _id, String name, String rarity, ObjectWithStringPath ico) {
+    public CharacterEntry(String _id, String name, String rarity, Common.ObjectWithStringPath ico) {
         this._id = _id;
         this.name = name;
         this.rarity = rarity;
@@ -64,7 +66,7 @@ public class CharacterEntry {
         return ico.path;
     }
 
-    public void setIco(ObjectWithStringPath ico) {
+    public void setIco(Common.ObjectWithStringPath ico) {
         this.ico = ico;
     }
 
@@ -124,11 +126,11 @@ public class CharacterEntry {
         this.affiliation = affiliation;
     }
 
-    public ObjectWithStringPath getPortrait() {
+    public Common.ObjectWithStringPath getPortrait() {
         return portrait;
     }
 
-    public void setPortrait(ObjectWithStringPath portrait) {
+    public void setPortrait(Common.ObjectWithStringPath portrait) {
         this.portrait = portrait;
     }
 
@@ -179,8 +181,4 @@ public class CharacterEntry {
     public void setDesk(String desk) {
         this.desk = desk;
     }
-}
-
-class ObjectWithStringPath{
-    String path;
 }

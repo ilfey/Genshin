@@ -13,8 +13,21 @@
         android:text="@string/title" />
 
     <TextView
-        android:id="@+id/model_gacha_skills"
+        android:id="@+id/model_gacha_star"
         style="@style/GachaDescription"
-        android:text="@string/description" />
+        android:text="@string/eola" />
+
+    <TextView
+        android:id="@+id/model_gacha_star1"
+        style="@style/GachaDescription"
+        android:text="@string/sin_tsu" />
+    <TextView
+        android:id="@+id/model_gacha_star2"
+        style="@style/GachaDescription"
+        android:text="@string/bey_doy" />
+    <TextView
+        android:id="@+id/model_gacha_star3"
+        style="@style/GachaDescription"
+        android:text="@string/sin_yan" />
 
 </LinearLayout>

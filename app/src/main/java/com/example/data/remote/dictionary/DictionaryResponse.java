@@ -1,6 +1,6 @@
 package com.example.data.remote.dictionary;
 
-import com.example.data.remote.characters.Common;
+import com.example.data.remote.Common;
 
 import java.util.List;
 

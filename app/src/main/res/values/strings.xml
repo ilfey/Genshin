@@ -6,6 +6,10 @@
     <string name="rights">Все права на материалы показанные на сайте принадлежат компании miHoYo. Информация на сайте взята из официальных источников miHoYo. Если нет, то внизу будет ссылка на источник.</string>
     <string name="description">Эола 5*\nРозария 4*\nНоэль 4*\nБеннет 4*</string>
     <string name="title">Рождённая морской волной (2.3)</string>
+    <string name="eola">Эола</string>
+    <string name="sin_tsu">Син Цю</string>
+    <string name="bey_doy">Бэй Доу</string>
+    <string name="sin_yan">Син Янь</string>
 
     <string-array name="sorting">
         <item>От редких к менее</item>

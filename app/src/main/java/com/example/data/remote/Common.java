@@ -1,4 +1,4 @@
-package com.example.data.remote.characters;
+package com.example.data.remote;
 
 import java.util.List;
 
@@ -9,5 +9,7 @@ public class Common {
         private boolean localize;
         private List options;
     }
-
+    public class ObjectWithStringPath{
+        public String path;
+    }
 }
