@@ -1,6 +1,8 @@
 package com.example.adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.data.remote.characters.CharacterEntry;
+import com.example.genshin.CharacterActivity;
+import com.example.genshin.MainActivity;
 import com.example.genshin.R;
 import com.squareup.picasso.Picasso;
 
@@ -20,10 +24,12 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
 
     private Context ctx;
     private List<CharacterEntry> models;
+    private MainActivity activity;
 
-    public CharacterAdapter(Context ctx, List<CharacterEntry> models) {
+    public CharacterAdapter(Context ctx, MainActivity activity, List<CharacterEntry> models) {
         this.ctx = ctx;
         this.models = models;
+        this.activity = activity;
     }
 
     public void setListCharactersModels(List<CharacterEntry> listCharactersModels){
@@ -34,7 +40,20 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
     @NonNull
     @Override
     public CharacterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+
+
         View characters = LayoutInflater.from(ctx).inflate(R.layout.model_characters, parent, false);
+        characters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ctx, CharacterActivity.class);
+                i.addFlags(i.FLAG_ACTIVITY_NO_ANIMATION);
+                i.putExtra("Theme", activity.CURRENT_THEME);
+                i.putExtra("URL", "url");
+                ctx.startActivity(i);
+            }
+        });
 
         return new CharacterViewHolder(characters);
     }

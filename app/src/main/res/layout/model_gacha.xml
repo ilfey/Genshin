@@ -6,70 +6,85 @@
     <ImageView
         android:id="@+id/model_gacha_icon"
         style="@style/GachaImage"
-        android:src="@mipmap/eola"/>
+        android:src="@mipmap/eola" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+        android:id="@+id/model_gacha_title"
+        style="@style/GachaText"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/model_gacha_title"
-            style="@style/GachaText"
-            android:text=""
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/model_gacha_star"
             style="@style/GachaTextSmall"
-            android:text=""
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/model_gacha_title" />
+            android:text="" />
 
-        <ImageView
-            style="@style/GachaStar"
-            app:layout_constraintBottom_toBottomOf="@+id/model_gacha_star"
-            app:layout_constraintStart_toEndOf="@+id/model_gacha_star"
-            app:layout_constraintTop_toBottomOf="@+id/model_gacha_star"/>
+        <TextView
+            style="@style/GachaTextStar"
+            android:text="@string/five" />
+
+        <ImageView style="@style/Star" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/model_gacha_star1"
             style="@style/GachaTextSmall"
-            android:text=""
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/model_gacha_star" />
+            android:text="" />
 
-        <ImageView
-            style="@style/GachaStar"
-            app:layout_constraintBottom_toBottomOf="@+id/model_gacha_star1"
-            app:layout_constraintStart_toEndOf="@+id/model_gacha_star1"
-            app:layout_constraintTop_toTopOf="@+id/model_gacha_star1"/>
+        <TextView
+            style="@style/GachaTextStar"
+            android:text="@string/four" />
+
+        <ImageView style="@style/Star" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/model_gacha_star2"
             style="@style/GachaTextSmall"
-            android:text=""
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/model_gacha_star1" />
+            android:text="" />
 
-        <ImageView
-            style="@style/GachaStar"
-            app:layout_constraintBottom_toBottomOf="@+id/model_gacha_star2"
-            app:layout_constraintStart_toEndOf="@+id/model_gacha_star2"
-            app:layout_constraintTop_toTopOf="@+id/model_gacha_star2"/>
+        <TextView
+            style="@style/GachaTextStar"
+            android:text="@string/four" />
+
+        <ImageView style="@style/Star" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/model_gacha_star3"
             style="@style/GachaTextSmall"
-            android:text=""
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/model_gacha_star2" />
+            android:text="" />
 
-        <ImageView
-            style="@style/GachaStar"
-            app:layout_constraintBottom_toBottomOf="@+id/model_gacha_star3"
-            app:layout_constraintStart_toEndOf="@+id/model_gacha_star3"
-            app:layout_constraintTop_toTopOf="@+id/model_gacha_star3"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            style="@style/GachaTextStar"
+            android:text="@string/four" />
+
+        <ImageView style="@style/Star" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

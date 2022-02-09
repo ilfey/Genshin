@@ -10,6 +10,6 @@
     <TextView
         android:id="@+id/model_main_title"
         style="@style/MainTitle"
-        android:text="Персонажи"/>
+        android:text=""/>
 
 </LinearLayout>

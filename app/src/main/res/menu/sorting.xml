@@ -2,25 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/fromRareToLess"
-        android:title="От редких к менее"/>
+        android:title="@string/from_rare_to_less"/>
 
     <item
         android:id="@+id/fromLessRare"
-        android:title="От менее редких"/>
+        android:title="@string/from_less_rare"/>
 
     <item
         android:id="@+id/alphabetically"
-        android:title="По алфавиту"/>
+        android:title="@string/alphabetically"/>
 
     <item
         android:id="@+id/fromTheEndOfTheAlphabet"
-        android:title="С конца алфавита"/>
+        android:title="@string/from_the_end_of_the_alphabet"/>
 
     <item
         android:id="@+id/byTheElements"
-        android:title="По стихиям"/>
+        android:title="@string/by_the_elements"/>
 
     <item
         android:id="@+id/byIdInDb"
-        android:title="По ID в БД"/>
+        android:title="@string/by_if_in_bd"/>
 </menu>

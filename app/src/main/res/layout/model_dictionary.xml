@@ -5,16 +5,16 @@
     <TextView
         android:id="@+id/model_dictionary_title"
         style="@style/DictionaryTitle"
-        android:text="biat"/>
+        android:text=""/>
 
     <TextView
         android:id="@+id/model_dictionary_content"
         style="@style/DictionaryContent"
-        android:text="[int] Damn it [v] fuck"/>
+        android:text=""/>
 
     <TextView
         android:id="@+id/model_dictionary_description"
         style="@style/DictionaryDescription"
-        android:text="Russian: Блять(blyad') (Damn it)"/>
+        android:text=""/>
 
 </LinearLayout>

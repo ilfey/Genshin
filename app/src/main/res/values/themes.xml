@@ -1,28 +1,49 @@
 <resources>
 
-    <style name="AppTheme.Light" parent="Theme.AppCompat">
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="android:windowBackground">@color/window_light_bg</item>
+    <style name="Light" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!--    фуллскрин окно    -->
         <item name="android:windowFullscreen">true</item>
+        <!--    фон окна    -->
+        <item name="android:windowBackground">#E5E7EB</item>
+        <!--    скругление элементов    -->
+        <item name="itemBackground">@drawable/item_bg</item>
+        <!--    фон элемента    -->
+        <item name="itemFillColor">#F9FAFB</item>
+        <!--    фон кнопок    -->
+        <item name="colorPrimary">#4F46E5</item>
+        <!--    текст на конпах    -->
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <!--    системный навбар    -->
         <item name="android:navigationBarColor">@color/window_light_bg</item>
-        <item name="android:textColor">@android:color/black</item>
+        <!--    текст    -->
+        <item name="android:textColor">#000</item>
     </style>
 
-    <style name="AppTheme.Light.Launch">
-        <item name="android:windowBackground">@drawable/light_splash_screen</item>
-    </style>
+    <style name="Dark" parent="Theme.MaterialComponents.NoActionBar">
 
-    <style name="AppTheme.Dark" parent="Theme.AppCompat">
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="android:windowBackground">@color/window_dark_bg</item>
-        <item name="android:navigationBarColor">@color/window_dark_bg</item>
+        <!--    фуллскрин окно    -->
         <item name="android:windowFullscreen">true</item>
-        <item name="android:textColor">#DDD</item>
+        <!--    фон окна    -->
+        <item name="android:windowBackground">#1F2937</item>
+        <!--    скругление элементов    -->
+        <item name="itemBackground">@drawable/item_bg</item>
+        <!--    фон элемента    -->
+        <item name="itemFillColor">#374151</item>
+        <!--    фон кнопок    -->
+        <item name="colorPrimary">#4F46E5</item>
+        <!--    текст на конпах    -->
+        <item name="colorOnPrimary">#D1D5DB</item>
+        <!--    системный навбар    -->
+        <item name="android:navigationBarColor">#1F2937</item>
+        <!--    текст    -->
+        <item name="android:textColor">#FFF</item>
+
+<!--        <item name="colorPrimaryDark">#4F46E5</item>-->
+<!--        <item name="colorButtonNormal">?colorPrimaryDark</item>-->
+
     </style>
 
-    <style name="AppTheme.Dark.Launch">
-        <item name="android:windowBackground">@drawable/dark_splash_screen</item>
+    <style name="Launch">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 </resources>

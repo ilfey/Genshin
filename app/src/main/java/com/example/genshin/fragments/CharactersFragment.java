@@ -15,6 +15,7 @@ import com.example.GenshinApp;
 import com.example.adapters.CharacterAdapter;
 import com.example.data.remote.characters.CharacterEntry;
 import com.example.data.remote.characters.CharactersResponse;
+import com.example.genshin.MainActivity;
 import com.example.genshin.R;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class CharactersFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_characters, container, false);
 
         characters_recycler = view.findViewById(R.id.characters_recycler);
-        charactersAdapter = new CharacterAdapter(getContext(), menuCharacters);
+        charactersAdapter = new CharacterAdapter(getContext(), (MainActivity) getActivity(), menuCharacters);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         characters_recycler.setLayoutManager(layoutManager);
         characters_recycler.setAdapter(charactersAdapter);

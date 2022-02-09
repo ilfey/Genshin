@@ -40,6 +40,5 @@ public class GenshinApp extends Application {
         dictionary = retrofit.create(Dictionary.class);
         characters = retrofit.create(Characters.class);
         gacha = retrofit.create(Gacha.class);
-
     }
 }

@@ -57,7 +57,6 @@ public class DictionaryFragment extends Fragment {
                 dictionaryModels.add(new DictionaryEntry("1", "Проблемы с полдлючением", "Проверьте подключение к интернету", ""));
             }
         });
-
         return view;
     }
 }
