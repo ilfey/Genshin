@@ -5,40 +5,55 @@
     android:layout_height="match_parent"
     tools:context=".fragments.AboutFragment">
 
-    <ScrollView style="@style/Scroller">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp">
 
-        <LinearLayout style="@style/ScrollerContainer">
             <Button
                 android:id="@+id/toggler"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:layout_gravity="right"
                 android:layout_marginTop="12dp"
-                android:text="Сменить тему"
-                android:textAllCaps="false"
-                android:background="@drawable/sorting_bg"/>
+                android:background="@drawable/cr10dp"
+                android:text="@string/change_theme"
+                android:textAllCaps="false" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
                 android:src="@mipmap/about" />
 
-            <LinearLayout style="@style/About">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="12dp"
+                android:background="@drawable/cr15dp"
+                android:orientation="vertical"
+                android:padding="24dp">
 
                 <TextView
-                    style="@style/AboutTitle"
+                    style="@style/TextView.MatchParent22sp"
                     android:text="@string/about_title" />
 
                 <TextView
-                    style="@style/AboutContent"
+                    style="@style/TextView.MatchParent16sp"
                     android:text="@string/about_content" />
 
             </LinearLayout>
 
             <TextView
-                style="@style/AboutDescription"
-                android:text="@string/rights" />
+                style="@style/TextView.MatchParent16sp"
+                android:text="@string/rights"
+                android:textAlignment="center"
+                android:textColor="@color/text_description"
+                android:textSize="13sp" />
 
         </LinearLayout>
 

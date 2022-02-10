@@ -89,15 +89,15 @@ public class MainActivity extends AppCompatActivity {
     public void setFinalTheme() {
         switch (prefs.getString("Theme", LIGHT)) {
             case DARK: {
-                setCustomTheme(R.style.Dark, DARK);
+                setCustomTheme(R.style.AppTheme_Dark, DARK);
                 return;
             }
             case LIGHT: {
-                setCustomTheme(R.style.Light, LIGHT);
+                setCustomTheme(R.style.AppTheme_Light, LIGHT);
                 return;
             }
             default:
-                setCustomTheme(R.style.Light, LIGHT);
+                setCustomTheme(R.style.AppTheme_Dark, DARK);
         }
     }
 

@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Dictionary">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="24dp"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/model_dictionary_title"
-        style="@style/DictionaryTitle"
-        android:text=""/>
+        style="@style/TextView.MatchParent22sp"/>
 
     <TextView
         android:id="@+id/model_dictionary_content"
-        style="@style/DictionaryContent"
-        android:text=""/>
+        style="@style/TextView.MatchParent16sp" />
 
     <TextView
         android:id="@+id/model_dictionary_description"
-        style="@style/DictionaryDescription"
-        android:text=""/>
+        style="@style/TextView.MatchParent16sp"
+        android:textColor="@color/text_description" />
 
 </LinearLayout>

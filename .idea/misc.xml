@@ -37,6 +37,7 @@
         <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/sort_item.xml" value="0.17391304347826086" />
         <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/menu/navigation_bar.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/menu/sorting.xml" value="0.20364583333333333" />
+        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/drawable-v31/splash_screen.xml" value="0.3355" />
         <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/drawable/dark_splash_screen.xml" value="0.2725" />
         <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/drawable/david.xml" value="0.2725" />
         <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/drawable/ic_about.xml" value="0.2725" />
@@ -49,8 +50,9 @@
         <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/drawable/light_splash_screen.xml" value="0.2725" />
         <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/drawable/logo.xml" value="0.196" />
         <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/drawable/sorting_bg.xml" value="0.2725" />
+        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/drawable/splash_screen.xml" value="0.3355" />
         <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/drawable/star.xml" value="0.2525" />
-        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/activity_character.xml" value="0.2635416666666667" />
+        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/activity_character.xml" value="0.15941080196399346" />
         <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/fragment_about.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/fragment_character.xml" value="0.36666666666666664" />

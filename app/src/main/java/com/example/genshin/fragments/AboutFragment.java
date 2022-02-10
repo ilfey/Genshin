@@ -29,13 +29,13 @@ public class AboutFragment extends Fragment {
                 switch (mainActivity.CURRENT_THEME){
                     case "Dark": {
                         System.out.println("set light theme");
-                        mainActivity.setCustomTheme(R.style.Light, mainActivity.LIGHT);
+                        mainActivity.setCustomTheme(R.style.AppTheme_Light, mainActivity.LIGHT);
                         mainActivity.recreate();
                         break;
                     }
                     case "Light": {
                         System.out.println("set dark theme");
-                        mainActivity.setCustomTheme(R.style.Dark, mainActivity.DARK);
+                        mainActivity.setCustomTheme(R.style.AppTheme_Dark, mainActivity.DARK);
                         mainActivity.recreate();
                         break;
                     }

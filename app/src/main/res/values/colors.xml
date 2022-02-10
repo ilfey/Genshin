@@ -11,6 +11,7 @@
 
     <color name="text">#000</color>
     <color name="text_description">#6B7280</color>
+    <color name="transparent">#00000000</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>

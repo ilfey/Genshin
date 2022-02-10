@@ -16,11 +16,11 @@ public class CharacterActivity extends AppCompatActivity {
         // устанавливаем тему
         switch (args.getString("Theme")){
             case "Dark":{
-                setTheme(R.style.Dark);
+                setTheme(R.style.AppTheme_Dark);
                 break;
             }
             case "Light":{
-                setTheme(R.style.Light);
+                setTheme(R.style.AppTheme_Light);
                 break;
             }
         }
