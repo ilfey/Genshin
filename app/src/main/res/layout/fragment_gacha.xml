@@ -9,7 +9,7 @@
     <Spinner
         android:id="@+id/sort_gacha"
         android:layout_marginRight="24dp"
-        style="@style/ScrollerContainerSpinner"/>
+        style="@style/Spinner"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gacha_recycler"

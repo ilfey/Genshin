@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.GenshinApp;
 import com.example.adapters.DictionaryAdapter;
+import com.example.data.remote.dictionary.Dictionary;
 import com.example.data.remote.dictionary.DictionaryEntry;
 import com.example.data.remote.dictionary.DictionaryResponse;
 import com.example.genshin.R;

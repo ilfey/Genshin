@@ -13,33 +13,28 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GenshinApp extends Application {
 
-    public Dictionary dictionary;
-    public Characters characters;
-    public Gacha gacha;
+	public Retrofit retrofit;
+	public Dictionary dictionary;
+	public Characters characters;
+	public Gacha gacha;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        configRetrofit();
-    }
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		HttpLoggingInterceptor log = new HttpLoggingInterceptor();
+		log.level(HttpLoggingInterceptor.Level.BODY);
 
-    private void configRetrofit(){
-        HttpLoggingInterceptor log = new HttpLoggingInterceptor();
-        log.level(HttpLoggingInterceptor.Level.BODY);
+		OkHttpClient http = new OkHttpClient.Builder()
+				.addInterceptor(log)
+				.build();
 
-        OkHttpClient http = new OkHttpClient.Builder()
-            .addInterceptor(log)
-            .build();
-
-        Retrofit retrofit = new Retrofit.Builder()
-            .client(http)
-            .baseUrl("https://sushicat.pp.ua/api/genshin/api/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
-
-        dictionary = retrofit.create(Dictionary.class);
-        characters = retrofit.create(Characters.class);
-        gacha = retrofit.create(Gacha.class);
-
-    }
+		Retrofit retrofit = new Retrofit.Builder()
+				.client(http)
+				.baseUrl("https://sushicat.pp.ua/api/genshin/api/")
+				.addConverterFactory(GsonConverterFactory.create())
+				.build();
+		dictionary = retrofit.create(Dictionary.class);
+		characters = retrofit.create(Characters.class);
+		gacha = retrofit.create(Gacha.class);
+	}
 }

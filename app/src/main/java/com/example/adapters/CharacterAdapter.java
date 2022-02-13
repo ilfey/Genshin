@@ -1,6 +1,7 @@
 package com.example.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.data.remote.characters.CharacterEntry;
+import com.example.genshin.CharacterActivity;
+import com.example.genshin.MainActivity;
 import com.example.genshin.R;
 import com.squareup.picasso.Picasso;
 
@@ -18,57 +21,70 @@ import java.util.List;
 
 public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder> {
 
-    private Context ctx;
-    private List<CharacterEntry> models;
+	private Context ctx;
+	private List<CharacterEntry> models;
+	private MainActivity activity;
 
-    public CharacterAdapter(Context ctx, List<CharacterEntry> models) {
-        this.ctx = ctx;
-        this.models = models;
-    }
+	public CharacterAdapter(Context ctx, List<CharacterEntry> models) {
+		this.ctx = ctx;
+		this.models = models;
+	}
 
-    public void setListCharactersModels(List<CharacterEntry> listCharactersModels){
-        this.models = listCharactersModels;
-        notifyDataSetChanged();
-    }
+	public void setListCharactersModels(List<CharacterEntry> listCharactersModels) {
+		this.models = listCharactersModels;
+		notifyDataSetChanged();
+	}
 
-    @NonNull
-    @Override
-    public CharacterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View characters = LayoutInflater.from(ctx).inflate(R.layout.model_characters, parent, false);
+	@NonNull
+	@Override
+	public CharacterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+		View characters = LayoutInflater.from(ctx).inflate(R.layout.model_characters, parent, false);
 
-        return new CharacterViewHolder(characters);
-    }
+		characters.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
 
-    @Override
-    public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
-        holder.name.setText(models.get(position).getName());
-        holder.rarity.setText(models.get(position).getRarity());
+				Intent intent = new Intent(ctx, CharacterActivity.class);
+				intent.addFlags(intent.FLAG_ACTIVITY_NO_ANIMATION);
+				intent.putExtra("Theme", activity.CURRENT_THEME);
+				intent.putExtra("URL", "url");
+				ctx.startActivity(intent);
+			}
+		});
 
-        Picasso.with(ctx)
-                .load("https://sushicat.pp.ua/api" + models.get(position).getIco())
-                .into(holder.ico);
-    }
+		return new CharacterViewHolder(characters);
+	}
 
-    @Override
-    public int getItemCount() {
-        if(models != null){
-            return models.size();
-        }
-        return 0;
-    }
+	@Override
+	public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
+		holder.name.setText(models.get(position).getName());
+		holder.rarity.setText(models.get(position).getRarity());
 
-    public final class CharacterViewHolder extends RecyclerView.ViewHolder {
+		Picasso.get()
+				.load("https://sushicat.pp.ua/api" + models.get(position).getIco())
+				.into(holder.ico);
+	}
 
-        ImageView ico;
-        TextView name;
-        TextView rarity;
+	@Override
+	public int getItemCount() {
+		if (models != null) {
+			return models.size();
+		}
+		return 0;
+	}
 
-        public CharacterViewHolder(@NonNull View itemView) {
-            super(itemView);
+	public final class CharacterViewHolder extends RecyclerView.ViewHolder {
 
-            ico = (ImageView) itemView.findViewById(R.id.characters_model_logo);
-            name = (TextView) itemView.findViewById(R.id.model_characters_title);
-            rarity = (TextView) itemView.findViewById(R.id.model_characters_star);
-        }
-    }
+		ImageView ico;
+		TextView name;
+		TextView rarity;
+
+		public CharacterViewHolder(@NonNull View itemView) {
+			super(itemView);
+
+			ico = (ImageView) itemView.findViewById(R.id.characters_model_logo);
+			name = (TextView) itemView.findViewById(R.id.model_characters_title);
+			rarity = (TextView) itemView.findViewById(R.id.model_characters_star);
+		}
+	}
 }

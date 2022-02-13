@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.genshin">
+	package="com.example.genshin">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+	<uses-permission android:name="android.permission.INTERNET" />
 
-    <application
-        android:name="com.example.GenshinApp"
-        android:allowBackup="true"
-        android:icon="@drawable/logo"
-        android:label="@string/app_name"
-        android:roundIcon="@drawable/logo"
-        android:supportsRtl="true"
+	<application
+		android:name="com.example.GenshinApp"
+		android:allowBackup="true"
+		android:icon="@drawable/logo"
+		android:label="@string/app_name"
+		android:roundIcon="@drawable/logo"
+		android:supportsRtl="true"
+		android:theme="@style/AppTheme.Launch">
+		<activity
+			android:name=".CharacterActivity"
+			android:exported="false" />
+		<activity
+				android:name=".MainActivity"
+				android:exported="true">
+				<intent-filter>
+					<action android:name="android.intent.action.MAIN" />
 
-        android:theme="@style/AppTheme.Light.Launch">
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
+					<category android:name="android.intent.category.LAUNCHER" />
+				</intent-filter>
+		</activity>
+	</application>
 
 </manifest>

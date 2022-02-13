@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.GenshinApp;
 import com.example.adapters.CharacterAdapter;
 import com.example.data.remote.characters.CharacterEntry;
+import com.example.data.remote.characters.Characters;
 import com.example.data.remote.characters.CharactersResponse;
 import com.example.genshin.R;
 

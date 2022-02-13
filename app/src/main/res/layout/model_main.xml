@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Main">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="24dp"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/cr15dp">
 
     <ImageView
         android:id="@+id/model_main_logo"
-        style="@style/MainImage"
-        android:src="@mipmap/icon_ch"/>
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:layout_margin="12dp"
+        android:src="@mipmap/icon_ch" />
 
     <TextView
         android:id="@+id/model_main_title"
-        style="@style/MainTitle"
-        android:text="Персонажи"/>
+        style="@style/TextView.MatchParent22sp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="24dp"/>
 
 </LinearLayout>

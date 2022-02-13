@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/main"
-        android:icon="@drawable/ic_main"
-        android:title="Главная" />
+	<item
+		android:id="@+id/main"
+		android:icon="@drawable/ic_main"
+		android:title="Главная" />
 
-    <item
-        android:id="@+id/characters"
-        android:icon="@drawable/ic_characters"
-        android:title="Персонажи" />
+	<item
+		android:id="@+id/characters"
+		android:icon="@drawable/ic_characters"
+		android:title="Персонажи" />
 
-    <item
-        android:id="@+id/dictionary"
-        android:icon="@drawable/ic_dictionary"
-        android:title="Хиличурлский" />
+	<item
+		android:id="@+id/dictionary"
+		android:icon="@drawable/ic_dictionary"
+		android:title="Хиличурлский" />
 
-    <item
-        android:id="@+id/gacha"
-        android:icon="@drawable/ic_gacha"
-        android:title="Молитвы" />
+	<item
+		android:id="@+id/gacha"
+		android:icon="@drawable/ic_gacha"
+		android:title="Молитвы" />
 
-    <item
-        android:id="@+id/about"
-        android:icon="@drawable/ic_about"
-        android:title="О проекте" />
+	<item
+		android:id="@+id/about"
+		android:icon="@drawable/ic_about"
+		android:title="О проекте" />
 
 </menu>

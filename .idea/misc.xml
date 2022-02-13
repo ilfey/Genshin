@@ -3,54 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.215625" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/drawable/dark_splash_screen.xml" value="0.21979166666666666" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/drawable/ic_about.xml" value="0.21979166666666666" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/drawable/ic_characters.xml" value="0.215625" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/drawable/ic_dictionary.xml" value="0.21979166666666666" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/drawable/ic_gacha.xml" value="0.21979166666666666" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/drawable/ic_launcher_background.xml" value="0.215625" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/drawable/ic_logo.xml" value="0.215625" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/drawable/ic_main.xml" value="0.21979166666666666" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/drawable/item_bg.xml" value="0.215625" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/drawable/light_splash_screen.xml" value="0.21979166666666666" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/drawable/logo.xml" value="0.215625" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/drawable/logo_round.xml" value="0.215625" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/drawable/sorting_bg.xml" value="0.21979166666666666" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/drawable/splash_screen.xml" value="0.215625" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/characters_model.xml" value="0.19655797101449277" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/dictionary_model.xml" value="0.19655797101449277" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/fragment_about.xml" value="0.18541666666666667" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/fragment_character.xml" value="0.19947916666666668" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/fragment_characters.xml" value="0.25" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/fragment_dictionary.xml" value="0.16" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/fragment_gacha.xml" value="0.180349932705249" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/fragment_main.xml" value="0.19947916666666668" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/gacha_model.xml" value="0.19655797101449277" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/model_characters.xml" value="0.13496376811594202" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/model_dictionary.xml" value="0.19655797101449277" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/model_gacha.xml" value="0.19655797101449277" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/model_main.xml" value="0.19655797101449277" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/navigation_bar.xml" value="0.1852355072463768" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/sort_drop.xml" value="0.17391304347826086" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/layout/sort_item.xml" value="0.17391304347826086" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/menu/navigation_bar.xml" value="0.19947916666666668" />
-        <entry key="..\:/Users/Josty/AndroidStudioProjects/Genshin/app/src/main/res/menu/sorting.xml" value="0.20364583333333333" />
-        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/drawable/ic_logo.xml" value="0.196" />
-        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/drawable/logo.xml" value="0.196" />
-        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/fragment_about.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/fragment_character.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/fragment_characters.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/fragment_dictionary.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/fragment_gacha.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/fragment_main.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/model_dictionary.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/model_gacha.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/model_main.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/sort_drop.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/mad/StudioProjects/Genshin/app/src/main/res/layout/sort_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/work/Genshin/app/src/main/res/drawable/bg_activity.xml" value="0.1" />
+        <entry key="..\:/work/Genshin/app/src/main/res/drawable/cr10dp.xml" value="0.1" />
+        <entry key="..\:/work/Genshin/app/src/main/res/drawable/cr15dp.xml" value="0.1" />
+        <entry key="..\:/work/Genshin/app/src/main/res/drawable/ic_characters.xml" value="0.1" />
+        <entry key="..\:/work/Genshin/app/src/main/res/drawable/star.xml" value="0.1" />
+        <entry key="..\:/work/Genshin/app/src/main/res/layout/activity_character.xml" value="0.209375" />
+        <entry key="..\:/work/Genshin/app/src/main/res/layout/activity_chatacter.xml" value="0.13496376811594202" />
+        <entry key="..\:/work/Genshin/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/work/Genshin/app/src/main/res/layout/fragment_about.xml" value="0.1" />
+        <entry key="..\:/work/Genshin/app/src/main/res/layout/fragment_characters.xml" value="0.17572463768115942" />
+        <entry key="..\:/work/Genshin/app/src/main/res/layout/model_characters.xml" value="0.1" />
+        <entry key="..\:/work/Genshin/app/src/main/res/layout/sort_drop.xml" value="0.1" />
       </map>
     </option>
   </component>

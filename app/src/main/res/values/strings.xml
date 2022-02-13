@@ -1,22 +1,29 @@
 <resources>
-    <string name="app_name">Genshin</string>
-    <string name="sort">Сортировать</string>
-    <string name="about_title">О проекте</string>
-    <string name="about_content">По задумке это небольшой и уютненький сайт, где можно найти всякое интересное по игре Genshin Impact. Сайт не представляет собой прям базу, а скорее всего что-то типа собрания интересных и иногда полезных фактов и данных. Всем кто хочет связаться и пообщаться по поводу сайта или о других мелочах:\nPrezident123#9662\nПо поводу APK: Josty#0626</string>
-    <string name="rights">Все права на материалы показанные на сайте принадлежат компании miHoYo. Информация на сайте взята из официальных источников miHoYo. Если нет, то внизу будет ссылка на источник.</string>
-    <string name="description">Эола 5*\nРозария 4*\nНоэль 4*\nБеннет 4*</string>
-    <string name="title">Рождённая морской волной (2.3)</string>
-    <string name="eola">Эола</string>
-    <string name="sin_tsu">Син Цю</string>
-    <string name="bey_doy">Бэй Доу</string>
-    <string name="sin_yan">Син Янь</string>
+	<string name="app_name">Genshin</string>
+	<string name="sort">Сортировать</string>
+	<string name="about_title">О проекте</string>
+	<string name="about_content">По задумке это небольшой и уютненький сайт, где можно найти всякое интересное по игре Genshin Impact. Сайт не представляет собой прям базу, а скорее всего что-то типа собрания интересных и иногда полезных фактов и данных. Всем кто хочет связаться и пообщаться по поводу сайта или о других мелочах:\nPrezident123#9662\nПо поводу APK: Josty#0626</string>
+	<string name="rights">Все права на материалы показанные на сайте принадлежат компании miHoYo. Информация на сайте взята из официальных источников miHoYo. Если нет, то внизу будет ссылка на источник.</string>
+	<string name="description">Описание</string>
+	<string name="from_rare_to_less">От редких к менее</string>
+	<string name="from_less_rare">От менее редких</string>
+	<string name="alphabetically">По алфавиту</string>
+	<string name="from_the_end_of_the_alphabet">С конца алфавита</string>
+	<string name="by_the_elements">По стихиям</string>
+	<string name="by_if_in_bd">По ID в БД</string>
+	<string name="rarity">Редкость:</string>
+	<string name="weapon">Оружие:</string>
+	<string name="gender">Пол:</string>
+	<string name="birthday">День рождения:</string>
+	<string name="change_theme">Сменить тему</string>
+	<string name="full_name">Полное имя:</string>
 
-    <string-array name="sorting">
-        <item>От редких к менее</item>
-        <item>От менее редких</item>
-        <item>По алфавиту</item>
-        <item>С конца алфавита</item>
-        <item>По стихиям</item>
-        <item>По ID в БД</item>
-    </string-array>
+	<string-array name="sorting">
+		<item>От редких к менее</item>
+		<item>От менее редких</item>
+		<item>По алфавиту</item>
+		<item>С конца алфавита</item>
+		<item>По стихиям</item>
+		<item>По ID в БД</item>
+	</string-array>
 </resources>

@@ -9,7 +9,7 @@
     <Spinner
         android:id="@+id/sort"
         android:layout_marginRight="24dp"
-        style="@style/ScrollerContainerSpinner" />
+        style="@style/Spinner" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/characters_recycler"
@@ -17,4 +17,5 @@
         android:layout_height="match_parent">
 
     </androidx.recyclerview.widget.RecyclerView>
+		
 </LinearLayout>

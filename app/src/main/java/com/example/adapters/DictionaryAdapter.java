@@ -16,54 +16,54 @@ import java.util.List;
 
 public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.DictionaryViewHolder> {
 
-    private Context ctx;
-    private List<DictionaryEntry> models;
+	private Context ctx;
+	private List<DictionaryEntry> models;
 
-    public DictionaryAdapter(Context ctx, List<DictionaryEntry> models) {
-        this.ctx = ctx;
-        this.models = models;
-    }
+	public DictionaryAdapter(Context ctx, List<DictionaryEntry> models) {
+		this.ctx = ctx;
+		this.models = models;
+	}
 
-    public void setListDictionaryModels(List<DictionaryEntry> listDictionaryModels){
-        this.models = listDictionaryModels;
-        notifyDataSetChanged();
-    }
+	public void setListDictionaryModels(List<DictionaryEntry> listDictionaryModels) {
+		this.models = listDictionaryModels;
+		notifyDataSetChanged();
+	}
 
-    @NonNull
-    @Override
-    public DictionaryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(ctx).inflate(R.layout.model_dictionary, parent, false);
+	@NonNull
+	@Override
+	public DictionaryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+		View view = LayoutInflater.from(ctx).inflate(R.layout.model_dictionary, parent, false);
 
-        return new DictionaryViewHolder(view);
-    }
+		return new DictionaryViewHolder(view);
+	}
 
-    @Override
-    public void onBindViewHolder(@NonNull DictionaryViewHolder holder, int position) {
-        holder.word.setText(models.get(position).getWord());
-        holder.content.setText(models.get(position).getTranslate());
-        holder.subinf.setText(models.get(position).getSubinf());
-    }
+	@Override
+	public void onBindViewHolder(@NonNull DictionaryViewHolder holder, int position) {
+		holder.word.setText(models.get(position).getWord());
+		holder.content.setText(models.get(position).getTranslate());
+		holder.subinf.setText(models.get(position).getSubinf());
+	}
 
-    @Override
-    public int getItemCount() {
-        if(models != null){
-            return models.size();
-        }
-        return 0;
-    }
+	@Override
+	public int getItemCount() {
+		if (models != null) {
+			return models.size();
+		}
+		return 0;
+	}
 
-    public final class DictionaryViewHolder extends RecyclerView.ViewHolder{
+	public final class DictionaryViewHolder extends RecyclerView.ViewHolder {
 
-        TextView word;
-        TextView content;
-        TextView subinf;
+		TextView word;
+		TextView content;
+		TextView subinf;
 
-        public DictionaryViewHolder(@NonNull View itemView) {
-            super(itemView);
+		public DictionaryViewHolder(@NonNull View itemView) {
+			super(itemView);
 
-            word = (TextView) itemView.findViewById(R.id.model_dictionary_title);
-            content = (TextView) itemView.findViewById(R.id.model_dictionary_content);
-            subinf = (TextView) itemView.findViewById(R.id.model_dictionary_description);
-        }
-    }
+			word = (TextView) itemView.findViewById(R.id.model_dictionary_title);
+			content = (TextView) itemView.findViewById(R.id.model_dictionary_content);
+			subinf = (TextView) itemView.findViewById(R.id.model_dictionary_description);
+		}
+	}
 }

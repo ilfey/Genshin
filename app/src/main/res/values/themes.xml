@@ -1,28 +1,43 @@
 <resources>
+	<style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:windowBackground">@drawable/bg_activity</item>
 
-    <style name="AppTheme.Light" parent="Theme.AppCompat">
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="android:windowBackground">@color/window_light_bg</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:navigationBarColor">@color/window_light_bg</item>
-        <item name="android:textColor">@android:color/black</item>
-    </style>
+		<item name="android:textViewStyle">@style/TextView</item>
 
-    <style name="AppTheme.Light.Launch">
-        <item name="android:windowBackground">@drawable/light_splash_screen</item>
-    </style>
+		<item name="colorSecondary">#4F46E5</item>
+		<item name="colorOnSecondary">#FFF</item>
+	</style>
 
-    <style name="AppTheme.Dark" parent="Theme.AppCompat">
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="android:windowBackground">@color/window_dark_bg</item>
-        <item name="android:navigationBarColor">@color/window_dark_bg</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:textColor">#DDD</item>
-    </style>
+	<style name="AppTheme.Light">
+		<item name="android:colorBackground">#E5E7EB</item>
+		<item name="colorOnBackground">#F9FAFB</item>
+		<item name="colorOnSecondary">#FFF</item>
+		<!--    фон кнопок    -->
+		<item name="colorPrimary">#F9FAFB</item>
+		<!--    текст на конпах    -->
+		<item name="colorOnPrimary">#FFF</item>
+		<!--    системный навбар    -->
+		<item name="android:navigationBarColor">?android:colorBackground</item>
+		<!--    текст    -->
+		<item name="android:textColor">#000</item>
+	</style>
 
-    <style name="AppTheme.Dark.Launch">
-        <item name="android:windowBackground">@drawable/dark_splash_screen</item>
-    </style>
+	<style name="AppTheme.Dark">
+		<item name="android:colorBackground">#1F2937</item>
+		<item name="colorOnBackground">#374151</item>
+
+		<item name="android:navigationBarColor">?android:colorBackground</item>
+
+		<item name="colorOnPrimary">#FFF</item>
+		<item name="colorPrimary">#374151</item>
+
+		<item name="android:textColor">#FFF</item>
+
+	</style>
+
+	<style name="AppTheme.Launch">
+		<item name="android:windowBackground">@drawable/splash_screen</item>
+		<item name="android:colorBackground">#1F2937</item>
+	</style>
 </resources>

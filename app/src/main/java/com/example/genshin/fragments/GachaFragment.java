@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.GenshinApp;
 import com.example.adapters.GachaAdapter;
+import com.example.data.remote.gacha.Gacha;
 import com.example.data.remote.gacha.GachaEntry;
 import com.example.data.remote.gacha.GachaResponse;
 import com.example.genshin.R;
