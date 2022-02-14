@@ -1,5 +1,6 @@
 package com.example.genshin.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,13 +10,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.GenshinApp;
 import com.example.adapters.GachaAdapter;
-import com.example.data.remote.gacha.Gacha;
 import com.example.data.remote.gacha.GachaEntry;
 import com.example.data.remote.gacha.GachaResponse;
+import com.example.genshin.MainActivity;
 import com.example.genshin.R;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +32,10 @@ import retrofit2.Response;
 
 public class GachaFragment extends Fragment {
 
+    private Context ctx;
+    private MainActivity activity;
+    private GenshinApp app;
+    private Spinner spinner;
     private RecyclerView gacha_recycler;
     private GachaAdapter gachaAdapter;
     private List<GachaEntry> models = new ArrayList<>();
@@ -36,23 +46,47 @@ public class GachaFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_gacha, container, false);
 
+        // Получаем нужные объекты
+        ctx = getContext();
+        activity = (MainActivity) getActivity();
+        app = (GenshinApp) (activity != null ? activity.getApplication() : null);
+
+        // Получаем элементы
+        spinner = view.findViewById(R.id.sort_gacha);
         gacha_recycler = view.findViewById(R.id.gacha_recycler);
-        gachaAdapter = new GachaAdapter(getContext(), models);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+
+        ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(ctx, R.array.sort_by, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Создаем слушатель событий
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String[] items = getResources().getStringArray(R.array.sort_by);
+                activity.showDialog("Вы выбрали", items[position]);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+        // Вызываем адаптер
+        spinner.setAdapter(adapter);
+
+        gachaAdapter = new GachaAdapter(ctx, models);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ctx, RecyclerView.VERTICAL, false);
         gacha_recycler.setLayoutManager(layoutManager);
         gacha_recycler.setAdapter(gachaAdapter);
 
-        ((GenshinApp) getActivity().getApplication()).gacha.getGacha().enqueue(new Callback<GachaResponse>() {
+        app.gacha.getGacha().enqueue(new Callback<GachaResponse>() {
             @Override
-            public void onResponse(Call<GachaResponse> call, Response<GachaResponse> response) {
-                if(response.code() == 200 && response.body() != null) {
+            public void onResponse(@NotNull Call<GachaResponse> call, @NotNull Response<GachaResponse> response) {
+                if (response.code() == 200 && response.body() != null) {
                     gachaAdapter.setListGachaModels(response.body().entries);
                 }
             }
 
             @Override
-            public void onFailure(Call<GachaResponse> call, Throwable t) {
-                models.add(new GachaEntry("1", "", "Проблемы с подключением", "Проверьте подключение к интернету", "Розария", "Ноэль", "Беннет"));
+            public void onFailure(@NotNull Call<GachaResponse> call, Throwable t) {
+                activity.showDialog("Ошибка!", "Нет подключения к интернету.");
             }
         });
 

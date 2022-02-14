@@ -17,8 +17,9 @@
 	<string name="birthday">День рождения:</string>
 	<string name="change_theme">Сменить тему</string>
 	<string name="full_name">Полное имя:</string>
+	<string name="welcome">Добро пожаловать!!!</string>
 
-	<string-array name="sorting">
+	<string-array name="sort_by">
 		<item>От редких к менее</item>
 		<item>От менее редких</item>
 		<item>По алфавиту</item>

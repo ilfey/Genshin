@@ -58,7 +58,7 @@
         <item name="android:textColor">?android:textColor</item>
         <item name="android:dropDownVerticalOffset">50dp</item>
         <item name="android:background">@drawable/cr10dp</item>
-        <item name="android:entries">@array/sorting</item>
+        <item name="android:entries">@array/sort_by</item>
     </style>
 
     <style name="Star">

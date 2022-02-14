@@ -21,70 +21,70 @@ import java.util.List;
 
 public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder> {
 
-	private Context ctx;
-	private List<CharacterEntry> models;
-	private MainActivity activity;
+    private Context ctx;
+    private List<CharacterEntry> models;
+    private MainActivity activity;
 
-	public CharacterAdapter(Context ctx, List<CharacterEntry> models) {
-		this.ctx = ctx;
-		this.models = models;
-	}
+    public CharacterAdapter(Context ctx, List<CharacterEntry> models) {
+        this.ctx = ctx;
+        this.models = models;
+    }
 
-	public void setListCharactersModels(List<CharacterEntry> listCharactersModels) {
-		this.models = listCharactersModels;
-		notifyDataSetChanged();
-	}
+    public void setListCharactersModels(List<CharacterEntry> listCharactersModels) {
+        this.models = listCharactersModels;
+        notifyDataSetChanged();
+    }
 
-	@NonNull
-	@Override
-	public CharacterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		View characters = LayoutInflater.from(ctx).inflate(R.layout.model_characters, parent, false);
+    @NonNull
+    @Override
+    public CharacterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View characters = LayoutInflater.from(ctx).inflate(R.layout.model_characters, parent, false);
 
-		characters.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
+        characters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-				Intent intent = new Intent(ctx, CharacterActivity.class);
-				intent.addFlags(intent.FLAG_ACTIVITY_NO_ANIMATION);
-				intent.putExtra("Theme", activity.CURRENT_THEME);
-				intent.putExtra("URL", "url");
-				ctx.startActivity(intent);
-			}
-		});
+                Intent intent = new Intent(ctx, CharacterActivity.class);
+                intent.addFlags(intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("Theme", activity.CURRENT_THEME);
+                intent.putExtra("URL", "url");
+                ctx.startActivity(intent);
+            }
+        });
 
-		return new CharacterViewHolder(characters);
-	}
+        return new CharacterViewHolder(characters);
+    }
 
-	@Override
-	public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
-		holder.name.setText(models.get(position).getName());
-		holder.rarity.setText(models.get(position).getRarity());
+    @Override
+    public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
+        holder.name.setText(models.get(position).getName());
+        holder.rarity.setText(models.get(position).getRarity());
 
-		Picasso.get()
-				.load("https://sushicat.pp.ua/api" + models.get(position).getIco())
-				.into(holder.ico);
-	}
+        Picasso.get()
+                .load("https://sushicat.pp.ua/api" + models.get(position).getIco())
+                .into(holder.ico);
+    }
 
-	@Override
-	public int getItemCount() {
-		if (models != null) {
-			return models.size();
-		}
-		return 0;
-	}
+    @Override
+    public int getItemCount() {
+        if (models != null) {
+            return models.size();
+        }
+        return 0;
+    }
 
-	public final class CharacterViewHolder extends RecyclerView.ViewHolder {
+    public final class CharacterViewHolder extends RecyclerView.ViewHolder {
 
-		ImageView ico;
-		TextView name;
-		TextView rarity;
+        ImageView ico;
+        TextView name;
+        TextView rarity;
 
-		public CharacterViewHolder(@NonNull View itemView) {
-			super(itemView);
+        public CharacterViewHolder(@NonNull View itemView) {
+            super(itemView);
 
-			ico = (ImageView) itemView.findViewById(R.id.characters_model_logo);
-			name = (TextView) itemView.findViewById(R.id.model_characters_title);
-			rarity = (TextView) itemView.findViewById(R.id.model_characters_star);
-		}
-	}
+            ico = (ImageView) itemView.findViewById(R.id.characters_model_logo);
+            name = (TextView) itemView.findViewById(R.id.model_characters_title);
+            rarity = (TextView) itemView.findViewById(R.id.model_characters_star);
+        }
+    }
 }

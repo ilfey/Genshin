@@ -16,6 +16,7 @@ import com.example.adapters.DictionaryAdapter;
 import com.example.data.remote.dictionary.Dictionary;
 import com.example.data.remote.dictionary.DictionaryEntry;
 import com.example.data.remote.dictionary.DictionaryResponse;
+import com.example.genshin.MainActivity;
 import com.example.genshin.R;
 
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class DictionaryFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<DictionaryResponse> call, @NonNull Throwable t) {
-                dictionaryModels.add(new DictionaryEntry("1", "Проблемы с полдлючением", "Проверьте подключение к интернету", ""));
+                ((MainActivity)getActivity()).showDialog("Ошибка!", "Нет подключения к интернету.");
             }
         });
 

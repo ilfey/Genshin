@@ -16,6 +16,7 @@ import com.example.adapters.CharacterAdapter;
 import com.example.data.remote.characters.CharacterEntry;
 import com.example.data.remote.characters.Characters;
 import com.example.data.remote.characters.CharactersResponse;
+import com.example.genshin.MainActivity;
 import com.example.genshin.R;
 
 import java.util.ArrayList;
@@ -46,17 +47,16 @@ public class CharactersFragment extends Fragment {
         ((GenshinApp) getActivity().getApplication()).characters.getCharacters().enqueue(new Callback<CharactersResponse>() {
             @Override
             public void onResponse(Call<CharactersResponse> call, Response<CharactersResponse> response) {
-                if(response.code() == 200 && response.body() != null) {
+                if (response.code() == 200 && response.body() != null) {
                     charactersAdapter.setListCharactersModels(response.body().entries);
                 }
             }
 
             @Override
             public void onFailure(Call<CharactersResponse> call, Throwable t) {
-                menuCharacters.add(new CharacterEntry("1", "Проблемы с полдлючением", "Проверьте подключение к интернету", null));
+                ((MainActivity) getActivity()).showDialog("Ошибка!", "Нет подключения к интернету.");
             }
         });
-
         return view;
     }
 }
