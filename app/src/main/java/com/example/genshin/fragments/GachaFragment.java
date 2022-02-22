@@ -16,6 +16,7 @@ import android.widget.Spinner;
 
 import com.example.GenshinApp;
 import com.example.adapters.GachaAdapter;
+import com.example.data.remote.gacha.Gacha;
 import com.example.data.remote.gacha.GachaEntry;
 import com.example.data.remote.gacha.GachaResponse;
 import com.example.genshin.MainActivity;
@@ -52,43 +53,29 @@ public class GachaFragment extends Fragment {
         app = (GenshinApp) (activity != null ? activity.getApplication() : null);
 
         // Получаем элементы
-        spinner = view.findViewById(R.id.sort_gacha);
         gacha_recycler = view.findViewById(R.id.gacha_recycler);
 
-        ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(ctx, R.array.sort_by, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Создаем слушатель событий
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String[] items = getResources().getStringArray(R.array.sort_by);
-                activity.showDialog("Вы выбрали", items[position]);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
-        });
-        // Вызываем адаптер
-        spinner.setAdapter(adapter);
-
-        gachaAdapter = new GachaAdapter(ctx, models);
+        gachaAdapter = new GachaAdapter(ctx, activity, models);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ctx, RecyclerView.VERTICAL, false);
         gacha_recycler.setLayoutManager(layoutManager);
         gacha_recycler.setAdapter(gachaAdapter);
 
-        app.gacha.getGacha().enqueue(new Callback<GachaResponse>() {
-            @Override
-            public void onResponse(@NotNull Call<GachaResponse> call, @NotNull Response<GachaResponse> response) {
-                if (response.code() == 200 && response.body() != null) {
-                    gachaAdapter.setListGachaModels(response.body().entries);
+        new Thread(() -> {
+            app.retrofit.create(Gacha.class).getGacha().enqueue(new Callback<GachaResponse>() {
+                @Override
+                public void onResponse(Call<GachaResponse> call, Response<GachaResponse> response) {
+                    if(response.code() == 200 && response.body() != null) {
+                        view.findViewById(R.id.progress).setVisibility(View.GONE);
+                        gachaAdapter.setListGachaModels(response.body().entries);
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(@NotNull Call<GachaResponse> call, Throwable t) {
-                activity.showDialog("Ошибка!", "Нет подключения к интернету.");
-            }
-        });
+                @Override
+                public void onFailure(Call<GachaResponse> call, Throwable t) {
+                    activity.showDialog("Ошибка!", "Нет подключения к интернету.");
+                }
+            });
+        }).start();
 
         return view;
     }

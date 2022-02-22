@@ -1,8 +1,8 @@
 package com.example.genshin.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,35 +28,46 @@ import retrofit2.Response;
 
 public class CharactersFragment extends Fragment {
 
+    private Context ctx;
+    private MainActivity activity;
+    private GenshinApp app;
     private RecyclerView characters_recycler;
     private CharacterAdapter charactersAdapter;
     private List<CharacterEntry> menuCharacters = new ArrayList<>();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_characters, container, false);
 
+        // Получаем нужные объекты
+        ctx = getContext();
+        activity = (MainActivity) getActivity();
+        app = (GenshinApp) (activity != null ? activity.getApplication() : null);
+
         characters_recycler = view.findViewById(R.id.characters_recycler);
-        charactersAdapter = new CharacterAdapter(getContext(), menuCharacters);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        charactersAdapter = new CharacterAdapter(ctx, menuCharacters);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ctx, RecyclerView.VERTICAL, false);
         characters_recycler.setLayoutManager(layoutManager);
         characters_recycler.setAdapter(charactersAdapter);
 
-        ((GenshinApp) getActivity().getApplication()).characters.getCharacters().enqueue(new Callback<CharactersResponse>() {
-            @Override
-            public void onResponse(Call<CharactersResponse> call, Response<CharactersResponse> response) {
-                if (response.code() == 200 && response.body() != null) {
-                    charactersAdapter.setListCharactersModels(response.body().entries);
+        new Thread(() -> {
+            app.retrofit.create(Characters.class).getCharacters().enqueue(new Callback<CharactersResponse>() {
+                @Override
+                public void onResponse(Call<CharactersResponse> call, Response<CharactersResponse> response) {
+                    if(response.code() == 200 && response.body() != null) {
+                        view.findViewById(R.id.progress).setVisibility(View.GONE);
+                        charactersAdapter.setListCharactersModels(response.body().entries);
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<CharactersResponse> call, Throwable t) {
-                ((MainActivity) getActivity()).showDialog("Ошибка!", "Нет подключения к интернету.");
-            }
-        });
+                @Override
+                public void onFailure(Call<CharactersResponse> call, Throwable t) {
+                    activity.showDialog("Ошибка!", "Нет подключения к интернету.");
+                }
+            });
+        }).start();
+
         return view;
     }
 }

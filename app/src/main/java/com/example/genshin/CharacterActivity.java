@@ -2,7 +2,11 @@ package com.example.genshin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+
+import com.example.listeners.OnSwipeTouchListener;
 
 public class CharacterActivity extends AppCompatActivity {
 
@@ -27,6 +31,19 @@ public class CharacterActivity extends AppCompatActivity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_character);
+
+		findViewById(R.id.layout).setOnTouchListener(new OnSwipeTouchListener(this){
+			@Override
+			public void onSwipeLeft() {
+				System.out.println("Swipe Left");
+			}
+
+			@Override
+			public void onSwipeRight() {
+				System.out.println("Swipe Right");
+			}
+		});
+		System.out.println(args.get("Characters"));
 
 		System.out.println(url);
 	}

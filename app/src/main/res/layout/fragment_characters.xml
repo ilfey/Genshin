@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".fragments.CharactersFragment">
 
-    <Spinner
-        android:id="@+id/sort"
-        android:layout_marginRight="24dp"
-        style="@style/Spinner" />
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="?colorPrimary" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/characters_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"/>
 
-    </androidx.recyclerview.widget.RecyclerView>
-		
-</LinearLayout>
+</RelativeLayout>

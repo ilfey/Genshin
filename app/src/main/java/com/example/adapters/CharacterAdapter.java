@@ -1,5 +1,6 @@
 package com.example.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -12,57 +13,88 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.data.remote.characters.CharacterEntry;
+import com.example.data.remote.characters.CharactersResponse;
 import com.example.genshin.CharacterActivity;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder> {
+public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Context ctx;
+    private final Context ctx;
     private List<CharacterEntry> models;
     private MainActivity activity;
+    private List<CharacterEntry> data;
 
     public CharacterAdapter(Context ctx, List<CharacterEntry> models) {
         this.ctx = ctx;
         this.models = models;
     }
 
-    public void setListCharactersModels(List<CharacterEntry> listCharactersModels) {
-        this.models = listCharactersModels;
+    @SuppressLint("NotifyDataSetChanged")
+    public void setListCharactersModels(List<CharacterEntry> entries) {
+        this.models = entries;
         notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if(position == 0){
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
     @NonNull
     @Override
-    public CharacterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View characters = LayoutInflater.from(ctx).inflate(R.layout.model_characters, parent, false);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        characters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(ctx, CharacterActivity.class);
-                intent.addFlags(intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent.putExtra("Theme", activity.CURRENT_THEME);
-                intent.putExtra("URL", "url");
-                ctx.startActivity(intent);
+        switch (viewType){
+            case 0: {
+                View sort = LayoutInflater.from(ctx).inflate(R.layout.sort, parent, false);
+                return new CharacterViewHolder(sort);
             }
-        });
+            default: {
+                View characters = LayoutInflater.from(ctx).inflate(R.layout.model_characters, parent, false);
 
-        return new CharacterViewHolder(characters);
+                characters.setOnClickListener(view -> {
+                    Intent intent = new Intent(ctx, CharacterActivity.class);
+                    intent.addFlags(intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    intent.putExtra("Theme", activity.CURRENT_THEME);
+//                    intent.putExtra("Position", );
+//                    intent.putExtra("Characters", (Serializable) models);
+                    ctx.startActivity(intent);
+                });
+
+                return new CharacterViewHolder(characters);
+            }
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
-        holder.name.setText(models.get(position).getName());
-        holder.rarity.setText(models.get(position).getRarity());
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        Picasso.get()
-                .load("https://sushicat.pp.ua/api" + models.get(position).getIco())
-                .into(holder.ico);
+        switch (getItemViewType(position)){
+            case 0: {
+                return; // стилизация
+            }
+            default:{
+                position--;
+                String nameText = models.get(position).getName();
+                String rarityText = models.get(position).getRarity();
+
+                ((CharacterViewHolder) holder).name.setText(nameText);
+                ((CharacterViewHolder) holder).rarity.setText(rarityText);
+
+                Picasso.get()
+                        .load("https://sushicat.pp.ua/api" + models.get(position).getIco())
+                        .into(((CharacterViewHolder) holder).ico);
+            }
+        }
     }
 
     @Override
@@ -87,4 +119,5 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
             rarity = (TextView) itemView.findViewById(R.id.model_characters_star);
         }
     }
+
 }

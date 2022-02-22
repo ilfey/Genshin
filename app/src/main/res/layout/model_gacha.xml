@@ -1,90 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="24dp"
     android:layout_marginBottom="12dp"
     android:background="@drawable/cr15dp"
-    android:orientation="vertical"
+    android:gravity="center_horizontal"
     android:padding="12dp">
 
     <ImageView
         android:id="@+id/model_gacha_icon"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:layout_alignParentTop="true"
         android:layout_gravity="center"
         android:src="@mipmap/eola" />
 
     <TextView
         android:id="@+id/model_gacha_title"
-        style="@style/TextView.WrapContent22sp" />
+        style="@style/TextView.WrapContent22sp"
+        android:layout_below="@+id/model_gacha_icon" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/model_gacha_star"
-            style="@style/TextView.WrapContent16sp" />
+    <TextView
+        android:id="@+id/model_gacha_star"
+        style="@style/TextView.WrapContent16sp"
+        android:layout_below="@+id/model_gacha_title"/>
 
-        <TextView
-            style="@style/TextView.WrapContent16sp"
-            android:layout_marginLeft="5dp" />
+    <ImageView
+        android:id="@+id/model_gacha_star_image"
+        style="@style/Star"
+        android:layout_below="@+id/model_gacha_title"
+        android:layout_toEndOf="@+id/model_gacha_star" />
 
-        <ImageView style="@style/Star" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/model_gacha_star1"
+        style="@style/TextView.WrapContent16sp"
+        android:layout_below="@+id/model_gacha_star"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/model_gacha_star1_image"
+        style="@style/Star"
+        android:layout_below="@+id/model_gacha_star"
+        android:layout_toEndOf="@+id/model_gacha_star1" />
 
-        <TextView
-            android:id="@+id/model_gacha_star1"
-            style="@style/TextView.WrapContent16sp" />
+    <TextView
+        android:id="@+id/model_gacha_star2"
+        style="@style/TextView.WrapContent16sp"
+        android:layout_below="@+id/model_gacha_star1"/>
 
-        <TextView
-            style="@style/TextView.WrapContent16sp"
-            android:layout_marginLeft="5dp" />
+    <ImageView
+        android:id="@+id/model_gacha_star2_image"
+        style="@style/Star"
+        android:layout_below="@+id/model_gacha_star1"
+        android:layout_toEndOf="@+id/model_gacha_star2" />
 
-        <ImageView style="@style/Star" />
+    <TextView
+        android:id="@+id/model_gacha_star3"
+        style="@style/TextView.WrapContent16sp"
+        android:layout_below="@+id/model_gacha_star2"/>
 
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/model_gacha_star3_image"
+        style="@style/Star"
+        android:layout_below="@+id/model_gacha_star2"
+        android:layout_toEndOf="@+id/model_gacha_star3" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/model_gacha_star2"
-            style="@style/TextView.WrapContent16sp" />
-
-        <TextView
-            style="@style/TextView.WrapContent16sp"
-            android:layout_marginLeft="5dp" />
-
-        <ImageView style="@style/Star" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/model_gacha_star3"
-            style="@style/TextView.WrapContent16sp" />
-
-        <TextView
-            style="@style/TextView.WrapContent16sp"
-            android:layout_marginLeft="5dp" />
-
-        <ImageView style="@style/Star" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

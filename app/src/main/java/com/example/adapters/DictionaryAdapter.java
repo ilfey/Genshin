@@ -16,54 +16,68 @@ import java.util.List;
 
 public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.DictionaryViewHolder> {
 
-	private Context ctx;
-	private List<DictionaryEntry> models;
+    private Context ctx;
+    private List<DictionaryEntry> models;
 
-	public DictionaryAdapter(Context ctx, List<DictionaryEntry> models) {
-		this.ctx = ctx;
-		this.models = models;
-	}
+    public DictionaryAdapter(Context ctx, List<DictionaryEntry> models) {
+        this.ctx = ctx;
+        this.models = models;
+    }
 
-	public void setListDictionaryModels(List<DictionaryEntry> listDictionaryModels) {
-		this.models = listDictionaryModels;
-		notifyDataSetChanged();
-	}
+    public void setListDictionaryModels(List<DictionaryEntry> listDictionaryModels) {
+        this.models = listDictionaryModels;
+        notifyDataSetChanged();
+    }
 
-	@NonNull
-	@Override
-	public DictionaryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		View view = LayoutInflater.from(ctx).inflate(R.layout.model_dictionary, parent, false);
+    @NonNull
+    @Override
+    public DictionaryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(ctx).inflate(R.layout.model_dictionary, parent, false);
 
-		return new DictionaryViewHolder(view);
-	}
+        return new DictionaryViewHolder(view);
+    }
 
-	@Override
-	public void onBindViewHolder(@NonNull DictionaryViewHolder holder, int position) {
-		holder.word.setText(models.get(position).getWord());
-		holder.content.setText(models.get(position).getTranslate());
-		holder.subinf.setText(models.get(position).getSubinf());
-	}
+    @Override
+    public void onBindViewHolder(@NonNull DictionaryViewHolder holder, int position) {
+        String worldText = models.get(position).getWord();
+        String contentText = models.get(position).getTranslate();
+        String subinfText = models.get(position).getSubinf();
 
-	@Override
-	public int getItemCount() {
-		if (models != null) {
-			return models.size();
-		}
-		return 0;
-	}
+        if (worldText == null) {
+            holder.word.setVisibility(View.GONE);
+        }
+        if (contentText == null) {
+            holder.content.setVisibility(View.GONE);
+        }
+        if (subinfText == null) {
+            holder.subinf.setVisibility(View.GONE);
+        }
 
-	public final class DictionaryViewHolder extends RecyclerView.ViewHolder {
+        holder.word.setText(worldText);
+        holder.content.setText(contentText);
+        holder.subinf.setText(subinfText);
+    }
 
-		TextView word;
-		TextView content;
-		TextView subinf;
+    @Override
+    public int getItemCount() {
+        if (models != null) {
+            return models.size();
+        }
+        return 0;
+    }
 
-		public DictionaryViewHolder(@NonNull View itemView) {
-			super(itemView);
+    public final class DictionaryViewHolder extends RecyclerView.ViewHolder {
 
-			word = (TextView) itemView.findViewById(R.id.model_dictionary_title);
-			content = (TextView) itemView.findViewById(R.id.model_dictionary_content);
-			subinf = (TextView) itemView.findViewById(R.id.model_dictionary_description);
-		}
-	}
+        TextView word;
+        TextView content;
+        TextView subinf;
+
+        public DictionaryViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            word = (TextView) itemView.findViewById(R.id.model_dictionary_title);
+            content = (TextView) itemView.findViewById(R.id.model_dictionary_content);
+            subinf = (TextView) itemView.findViewById(R.id.model_dictionary_description);
+        }
+    }
 }
