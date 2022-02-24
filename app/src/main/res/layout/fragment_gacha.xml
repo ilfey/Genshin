@@ -5,16 +5,32 @@
     android:layout_height="match_parent"
     tools:context=".fragments.GachaFragment">
 
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_centerInParent="true"
+    <TextView
+        android:id="@+id/error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Не удалось найти ни одну молитву"
+        android:textAlignment="center"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:indeterminateTint="?colorPrimary" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/gacha_recycler"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gacha_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

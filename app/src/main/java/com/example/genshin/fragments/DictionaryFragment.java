@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ public class DictionaryFragment extends Fragment {
     private RecyclerView dictionary_recycler;
     private DictionaryAdapter dictionaryAdapter;
     private List<DictionaryEntry> dictionaryModels = new ArrayList<>();
+    private SwipeRefreshLayout refresh;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +57,29 @@ public class DictionaryFragment extends Fragment {
         dictionaryAdapter = new DictionaryAdapter(ctx, dictionaryModels);
         dictionary_recycler.setAdapter(dictionaryAdapter);
 
+        refresh = view.findViewById(R.id.refresh);
+
+        refresh.setOnRefreshListener(() -> {
+            new Thread(() -> {
+                app.retrofit.create(Dictionary.class).getDictionary().enqueue(new Callback<DictionaryResponse>() {
+                    @Override
+                    public void onResponse(@NonNull Call<DictionaryResponse> call, @NonNull Response<DictionaryResponse> response) {
+                        if(response.code() == 200 && response.body() != null) {
+                            view.findViewById(R.id.progress).setVisibility(View.GONE);
+                            dictionaryAdapter.setListDictionaryModels(response.body().entries);
+                            refresh.setRefreshing(false);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<DictionaryResponse> call, @NonNull Throwable t) {
+                        view.findViewById(R.id.progress).setVisibility(View.GONE);
+                        view.findViewById(R.id.error).setVisibility(View.VISIBLE);
+                        refresh.setRefreshing(false);
+                    }
+                });
+            }).start();
+        });
 
         new Thread(() -> {
             app.retrofit.create(Dictionary.class).getDictionary().enqueue(new Callback<DictionaryResponse>() {
@@ -68,7 +93,8 @@ public class DictionaryFragment extends Fragment {
 
                 @Override
                 public void onFailure(@NonNull Call<DictionaryResponse> call, @NonNull Throwable t) {
-                    ((MainActivity)getActivity()).showDialog("Ошибка!", "Нет подключения к интернету.");
+                    view.findViewById(R.id.progress).setVisibility(View.GONE);
+                    view.findViewById(R.id.error).setVisibility(View.VISIBLE);
                 }
             });
         }).start();

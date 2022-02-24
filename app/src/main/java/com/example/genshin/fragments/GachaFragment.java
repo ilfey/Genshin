@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,15 +37,15 @@ public class GachaFragment extends Fragment {
     private Context ctx;
     private MainActivity activity;
     private GenshinApp app;
-    private Spinner spinner;
     private RecyclerView gacha_recycler;
     private GachaAdapter gachaAdapter;
     private List<GachaEntry> models = new ArrayList<>();
+    private SwipeRefreshLayout refresh;
+
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_gacha, container, false);
 
         // Получаем нужные объекты
@@ -54,17 +55,40 @@ public class GachaFragment extends Fragment {
 
         // Получаем элементы
         gacha_recycler = view.findViewById(R.id.gacha_recycler);
+        refresh = view.findViewById(R.id.refresh);
 
         gachaAdapter = new GachaAdapter(ctx, activity, models);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ctx, RecyclerView.VERTICAL, false);
         gacha_recycler.setLayoutManager(layoutManager);
         gacha_recycler.setAdapter(gachaAdapter);
 
+        refresh.setOnRefreshListener(() -> {
+            new Thread(() -> {
+                app.retrofit.create(Gacha.class).getGacha().enqueue(new Callback<GachaResponse>() {
+                    @Override
+                    public void onResponse(Call<GachaResponse> call, Response<GachaResponse> response) {
+                        if (response.code() == 200 && response.body() != null) {
+                            view.findViewById(R.id.progress).setVisibility(View.GONE);
+                            gachaAdapter.setListGachaModels(response.body().entries);
+                            refresh.setRefreshing(false);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<GachaResponse> call, Throwable t) {
+                        view.findViewById(R.id.progress).setVisibility(View.GONE);
+                        view.findViewById(R.id.error).setVisibility(View.VISIBLE);
+                        refresh.setRefreshing(false);
+                    }
+                });
+            }).start();
+        });
+
         new Thread(() -> {
             app.retrofit.create(Gacha.class).getGacha().enqueue(new Callback<GachaResponse>() {
                 @Override
                 public void onResponse(Call<GachaResponse> call, Response<GachaResponse> response) {
-                    if(response.code() == 200 && response.body() != null) {
+                    if (response.code() == 200 && response.body() != null) {
                         view.findViewById(R.id.progress).setVisibility(View.GONE);
                         gachaAdapter.setListGachaModels(response.body().entries);
                     }
@@ -72,7 +96,8 @@ public class GachaFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call<GachaResponse> call, Throwable t) {
-                    activity.showDialog("Ошибка!", "Нет подключения к интернету.");
+                    view.findViewById(R.id.progress).setVisibility(View.GONE);
+                    view.findViewById(R.id.error).setVisibility(View.VISIBLE);
                 }
             });
         }).start();

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,7 @@ public class CharactersFragment extends Fragment {
     private RecyclerView characters_recycler;
     private CharacterAdapter charactersAdapter;
     private List<CharacterEntry> menuCharacters = new ArrayList<>();
+    private SwipeRefreshLayout refresh;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,11 +53,36 @@ public class CharactersFragment extends Fragment {
         characters_recycler.setLayoutManager(layoutManager);
         characters_recycler.setAdapter(charactersAdapter);
 
+        refresh = view.findViewById(R.id.refresh);
+
+        refresh.setOnRefreshListener(() -> {
+            new Thread(() -> {
+                app.retrofit.create(Characters.class).getCharacters().enqueue(new Callback<CharactersResponse>() {
+                    @Override
+                    public void onResponse(Call<CharactersResponse> call, Response<CharactersResponse> response) {
+                        if (response.code() == 200 && response.body() != null) {
+                            view.findViewById(R.id.error).setVisibility(View.GONE);
+                            view.findViewById(R.id.progress).setVisibility(View.GONE);
+                            charactersAdapter.setListCharactersModels(response.body().entries);
+                            refresh.setRefreshing(false);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CharactersResponse> call, Throwable t) {
+                        view.findViewById(R.id.progress).setVisibility(View.GONE);
+                        view.findViewById(R.id.error).setVisibility(View.VISIBLE);
+                        refresh.setRefreshing(false);
+                    }
+                });
+            }).start();
+        });
+
         new Thread(() -> {
             app.retrofit.create(Characters.class).getCharacters().enqueue(new Callback<CharactersResponse>() {
                 @Override
                 public void onResponse(Call<CharactersResponse> call, Response<CharactersResponse> response) {
-                    if(response.code() == 200 && response.body() != null) {
+                    if (response.code() == 200 && response.body() != null) {
                         view.findViewById(R.id.progress).setVisibility(View.GONE);
                         charactersAdapter.setListCharactersModels(response.body().entries);
                     }
@@ -63,7 +90,8 @@ public class CharactersFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call<CharactersResponse> call, Throwable t) {
-                    activity.showDialog("Ошибка!", "Нет подключения к интернету.");
+                    view.findViewById(R.id.progress).setVisibility(View.GONE);
+                    view.findViewById(R.id.error).setVisibility(View.VISIBLE);
                 }
             });
         }).start();
