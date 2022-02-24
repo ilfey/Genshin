@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -90,8 +92,10 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 ((CharacterViewHolder) holder).name.setText(nameText);
                 ((CharacterViewHolder) holder).rarity.setText(rarityText);
 
+                System.out.println(models.get(position).getIco());
+
                 Picasso.get()
-                        .load("https://sushicat.pp.ua/api" + models.get(position).getIco())
+                        .load(String.format("https://sushicat.pp.ua/api%s", models.get(position).getIco()))
                         .into(((CharacterViewHolder) holder).ico);
             }
         }
@@ -107,17 +111,19 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public final class CharacterViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView ico;
-        TextView name;
-        TextView rarity;
+        private final ImageView ico;
+        private final TextView name;
+        private final TextView rarity;
 
         public CharacterViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            ico = (ImageView) itemView.findViewById(R.id.characters_model_logo);
-            name = (TextView) itemView.findViewById(R.id.model_characters_title);
-            rarity = (TextView) itemView.findViewById(R.id.model_characters_star);
+            ico = itemView.findViewById(R.id.characters_model_logo);
+            name = itemView.findViewById(R.id.model_characters_title);
+            rarity = itemView.findViewById(R.id.model_characters_star);
         }
     }
+
+
 
 }

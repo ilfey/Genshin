@@ -39,9 +39,8 @@ public class DictionaryFragment extends Fragment {
     private SwipeRefreshLayout refresh;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
 
         // Получаем нужные объекты
@@ -64,9 +63,11 @@ public class DictionaryFragment extends Fragment {
                 app.retrofit.create(Dictionary.class).getDictionary().enqueue(new Callback<DictionaryResponse>() {
                     @Override
                     public void onResponse(@NonNull Call<DictionaryResponse> call, @NonNull Response<DictionaryResponse> response) {
-                        if(response.code() == 200 && response.body() != null) {
+                        if (response.code() == 200 && response.body() != null) {
                             view.findViewById(R.id.progress).setVisibility(View.GONE);
-                            dictionaryAdapter.setListDictionaryModels(response.body().entries);
+                            view.findViewById(R.id.error).setVisibility(View.GONE);
+                            app.dictionary = response.body().entries;
+                            dictionaryAdapter.setListDictionaryModels(app.dictionary);
                             refresh.setRefreshing(false);
                         }
                     }
@@ -81,23 +82,11 @@ public class DictionaryFragment extends Fragment {
             }).start();
         });
 
-        new Thread(() -> {
-            app.retrofit.create(Dictionary.class).getDictionary().enqueue(new Callback<DictionaryResponse>() {
-                @Override
-                public void onResponse(@NonNull Call<DictionaryResponse> call, @NonNull Response<DictionaryResponse> response) {
-                    if(response.code() == 200 && response.body() != null) {
-                        view.findViewById(R.id.progress).setVisibility(View.GONE);
-                        dictionaryAdapter.setListDictionaryModels(response.body().entries);
-                    }
-                }
+        dictionaryAdapter.setListDictionaryModels(app.dictionary);
 
-                @Override
-                public void onFailure(@NonNull Call<DictionaryResponse> call, @NonNull Throwable t) {
-                    view.findViewById(R.id.progress).setVisibility(View.GONE);
-                    view.findViewById(R.id.error).setVisibility(View.VISIBLE);
-                }
-            });
-        }).start();
+        if (!app.connection) {
+            view.findViewById(R.id.error).setVisibility(View.VISIBLE);
+        }
 
         return view;
     }

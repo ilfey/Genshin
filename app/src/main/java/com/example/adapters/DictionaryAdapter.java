@@ -68,16 +68,16 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Di
 
     public final class DictionaryViewHolder extends RecyclerView.ViewHolder {
 
-        TextView word;
-        TextView content;
-        TextView subinf;
+        private final TextView word;
+        private final TextView content;
+        private final TextView subinf;
 
         public DictionaryViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            word = (TextView) itemView.findViewById(R.id.model_dictionary_title);
-            content = (TextView) itemView.findViewById(R.id.model_dictionary_content);
-            subinf = (TextView) itemView.findViewById(R.id.model_dictionary_description);
+            word = itemView.findViewById(R.id.model_dictionary_title);
+            content = itemView.findViewById(R.id.model_dictionary_content);
+            subinf = itemView.findViewById(R.id.model_dictionary_description);
         }
     }
 }

@@ -18,6 +18,9 @@
 	<string name="change_theme">Сменить тему</string>
 	<string name="full_name">Полное имя:</string>
 	<string name="welcome">Добро пожаловать!!!</string>
+    <string name="belonging">Принадлежность:</string>
+	<string name="region">Регион:</string>
+	<string name="eye">Глаз Бога:</string>
 
 	<string-array name="sort_by">
 		<item>От редких к менее</item>

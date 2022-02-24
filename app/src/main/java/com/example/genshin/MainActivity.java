@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.GenshinApp;
 import com.example.dialogs.CustomDialog;
 import com.example.genshin.fragments.AboutFragment;
 import com.example.genshin.fragments.CharactersFragment;
@@ -54,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
 
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
+        // Устанавливаем статус подключения к интернету
+        ((GenshinApp) getApplication()).hasConnection();
+        // Загружаем нужный фрагмент
         loadFragment(whichFragment(item.getItemId()));
         return true;
     };

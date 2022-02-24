@@ -42,7 +42,6 @@ public class GachaFragment extends Fragment {
     private List<GachaEntry> models = new ArrayList<>();
     private SwipeRefreshLayout refresh;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -68,8 +67,10 @@ public class GachaFragment extends Fragment {
                     @Override
                     public void onResponse(Call<GachaResponse> call, Response<GachaResponse> response) {
                         if (response.code() == 200 && response.body() != null) {
+                            view.findViewById(R.id.error).setVisibility(View.GONE);
                             view.findViewById(R.id.progress).setVisibility(View.GONE);
-                            gachaAdapter.setListGachaModels(response.body().entries);
+                            app.gacha = response.body().entries;
+                            gachaAdapter.setListGachaModels(app.gacha);
                             refresh.setRefreshing(false);
                         }
                     }
@@ -84,23 +85,11 @@ public class GachaFragment extends Fragment {
             }).start();
         });
 
-        new Thread(() -> {
-            app.retrofit.create(Gacha.class).getGacha().enqueue(new Callback<GachaResponse>() {
-                @Override
-                public void onResponse(Call<GachaResponse> call, Response<GachaResponse> response) {
-                    if (response.code() == 200 && response.body() != null) {
-                        view.findViewById(R.id.progress).setVisibility(View.GONE);
-                        gachaAdapter.setListGachaModels(response.body().entries);
-                    }
-                }
+        gachaAdapter.setListGachaModels(app.gacha);
 
-                @Override
-                public void onFailure(Call<GachaResponse> call, Throwable t) {
-                    view.findViewById(R.id.progress).setVisibility(View.GONE);
-                    view.findViewById(R.id.error).setVisibility(View.VISIBLE);
-                }
-            });
-        }).start();
+        if (!app.connection) {
+            view.findViewById(R.id.error).setVisibility(View.VISIBLE);
+        }
 
         return view;
     }

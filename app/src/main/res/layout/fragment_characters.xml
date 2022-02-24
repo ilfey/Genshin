@@ -8,19 +8,20 @@
 
     <TextView
         android:id="@+id/error"
-        android:visibility="gone"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Не удалось найти ни одного персонажа"
         android:textAlignment="center"
-        android:text="Не удалось найти ни одного персонажа"/>
+        android:visibility="gone" />
 
     <ProgressBar
         android:id="@+id/progress"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminateTint="?colorPrimary" />
+        android:layout_centerInParent="true"
+        android:indeterminateTint="?colorPrimary"
+        android:visibility="gone" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh"
@@ -33,7 +34,6 @@
             android:layout_height="match_parent" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
 
 </RelativeLayout>

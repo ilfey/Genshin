@@ -3,89 +3,168 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layout"
     tools:context=".CharacterActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/character_logo"
                 android:layout_width="match_parent"
                 android:layout_height="320dp"
+                android:layout_alignParentTop="true"
                 android:layout_marginVertical="24dp"
                 android:src="@mipmap/tartalia_full" />
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/entry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/character_logo"
                 android:layout_marginHorizontal="12dp"
                 android:background="@drawable/cr15dp"
-                android:orientation="vertical"
                 android:padding="12dp">
 
-                <TextView style="@style/TextView.MatchParent22sp" />
+                <TextView
+                    android:id="@+id/title"
+                    style="@style/TextView.MatchParent22sp"
+                    android:layout_alignParentTop="true" />
 
                 <TextView
+                    android:id="@+id/rarityText"
                     style="@style/TextView.WrapContent16sp"
+                    android:layout_below="@id/title"
                     android:text="@string/rarity" />
 
                 <TextView
+                    android:id="@+id/rarity"
                     style="@style/TextView.WrapContent16sp"
+                    android:layout_below="@id/title"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/rarityText" />
+
+                <TextView
+                    android:id="@+id/weaperonText"
+                    style="@style/TextView.WrapContent16sp"
+                    android:layout_below="@id/rarityText"
                     android:text="@string/weapon" />
 
                 <TextView
+                    android:id="@+id/weaperon"
                     style="@style/TextView.WrapContent16sp"
-                    android:text="Глаз Бога: " />
+                    android:layout_below="@id/rarityText"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/weaperonText" />
 
                 <TextView
+                    android:id="@+id/eyeText"
                     style="@style/TextView.WrapContent16sp"
+                    android:layout_below="@id/weaperonText"
+                    android:text="@string/eye" />
+
+                <TextView
+                    android:id="@+id/eye"
+                    style="@style/TextView.WrapContent16sp"
+                    android:layout_below="@id/weaperonText"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/eyeText" />
+
+                <TextView
+                    android:id="@+id/fullnameText"
+                    style="@style/TextView.WrapContent16sp"
+                    android:layout_below="@id/eyeText"
                     android:text="@string/full_name" />
 
                 <TextView
+                    android:id="@+id/fullname"
                     style="@style/TextView.WrapContent16sp"
+                    android:layout_below="@id/eyeText"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/fullnameText" />
+
+                <TextView
+                    android:id="@+id/sexText"
+                    style="@style/TextView.WrapContent16sp"
+                    android:layout_below="@id/fullnameText"
                     android:text="@string/gender" />
 
                 <TextView
+                    android:id="@+id/sex"
                     style="@style/TextView.WrapContent16sp"
+                    android:layout_below="@id/fullnameText"
+                    android:layout_alignEnd="@+id/sexText"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/birthdayText"
+                    style="@style/TextView.WrapContent16sp"
+                    android:layout_below="@id/sexText"
                     android:text="@string/birthday" />
 
                 <TextView
+                    android:id="@+id/birthday"
                     style="@style/TextView.WrapContent16sp"
-                    android:text="Регион: " />
+                    android:layout_below="@id/sexText"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/birthdayText" />
 
                 <TextView
+                    android:id="@+id/regionText"
                     style="@style/TextView.WrapContent16sp"
-                    android:text="Принадлежность: " />
+                    android:layout_below="@id/birthday"
+                    android:text="@string/region" />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/region"
+                    style="@style/TextView.WrapContent16sp"
+                    android:layout_below="@id/birthday"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/regionText" />
 
-            <LinearLayout
+                <TextView
+                    android:id="@+id/belongingText"
+                    style="@style/TextView.WrapContent16sp"
+                    android:layout_below="@id/regionText"
+                    android:text="@string/belonging" />
+
+                <TextView
+                    android:id="@+id/belonging"
+                    style="@style/TextView.WrapContent16sp"
+                    android:layout_below="@id/regionText"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/belongingText" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/entry"
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/cr15dp"
-                android:orientation="vertical"
                 android:padding="12dp">
 
                 <TextView
+                    android:id="@+id/destText"
                     style="@style/TextView.MatchParent22sp"
                     android:text="@string/description" />
 
                 <TextView
+                    android:id="@+id/dest"
                     style="@style/TextView.WrapContent16sp"
-                    android:layout_width="match_parent" />
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/destText" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </ScrollView>
 

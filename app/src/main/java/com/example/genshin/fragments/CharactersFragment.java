@@ -63,7 +63,8 @@ public class CharactersFragment extends Fragment {
                         if (response.code() == 200 && response.body() != null) {
                             view.findViewById(R.id.error).setVisibility(View.GONE);
                             view.findViewById(R.id.progress).setVisibility(View.GONE);
-                            charactersAdapter.setListCharactersModels(response.body().entries);
+                            app.characters = response.body().entries;
+                            charactersAdapter.setListCharactersModels(app.characters);
                             refresh.setRefreshing(false);
                         }
                     }
@@ -78,23 +79,11 @@ public class CharactersFragment extends Fragment {
             }).start();
         });
 
-        new Thread(() -> {
-            app.retrofit.create(Characters.class).getCharacters().enqueue(new Callback<CharactersResponse>() {
-                @Override
-                public void onResponse(Call<CharactersResponse> call, Response<CharactersResponse> response) {
-                    if (response.code() == 200 && response.body() != null) {
-                        view.findViewById(R.id.progress).setVisibility(View.GONE);
-                        charactersAdapter.setListCharactersModels(response.body().entries);
-                    }
-                }
+        charactersAdapter.setListCharactersModels(app.characters);
 
-                @Override
-                public void onFailure(Call<CharactersResponse> call, Throwable t) {
-                    view.findViewById(R.id.progress).setVisibility(View.GONE);
-                    view.findViewById(R.id.error).setVisibility(View.VISIBLE);
-                }
-            });
-        }).start();
+        if (!app.connection) {
+            view.findViewById(R.id.error).setVisibility(View.VISIBLE);
+        }
 
         return view;
     }
