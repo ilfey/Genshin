@@ -50,47 +50,27 @@ public class GenshinApp extends Application {
                 .baseUrl("https://sushicat.pp.ua/api/genshin/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
-        new Thread(() -> {
-            try {
-                characters = retrofit.create(Characters.class).getCharacters().execute().body().entries;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }).start();
-
-        new Thread(() -> {
-            try {
-                dictionary = retrofit.create(Dictionary.class).getDictionary().execute().body().entries;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }).start();
-
-        new Thread(() -> {
-            try {
-                gacha = retrofit.create(Gacha.class).getGacha().execute().body().entries;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }).start();
     }
 
     // Метод для установки сатуса подключения
-    public void hasConnection() {
+    public boolean hasConnection() {
         ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         if (wifiInfo != null && wifiInfo.isConnected()) {
             this.connection = true;
+            return true;
         }
         wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         if (wifiInfo != null && wifiInfo.isConnected()) {
             this.connection = true;
+            return true;
         }
         wifiInfo = cm.getActiveNetworkInfo();
         if (wifiInfo != null && wifiInfo.isConnected()) {
             this.connection = true;
+            return true;
         }
         this.connection = false;
+        return false;
     }
 }

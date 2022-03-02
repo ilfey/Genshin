@@ -13,7 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.GenshinApp;
 import com.example.adapters.GachaAdapter;
@@ -41,6 +43,8 @@ public class GachaFragment extends Fragment {
     private GachaAdapter gachaAdapter;
     private List<GachaEntry> models = new ArrayList<>();
     private SwipeRefreshLayout refresh;
+    private ProgressBar progress;
+    private TextView error;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,6 +57,10 @@ public class GachaFragment extends Fragment {
         app = (GenshinApp) (activity != null ? activity.getApplication() : null);
 
         // Получаем элементы
+        refresh = view.findViewById(R.id.refresh);
+        error = view.findViewById(R.id.error);
+        progress = view.findViewById(R.id.progress);
+        progress.getIndeterminateDrawable().setColorFilter(0xFF4F46E5, android.graphics.PorterDuff.Mode.MULTIPLY);
         gacha_recycler = view.findViewById(R.id.gacha_recycler);
         refresh = view.findViewById(R.id.refresh);
 
@@ -67,8 +75,8 @@ public class GachaFragment extends Fragment {
                     @Override
                     public void onResponse(Call<GachaResponse> call, Response<GachaResponse> response) {
                         if (response.code() == 200 && response.body() != null) {
-                            view.findViewById(R.id.error).setVisibility(View.GONE);
-                            view.findViewById(R.id.progress).setVisibility(View.GONE);
+                            error.setVisibility(View.GONE);
+                            progress.setVisibility(View.GONE);
                             app.gacha = response.body().entries;
                             gachaAdapter.setListGachaModels(app.gacha);
                             refresh.setRefreshing(false);
@@ -77,8 +85,8 @@ public class GachaFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<GachaResponse> call, Throwable t) {
-                        view.findViewById(R.id.progress).setVisibility(View.GONE);
-                        view.findViewById(R.id.error).setVisibility(View.VISIBLE);
+                        progress.setVisibility(View.GONE);
+                        error.setVisibility(View.VISIBLE);
                         refresh.setRefreshing(false);
                     }
                 });
@@ -89,6 +97,29 @@ public class GachaFragment extends Fragment {
 
         if (!app.connection) {
             view.findViewById(R.id.error).setVisibility(View.VISIBLE);
+        } else {
+            view.findViewById(R.id.progress).setVisibility(View.VISIBLE);
+            new Thread(() -> {
+                app.retrofit.create(Gacha.class).getGacha().enqueue(new Callback<GachaResponse>() {
+                    @Override
+                    public void onResponse(Call<GachaResponse> call, Response<GachaResponse> response) {
+                        if (response.code() == 200 && response.body() != null) {
+                            error.setVisibility(View.GONE);
+                            progress.setVisibility(View.GONE);
+                            app.gacha = response.body().entries;
+                            gachaAdapter.setListGachaModels(app.gacha);
+                            refresh.setRefreshing(false);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<GachaResponse> call, Throwable t) {
+                        progress.setVisibility(View.GONE);
+                        error.setVisibility(View.VISIBLE);
+                        refresh.setRefreshing(false);
+                    }
+                });
+            }).start();
         }
 
         return view;

@@ -55,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
-        // Устанавливаем статус подключения к интернету
-        ((GenshinApp) getApplication()).hasConnection();
         // Загружаем нужный фрагмент
         loadFragment(whichFragment(item.getItemId()));
         return true;

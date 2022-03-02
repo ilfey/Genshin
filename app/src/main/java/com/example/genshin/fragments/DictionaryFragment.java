@@ -12,9 +12,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.GenshinApp;
 import com.example.adapters.DictionaryAdapter;
+import com.example.data.remote.characters.Characters;
+import com.example.data.remote.characters.CharactersResponse;
 import com.example.data.remote.dictionary.Dictionary;
 import com.example.data.remote.dictionary.DictionaryEntry;
 import com.example.data.remote.dictionary.DictionaryResponse;
@@ -37,6 +41,8 @@ public class DictionaryFragment extends Fragment {
     private DictionaryAdapter dictionaryAdapter;
     private List<DictionaryEntry> dictionaryModels = new ArrayList<>();
     private SwipeRefreshLayout refresh;
+    private ProgressBar progress;
+    private TextView error;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,6 +54,10 @@ public class DictionaryFragment extends Fragment {
         activity = (MainActivity) getActivity();
         app = (GenshinApp) (activity != null ? activity.getApplication() : null);
 
+        refresh = view.findViewById(R.id.refresh);
+        error = view.findViewById(R.id.error);
+        progress = view.findViewById(R.id.progress);
+        progress.getIndeterminateDrawable().setColorFilter(0xFF4F46E5, android.graphics.PorterDuff.Mode.MULTIPLY);
         dictionary_recycler = view.findViewById(R.id.dictionary_recycler);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ctx, RecyclerView.VERTICAL, false);
@@ -64,8 +74,8 @@ public class DictionaryFragment extends Fragment {
                     @Override
                     public void onResponse(@NonNull Call<DictionaryResponse> call, @NonNull Response<DictionaryResponse> response) {
                         if (response.code() == 200 && response.body() != null) {
-                            view.findViewById(R.id.progress).setVisibility(View.GONE);
-                            view.findViewById(R.id.error).setVisibility(View.GONE);
+                            progress.setVisibility(View.GONE);
+                            error.setVisibility(View.GONE);
                             app.dictionary = response.body().entries;
                             dictionaryAdapter.setListDictionaryModels(app.dictionary);
                             refresh.setRefreshing(false);
@@ -74,8 +84,8 @@ public class DictionaryFragment extends Fragment {
 
                     @Override
                     public void onFailure(@NonNull Call<DictionaryResponse> call, @NonNull Throwable t) {
-                        view.findViewById(R.id.progress).setVisibility(View.GONE);
-                        view.findViewById(R.id.error).setVisibility(View.VISIBLE);
+                        progress.setVisibility(View.GONE);
+                        error.setVisibility(View.VISIBLE);
                         refresh.setRefreshing(false);
                     }
                 });
@@ -84,8 +94,31 @@ public class DictionaryFragment extends Fragment {
 
         dictionaryAdapter.setListDictionaryModels(app.dictionary);
 
-        if (!app.connection) {
+        if (!app.hasConnection()) {
             view.findViewById(R.id.error).setVisibility(View.VISIBLE);
+        } else {
+            view.findViewById(R.id.progress).setVisibility(View.VISIBLE);
+            new Thread(() -> {
+                app.retrofit.create(Dictionary.class).getDictionary().enqueue(new Callback<DictionaryResponse>() {
+                    @Override
+                    public void onResponse(Call<DictionaryResponse> call, Response<DictionaryResponse> response) {
+                        if (response.code() == 200 && response.body() != null) {
+                            error.setVisibility(View.GONE);
+                            progress.setVisibility(View.GONE);
+                            app.dictionary = response.body().entries;
+                            dictionaryAdapter.setListDictionaryModels(app.dictionary);
+                            refresh.setRefreshing(false);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DictionaryResponse> call, Throwable t) {
+                        progress.setVisibility(View.GONE);
+                        error.setVisibility(View.VISIBLE);
+                        refresh.setRefreshing(false);
+                    }
+                });
+            }).start();
         }
 
         return view;

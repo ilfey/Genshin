@@ -11,7 +11,7 @@
         android:layout_width="76dp"
         android:layout_height="76dp"
         android:layout_margin="12dp"
-        android:src="@mipmap/icon_ch" />
+        android:src="@mipmap/character" />
 
     <TextView
         android:id="@+id/model_main_title"

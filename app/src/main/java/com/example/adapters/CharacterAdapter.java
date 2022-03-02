@@ -63,15 +63,6 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             default: {
                 View characters = LayoutInflater.from(ctx).inflate(R.layout.model_characters, parent, false);
 
-                characters.setOnClickListener(view -> {
-                    Intent intent = new Intent(ctx, CharacterActivity.class);
-                    intent.addFlags(intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    intent.putExtra("Theme", activity.CURRENT_THEME);
-//                    intent.putExtra("Position", );
-//                    intent.putExtra("Characters", (Serializable) models);
-                    ctx.startActivity(intent);
-                });
-
                 return new CharacterViewHolder(characters);
             }
         }
@@ -91,6 +82,16 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 ((CharacterViewHolder) holder).name.setText(nameText);
                 ((CharacterViewHolder) holder).rarity.setText(rarityText);
+
+                int finalPosition = position;
+                holder.itemView.setOnClickListener(view -> {
+                    Intent intent = new Intent(ctx, CharacterActivity.class);
+                    intent.addFlags(intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    intent.putExtra("Theme", activity.CURRENT_THEME);
+                    intent.putExtra("Position", finalPosition);
+//                    intent.putExtra("Characters", (Serializable) models);
+                    ctx.startActivity(intent);
+                });
 
                 System.out.println(models.get(position).getIco());
 

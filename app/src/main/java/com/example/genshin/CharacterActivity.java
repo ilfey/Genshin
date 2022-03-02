@@ -1,6 +1,7 @@
 package com.example.genshin;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,10 +11,16 @@ import android.widget.TextView;
 
 import com.example.GenshinApp;
 import com.example.data.remote.characters.CharacterEntry;
+import com.example.data.remote.characters.Characters;
+import com.example.data.remote.characters.CharactersResponse;
 import com.example.listeners.OnSwipeTouchListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CharacterActivity extends AppCompatActivity {
 
@@ -30,6 +37,7 @@ public class CharacterActivity extends AppCompatActivity {
     private TextView dest;
     private List<CharacterEntry> models;
     private int position = 0;
+    private SwipeRefreshLayout refresh;
 
 
     @Override
@@ -37,7 +45,8 @@ public class CharacterActivity extends AppCompatActivity {
 
         // получаем аргументы
         Bundle args = getIntent().getExtras();
-        String url = args.getString("URL");
+        position = args.getInt("Position");
+        System.out.println(position);
 
         // устанавливаем тему
         switch (args.getString("Theme")) {
@@ -81,8 +90,22 @@ public class CharacterActivity extends AppCompatActivity {
         belonging = findViewById(R.id.belonging);
         dest = findViewById(R.id.dest);
 
-        loadContent();
+        refresh = findViewById(R.id.refresh);
+        refresh.setColorSchemeResources(
+                R.color.primary
+        );
 
+        refresh.setOnRefreshListener(() -> {
+            refresh.setRefreshing(false);
+        });
+
+        if (!((GenshinApp) getApplication()).hasConnection()) {
+            System.out.println("No internet");
+        } else {
+            refresh.setRefreshing(false);
+        }
+
+        loadContent();
     }
 
     private void loadContent() {

@@ -24,9 +24,8 @@ public class MainFragment extends Fragment {
     private List<MainModel> models = new ArrayList<>();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         mainRecycler = view.findViewById(R.id.main_recycler);
@@ -37,13 +36,13 @@ public class MainFragment extends Fragment {
         mainRecycler.setLayoutManager(layoutManager);
         mainRecycler.setAdapter(mainAdapter);
 
-        models.add(new MainModel(1, R.mipmap.icon_ch, "Персонажи"));
-        models.add(new MainModel(1, R.mipmap.icon_ch, "Хиличурлский"));
-        models.add(new MainModel(1, R.mipmap.icon_ch, "Молитвы"));
-        models.add(new MainModel(1, R.mipmap.icon_ch, "Предметы"));
-        models.add(new MainModel(1, R.mipmap.icon_ch, "Полезное"));
-        models.add(new MainModel(1, R.mipmap.icon_ch, "Карта"));
-        models.add(new MainModel(1, R.mipmap.icon_ch, "О проекте"));
+        models.add(new MainModel(R.mipmap.character, "Персонажи"));
+        models.add(new MainModel(R.mipmap.book, "Хиличурлский"));
+        models.add(new MainModel(R.mipmap.star, "Молитвы"));
+        models.add(new MainModel(R.mipmap.bag, "Предметы"));
+        models.add(new MainModel(R.mipmap.question, "Полезное"));
+        models.add(new MainModel(R.mipmap.map, "Карта"));
+        models.add(new MainModel(R.mipmap.friends, "О проекте"));
 
         return view;
     }

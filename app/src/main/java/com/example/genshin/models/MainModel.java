@@ -1,22 +1,12 @@
 package com.example.genshin.models;
 
 public class MainModel {
-	int id;
 	int icon;
 	String title;
 
-	public MainModel(int id, int icon, String title) {
-		this.id = id;
+	public MainModel(int icon, String title) {
 		this.icon = icon;
 		this.title = title;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public int getIcon() {
