@@ -1,4 +1,4 @@
-package com.example.data.remote.dictionary;
+package com.example.data.remotely.dictionary;
 
 public class DictionaryEntry {
 

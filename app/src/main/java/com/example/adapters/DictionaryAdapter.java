@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.data.remote.dictionary.DictionaryEntry;
+import com.example.data.remotely.dictionary.DictionaryEntry;
 import com.example.genshin.R;
 
 import java.util.List;

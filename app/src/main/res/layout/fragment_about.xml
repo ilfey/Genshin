@@ -1,63 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_about"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.AboutFragment">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:scrollbars="none">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="24dp">
 
-            <Button
-                android:id="@+id/toggler"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:layout_gravity="right"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/cr10dp"
-                android:textColor="#FFF"
-                android:text="@string/change_theme"
-                android:textAllCaps="false" />
-
             <ImageView
+                android:id="@+id/paimon"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="50dp"
                 android:src="@mipmap/about" />
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/project"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/paimon"
                 android:layout_marginVertical="12dp"
                 android:background="@drawable/cr15dp"
-                android:orientation="vertical"
                 android:padding="24dp">
 
                 <TextView
+                    android:id="@+id/about_project"
                     style="@style/TextView.MatchParent22sp"
                     android:text="@string/about_title" />
 
                 <TextView
                     style="@style/TextView.MatchParent16sp"
+                    android:layout_below="@+id/about_project"
                     android:text="@string/about_content" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <TextView
                 style="@style/TextView.MatchParent16sp"
+                android:layout_below="@+id/project"
                 android:text="@string/rights"
                 android:textAlignment="center"
                 android:textColor="@color/text_description"
                 android:textSize="13sp" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </ScrollView>
 
-</FrameLayout>
+</RelativeLayout>

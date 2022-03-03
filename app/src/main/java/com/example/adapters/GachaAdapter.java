@@ -14,7 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.data.remote.gacha.GachaEntry;
+import com.example.data.remotely.gacha.GachaEntry;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
 import com.squareup.picasso.Picasso;

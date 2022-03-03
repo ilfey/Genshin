@@ -17,11 +17,9 @@ import android.widget.TextView;
 
 import com.example.GenshinApp;
 import com.example.adapters.DictionaryAdapter;
-import com.example.data.remote.characters.Characters;
-import com.example.data.remote.characters.CharactersResponse;
-import com.example.data.remote.dictionary.Dictionary;
-import com.example.data.remote.dictionary.DictionaryEntry;
-import com.example.data.remote.dictionary.DictionaryResponse;
+import com.example.data.remotely.dictionary.Dictionary;
+import com.example.data.remotely.dictionary.DictionaryEntry;
+import com.example.data.remotely.dictionary.DictionaryResponse;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
 
@@ -55,6 +53,7 @@ public class DictionaryFragment extends Fragment {
         app = (GenshinApp) (activity != null ? activity.getApplication() : null);
 
         refresh = view.findViewById(R.id.refresh);
+        refresh.setColorSchemeResources(R.color.primary);
         error = view.findViewById(R.id.error);
         progress = view.findViewById(R.id.progress);
         progress.getIndeterminateDrawable().setColorFilter(0xFF4F46E5, android.graphics.PorterDuff.Mode.MULTIPLY);
@@ -65,8 +64,6 @@ public class DictionaryFragment extends Fragment {
 
         dictionaryAdapter = new DictionaryAdapter(ctx, dictionaryModels);
         dictionary_recycler.setAdapter(dictionaryAdapter);
-
-        refresh = view.findViewById(R.id.refresh);
 
         refresh.setOnRefreshListener(() -> {
             new Thread(() -> {

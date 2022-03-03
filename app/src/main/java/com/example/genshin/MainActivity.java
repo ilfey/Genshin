@@ -9,14 +9,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.example.GenshinApp;
 import com.example.dialogs.CustomDialog;
 import com.example.genshin.fragments.AboutFragment;
 import com.example.genshin.fragments.CharactersFragment;
 import com.example.genshin.fragments.DictionaryFragment;
-import com.example.genshin.fragments.GachaFragment;
+import com.example.genshin.fragments.LoginFragment;
 import com.example.genshin.fragments.MainFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.genshin.fragments.SettingsFragment;
+import com.example.genshin.fragments.WishesFragment;
+import com.example.genshin.fragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,69 +25,73 @@ public class MainActivity extends AppCompatActivity {
     public static int CURRENT_FRAGMENT;
     public final String DARK = "Dark";
     public final String LIGHT = "Light";
-    private SharedPreferences prefs;
+    public SharedPreferences prefs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Загрузка или создание префсов
         prefs = getSharedPreferences("LocalStorage", Context.MODE_PRIVATE);
+
         // Установка темы
         setFinalTheme();
-        // Инициализируем активити
-        super.onCreate(savedInstanceState);
-        // Отрисовываем активити
-        setContentView(R.layout.activity_main);
-        // Получаем навбар
-        BottomNavigationView navbar = findViewById(R.id.nav_bar);
-        // Устанавливаем слушатель событий на навбар
-        navbar.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        // Загружаем последний фрагмент
-        loadFragment(whichFragment(prefs.getInt("LastFragment", R.id.main)));
-        // Проверяем на первое открытие апк
-        if (prefs.getBoolean("Visited", true)) {
-            // диалог при первом открытии
-            showDialog(getString(R.string.welcome), "Какое-то описание)");
-            // Создаем запись в префсах о том, что апк уже открывалось ранее
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("Visited", false);
-            editor.apply();
-        }
-    }
 
-    private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = item -> {
-        // Загружаем нужный фрагмент
-        loadFragment(whichFragment(item.getItemId()));
-        return true;
-    };
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Загружаем главный фрагмент
+        loadFullFragment(whichFullFragment(R.id.fragment_main));
+    }
 
     // Метод для создания фрагмента по его id
     @SuppressLint("NonConstantResourceId")
-    private Fragment whichFragment(int id) {
+    public Fragment whichFragment(int id) {
         switch (id) {
-            case R.id.characters:
-                CURRENT_FRAGMENT = R.id.characters;
+            case R.id.nav_characters:
+                CURRENT_FRAGMENT = R.id.nav_characters;
                 return new CharactersFragment();
-            case R.id.dictionary:
-                CURRENT_FRAGMENT = R.id.dictionary;
+            case R.id.nav_dictionary:
+                CURRENT_FRAGMENT = R.id.nav_dictionary;
                 return new DictionaryFragment();
-            case R.id.gacha:
-                CURRENT_FRAGMENT = R.id.gacha;
-                return new GachaFragment();
-            case R.id.about:
-                CURRENT_FRAGMENT = R.id.about;
+            case R.id.nav_wishes:
+                CURRENT_FRAGMENT = R.id.nav_wishes;
+                return new WishesFragment();
+            case R.id.nav_settings:
+                CURRENT_FRAGMENT = R.id.nav_settings;
+                return new SettingsFragment();
+            case R.id.fragment_about:
+                CURRENT_FRAGMENT = R.id.fragment_about;
                 return new AboutFragment();
             default:
-                CURRENT_FRAGMENT = R.id.main;
+                CURRENT_FRAGMENT = R.id.nav_main;
+                return new HomeFragment();
+        }
+    }
+
+    // Метод для создания полного фрагмента по его id
+    @SuppressLint("NonConstantResourceId")
+    public Fragment whichFullFragment(int id){
+        switch (id) {
+            case R.id.fragment_login:
+                return new LoginFragment();
+            default:
                 return new MainFragment();
         }
     }
 
     // Метод для отрисовки фрагмента
-    private void loadFragment(Fragment fragment) {
+    public void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame, fragment);
-        transaction.addToBackStack(null);
+//        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    // Метод для отрисовки полного фрагмента
+    public void loadFullFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.full_frame, fragment);
+        if (!(fragment instanceof MainFragment)) transaction.addToBackStack(null);
         transaction.commit();
     }
 

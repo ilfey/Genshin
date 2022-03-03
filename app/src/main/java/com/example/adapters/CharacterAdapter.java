@@ -6,22 +6,18 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.data.remote.characters.CharacterEntry;
-import com.example.data.remote.characters.CharactersResponse;
+import com.example.data.remotely.characters.CharacterEntry;
 import com.example.genshin.CharacterActivity;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
 import com.squareup.picasso.Picasso;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

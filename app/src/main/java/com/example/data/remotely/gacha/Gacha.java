@@ -1,4 +1,4 @@
-package com.example.data.remote.gacha;
+package com.example.data.remotely.gacha;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

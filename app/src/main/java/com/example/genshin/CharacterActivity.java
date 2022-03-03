@@ -3,24 +3,17 @@ package com.example.genshin;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.GenshinApp;
-import com.example.data.remote.characters.CharacterEntry;
-import com.example.data.remote.characters.Characters;
-import com.example.data.remote.characters.CharactersResponse;
+import com.example.data.remotely.characters.CharacterEntry;
+import com.example.genshin.R;
 import com.example.listeners.OnSwipeTouchListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class CharacterActivity extends AppCompatActivity {
 
@@ -91,9 +84,7 @@ public class CharacterActivity extends AppCompatActivity {
         dest = findViewById(R.id.dest);
 
         refresh = findViewById(R.id.refresh);
-        refresh.setColorSchemeResources(
-                R.color.primary
-        );
+        refresh.setColorSchemeResources(R.color.primary);
 
         refresh.setOnRefreshListener(() -> {
             refresh.setRefreshing(false);

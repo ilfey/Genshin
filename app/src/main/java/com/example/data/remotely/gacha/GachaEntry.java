@@ -1,6 +1,6 @@
-package com.example.data.remote.gacha;
+package com.example.data.remotely.gacha;
 
-import com.example.data.remote.Common;
+import com.example.data.remotely.Common;
 import com.google.gson.annotations.SerializedName;
 
 public class GachaEntry {

@@ -42,6 +42,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
 	public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
 		holder.icon.setImageResource(models.get(position).getIcon());
 		holder.title.setText(models.get(position).getTitle());
+		holder.itemView.setOnClickListener(models.get(position).getOnClick());
 	}
 
 	@Override

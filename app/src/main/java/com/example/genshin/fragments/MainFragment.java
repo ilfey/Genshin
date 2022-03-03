@@ -1,49 +1,61 @@
 package com.example.genshin.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.adapters.MainAdapter;
+import com.example.genshin.MainActivity;
 import com.example.genshin.R;
-import com.example.genshin.models.MainModel;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainFragment extends Fragment {
+    private MainActivity activity;
+    private Context ctx;
 
-    private RecyclerView mainRecycler;
-    private MainAdapter mainAdapter;
-    private List<MainModel> models = new ArrayList<>();
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        mainRecycler = view.findViewById(R.id.main_recycler);
-        mainAdapter = new MainAdapter(getContext(), models);
+        activity = (MainActivity) getActivity();
+        ctx = getContext();
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        // Получаем навбар
+        BottomNavigationView navbar = view.findViewById(R.id.nav_bar);
 
-        mainRecycler.setLayoutManager(layoutManager);
-        mainRecycler.setAdapter(mainAdapter);
+        // Создаем и устанавливаем слушатель событий на навбар
+        navbar.setOnNavigationItemSelectedListener(item -> {
+            // Загружаем нужный фрагмент
+            activity.loadFragment(activity.whichFragment(item.getItemId()));
+            return true;
+        });
 
-        models.add(new MainModel(R.mipmap.character, "Персонажи"));
-        models.add(new MainModel(R.mipmap.book, "Хиличурлский"));
-        models.add(new MainModel(R.mipmap.star, "Молитвы"));
-        models.add(new MainModel(R.mipmap.bag, "Предметы"));
-        models.add(new MainModel(R.mipmap.question, "Полезное"));
-        models.add(new MainModel(R.mipmap.map, "Карта"));
-        models.add(new MainModel(R.mipmap.friends, "О проекте"));
+        // Загружаем последний фрагмент
+        activity.loadFragment(activity.whichFragment(activity.prefs.getInt("LastFragment", R.id.nav_main)));
+
+        // Проверяем на первое открытие апк
+        if (activity.prefs.getBoolean("Visited", true)) {
+            // диалог при первом открытии
+            activity.showDialog(getString(R.string.welcome), "Какое-то описание)");
+            // Создаем запись в префсах о том, что апк уже открывалось ранее
+            SharedPreferences.Editor editor = activity.prefs.edit();
+            editor.putBoolean("Visited", false);
+            editor.apply();
+        }
 
         return view;
     }
+
+
 }

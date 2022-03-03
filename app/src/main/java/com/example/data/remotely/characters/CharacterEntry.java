@@ -1,6 +1,6 @@
-package com.example.data.remote.characters;
+package com.example.data.remotely.characters;
 
-import com.example.data.remote.Common;
+import com.example.data.remotely.Common;
 
 public class CharacterEntry {
     private String name;

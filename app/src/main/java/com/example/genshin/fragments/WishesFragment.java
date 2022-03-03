@@ -11,21 +11,16 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.GenshinApp;
 import com.example.adapters.GachaAdapter;
-import com.example.data.remote.gacha.Gacha;
-import com.example.data.remote.gacha.GachaEntry;
-import com.example.data.remote.gacha.GachaResponse;
+import com.example.data.remotely.gacha.Gacha;
+import com.example.data.remotely.gacha.GachaEntry;
+import com.example.data.remotely.gacha.GachaResponse;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GachaFragment extends Fragment {
+public class WishesFragment extends Fragment {
 
     private Context ctx;
     private MainActivity activity;
@@ -49,7 +44,7 @@ public class GachaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_gacha, container, false);
+        View view = inflater.inflate(R.layout.fragment_wishes, container, false);
 
         // Получаем нужные объекты
         ctx = getContext();
@@ -58,6 +53,7 @@ public class GachaFragment extends Fragment {
 
         // Получаем элементы
         refresh = view.findViewById(R.id.refresh);
+        refresh.setColorSchemeResources(R.color.primary);
         error = view.findViewById(R.id.error);
         progress = view.findViewById(R.id.progress);
         progress.getIndeterminateDrawable().setColorFilter(0xFF4F46E5, android.graphics.PorterDuff.Mode.MULTIPLY);

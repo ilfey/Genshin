@@ -4,25 +4,15 @@ import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.view.View;
 
-import com.example.data.remote.characters.CharacterEntry;
-import com.example.data.remote.characters.Characters;
-import com.example.data.remote.characters.CharactersResponse;
-import com.example.data.remote.dictionary.Dictionary;
-import com.example.data.remote.dictionary.DictionaryEntry;
-import com.example.data.remote.gacha.Gacha;
-import com.example.data.remote.gacha.GachaEntry;
-import com.example.genshin.R;
+import com.example.data.remotely.characters.CharacterEntry;
+import com.example.data.remotely.dictionary.DictionaryEntry;
+import com.example.data.remotely.gacha.GachaEntry;
 
-import java.io.IOException;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
