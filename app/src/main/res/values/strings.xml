@@ -40,4 +40,7 @@
     <string name="login">Войти</string>
     <string name="password">Пароль</string>
     <string name="username">Имя пользователя</string>
+    <string name="edit">Изменить</string>
+    <string name="clear">Отмена</string>
+    <string name="done">Готово</string>
 </resources>

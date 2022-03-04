@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/edit"
+        android:title="@string/edit"
+        android:icon="@drawable/ic_edit"
+        app:showAsAction="always" />
+
+    <item
+        android:visible="false"
+        android:id="@+id/cancel"
+        android:title="@string/clear"
+        android:icon="@drawable/ic_clear"
+        app:showAsAction="always" />
+
+    <item
+        android:visible="false"
+        android:id="@+id/done"
+        android:title="@string/done"
+        android:icon="@drawable/ic_done"
+        app:showAsAction="always" />
+
+</menu>

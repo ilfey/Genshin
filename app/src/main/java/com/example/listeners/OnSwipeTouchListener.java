@@ -20,7 +20,7 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
     private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
         private static final int SWIPE_THRESHOLD = 100;
-        private static final int SWIPE_VELOCITY_THRESHOLD = 100;
+        private static final int SWIPE_VELOCITY_THRESHOLD = 500;
 
         @Override
         public boolean onDown(MotionEvent e) {

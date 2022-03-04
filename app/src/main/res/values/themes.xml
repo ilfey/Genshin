@@ -1,5 +1,5 @@
 <resources>
-	<style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+	<style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
 		<item name="android:windowFullscreen">true</item>
 		<item name="android:windowBackground">@drawable/bg_activity</item>
 
@@ -11,6 +11,7 @@
 	</style>
 
 	<style name="AppTheme.Light">
+<!--		<item name="windowActionBar">false</item>-->
 		<item name="android:colorBackground">#E5E7EB</item>
 		<item name="colorOnBackground">#F9FAFB</item>
 		<item name="colorOnSecondary">#FFF</item>
