@@ -43,4 +43,6 @@
     <string name="edit">Изменить</string>
     <string name="clear">Отмена</string>
     <string name="done">Готово</string>
+    <string name="undo">Назад</string>
+    <string name="redo">Вперед</string>
 </resources>

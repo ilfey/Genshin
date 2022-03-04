@@ -181,8 +181,6 @@ public class CharacterActivity extends AppCompatActivity {
                 changeVisibility(View.VISIBLE, View.GONE);
                 moveText(false);
 
-                dest.setText(destEdit.getText());
-
                 return true;
             }
             default: {

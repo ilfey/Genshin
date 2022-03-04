@@ -17,6 +17,20 @@
 
     <item
         android:visible="false"
+        android:id="@+id/undo"
+        android:title="@string/undo"
+        android:icon="@drawable/ic_undo"
+        app:showAsAction="always" />
+
+    <item
+        android:visible="false"
+        android:id="@+id/redo"
+        android:title="@string/redo"
+        android:icon="@drawable/ic_redo"
+        app:showAsAction="always" />
+
+    <item
+        android:visible="false"
         android:id="@+id/done"
         android:title="@string/done"
         android:icon="@drawable/ic_done"

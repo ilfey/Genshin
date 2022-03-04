@@ -38,6 +38,12 @@
                     android:padding="12dp">
 
                     <TextView
+                        android:visibility="invisible"
+                        android:id="@+id/subtitle"
+                        style="@style/TextView.MatchParent22sp"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
                         android:id="@+id/title"
                         style="@style/TextView.MatchParent22sp"
                         android:layout_alignParentTop="true" />
@@ -52,20 +58,20 @@
                     <TextView
                         android:id="@+id/rarityText"
                         style="@style/TextView.WrapContent16sp"
-                        android:layout_below="@id/title"
+                        android:layout_below="@id/subtitle"
                         android:text="@string/rarity" />
 
                     <TextView
                         android:id="@+id/rarity"
                         style="@style/TextView.MatchParent16sp"
-                        android:layout_below="@id/title"
+                        android:layout_below="@id/subtitle"
                         android:layout_marginLeft="5dp"
                         android:layout_toEndOf="@+id/rarityText" />
 
                     <EditText
                         android:id="@+id/rarity_edit"
                         style="@style/TextView.MatchParent16sp"
-                        android:layout_below="@id/title"
+                        android:layout_below="@id/subtitle"
                         android:layout_marginLeft="5dp"
                         android:layout_toEndOf="@+id/rarityText"
                         android:backgroundTint="#0000"
@@ -190,13 +196,13 @@
                     <TextView
                         android:id="@+id/regionText"
                         style="@style/TextView.WrapContent16sp"
-                        android:layout_below="@id/birthday"
+                        android:layout_below="@id/birthdayText"
                         android:text="@string/region" />
 
                     <TextView
                         android:id="@+id/region"
                         style="@style/TextView.MatchParent16sp"
-                        android:layout_below="@id/birthday"
+                        android:layout_below="@id/birthdayText"
                         android:layout_marginLeft="5dp"
                         android:layout_toEndOf="@+id/regionText" />
 
