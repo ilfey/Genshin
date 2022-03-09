@@ -3,19 +3,28 @@ package com.example.genshin.fragments;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.ListPreloader;
+import com.bumptech.glide.RequestBuilder;
 import com.example.GenshinApp;
 import com.example.adapters.CharacterAdapter;
+import com.example.adapters.RecyclerViewPreloader;
 import com.example.data.remotely.characters.CharacterEntry;
 import com.example.data.remotely.characters.Characters;
 import com.example.data.remotely.characters.CharactersResponse;
@@ -23,6 +32,7 @@ import com.example.genshin.MainActivity;
 import com.example.genshin.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -59,9 +69,14 @@ public class CharactersFragment extends Fragment {
         characters_recycler = view.findViewById(R.id.characters_recycler);
         charactersAdapter = new CharacterAdapter(ctx, menuCharacters);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ctx, RecyclerView.VERTICAL, false);
+
+//        RecyclerViewPreloader<ContactsContract.CommonDataKinds.Photo> preloader = new RecyclerViewPreloader<>(Glide.with(this), modelProvider, sizeProvider, 10);
+
+//        characters_recycler.addOnScrollListener(preloader);
         characters_recycler.setLayoutManager(layoutManager);
         characters_recycler.setAdapter(charactersAdapter);
 
+        app.hasConnection();
 
         refresh.setOnRefreshListener(() -> {
             new Thread(() -> {
@@ -118,4 +133,25 @@ public class CharactersFragment extends Fragment {
 
         return view;
     }
+
+    /*private class MyPreloadModelProvider implements ListPreloader.PreloadModelProvider {
+        @Override
+        @NonNull
+        public List<String> getPreloadItems(int position) {
+            String url = String.format("https://sushicat.pp.ua/api%s", app.characters.get(position).getIco());
+            if (TextUtils.isEmpty(url)) {
+                return Collections.emptyList();
+            }
+            return Collections.singletonList(url);
+        }
+
+        @Nullable
+        @Override
+        public RequestBuilder<?> getPreloadRequestBuilder(@NonNull Object item) {
+            return
+                    Glide.with(ctx)
+                            .load();
+
+        }
+    }*/
 }

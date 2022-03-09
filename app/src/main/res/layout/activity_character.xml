@@ -168,7 +168,8 @@
                         android:id="@+id/dest"
                         style="@style/TextView.MatchParent16sp.EditText"
                         android:layout_below="@+id/destText"
-                        android:layout_marginStart="0dp" />
+                        android:layout_marginStart="0dp"
+                        android:maxLines="999" />
 
                 </RelativeLayout>
 

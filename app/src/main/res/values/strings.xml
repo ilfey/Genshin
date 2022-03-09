@@ -35,8 +35,6 @@
         <item>По стихиям</item>
         <item>По ID в БД</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login">Войти</string>
     <string name="password">Пароль</string>
     <string name="username">Имя пользователя</string>
@@ -45,4 +43,5 @@
     <string name="done">Готово</string>
     <string name="undo">Назад</string>
     <string name="redo">Вперед</string>
+    <string name="no_connection">Нет подключения.</string>
 </resources>

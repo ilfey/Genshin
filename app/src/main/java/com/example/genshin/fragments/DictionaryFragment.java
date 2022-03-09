@@ -9,11 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.GenshinApp;
 import com.example.adapters.DictionaryAdapter;
@@ -51,6 +53,8 @@ public class DictionaryFragment extends Fragment {
         ctx = getContext();
         activity = (MainActivity) getActivity();
         app = (GenshinApp) (activity != null ? activity.getApplication() : null);
+
+        app.hasConnection();
 
         refresh = view.findViewById(R.id.refresh);
         refresh.setColorSchemeResources(R.color.primary);

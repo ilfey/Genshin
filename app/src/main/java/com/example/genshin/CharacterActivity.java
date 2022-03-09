@@ -6,22 +6,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.GenshinApp;
 import com.example.data.remotely.characters.CharacterEntry;
+import com.example.dialogs.AddDialog;
 import com.example.listeners.OnSwipeTouchListener;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Array;
 import java.util.List;
 
 public class CharacterActivity extends AppCompatActivity {
 
+    public Context ctx;
     private ImageView character_logo;
     private EditText title;
     private EditText rarity;
@@ -77,7 +83,7 @@ public class CharacterActivity extends AppCompatActivity {
                 loadContent();
             }
         });
-
+        ctx = this;
         character_logo = findViewById(R.id.character_logo);
         models = ((GenshinApp) getApplication()).characters;
         title = findViewById(R.id.title);
@@ -100,7 +106,7 @@ public class CharacterActivity extends AppCompatActivity {
         });
 
         if (!((GenshinApp) getApplication()).hasConnection()) {
-            System.out.println("No internet");
+            Toast.makeText(ctx, "Нет подключения.", Toast.LENGTH_SHORT);
         } else {
             refresh.setRefreshing(false);
         }
@@ -113,11 +119,12 @@ public class CharacterActivity extends AppCompatActivity {
         inflater.inflate(R.menu.action_bar, menu);
 
         menu.findItem(R.id.edit).setOnMenuItemClickListener(menuItem -> {
-            menu.findItem(R.id.done).setVisible(true);
-            menu.findItem(R.id.cancel).setVisible(true);
             menu.findItem(R.id.edit).setVisible(false);
+            menu.findItem(R.id.cancel).setVisible(true);
             menu.findItem(R.id.undo).setVisible(true);
+            menu.findItem(R.id.add).setVisible(true);
             menu.findItem(R.id.redo).setVisible(true);
+            menu.findItem(R.id.done).setVisible(true);
 
             return onOptionsItemSelected(menuItem);
         });
@@ -125,9 +132,10 @@ public class CharacterActivity extends AppCompatActivity {
         menu.findItem(R.id.cancel).setOnMenuItemClickListener(menuItem -> {
             menu.findItem(R.id.edit).setVisible(true);
             menu.findItem(R.id.cancel).setVisible(false);
-            menu.findItem(R.id.done).setVisible(false);
             menu.findItem(R.id.undo).setVisible(false);
+            menu.findItem(R.id.add).setVisible(false);
             menu.findItem(R.id.redo).setVisible(false);
+            menu.findItem(R.id.done).setVisible(false);
 
             return onOptionsItemSelected(menuItem);
         });
@@ -135,9 +143,10 @@ public class CharacterActivity extends AppCompatActivity {
         menu.findItem(R.id.done).setOnMenuItemClickListener(menuItem -> {
             menu.findItem(R.id.edit).setVisible(true);
             menu.findItem(R.id.cancel).setVisible(false);
-            menu.findItem(R.id.done).setVisible(false);
             menu.findItem(R.id.undo).setVisible(false);
+            menu.findItem(R.id.add).setVisible(false);
             menu.findItem(R.id.redo).setVisible(false);
+            menu.findItem(R.id.done).setVisible(false);
 
             return onOptionsItemSelected(menuItem);
         });
@@ -157,6 +166,29 @@ public class CharacterActivity extends AppCompatActivity {
             case R.id.cancel: {
                 changeVisibility(false);
 
+                return true;
+            }
+            case R.id.undo: {
+                return true;
+            }
+            case R.id.add: {
+                CharSequence[] fields = {
+                        "Редкость",
+                        "Оружие",
+                        "Глаз Бога",
+                        "Полное имя",
+                        "Пол",
+                        "День Рождения",
+                        "Регион",
+                        "Принадлежность"
+                };
+
+                AddDialog dialog = new AddDialog(CharacterActivity.this, fields);
+                dialog.show(getSupportFragmentManager(), "custom");
+
+                return true;
+            }
+            case R.id.redo: {
                 return true;
             }
             case R.id.done: {
@@ -195,5 +227,15 @@ public class CharacterActivity extends AppCompatActivity {
         region.setEnabled(editText);
         belonging.setEnabled(editText);
         dest.setEnabled(editText);
+    }
+
+    public void showToast(String msg){
+        Toast warring = Toast.makeText(ctx, msg, Toast.LENGTH_SHORT);
+        warring.show();
+    }
+
+    public void showToast(int res){
+        Toast warring = Toast.makeText(ctx, res, Toast.LENGTH_SHORT);
+        warring.show();
     }
 }

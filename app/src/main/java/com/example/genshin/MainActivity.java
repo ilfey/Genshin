@@ -10,7 +10,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Toast;
 
+import com.example.GenshinApp;
 import com.example.data.locally.AppDataBase;
 import com.example.dialogs.CustomDialog;
 import com.example.genshin.fragments.AboutFragment;
@@ -30,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     public final String LIGHT = "Light";
     public SharedPreferences prefs;
     public AppDataBase db;
+    private GenshinApp app;
+    private Context ctx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +48,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        app = (GenshinApp) getApplication();
+        ctx = this;
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
         // Загружаем главный фрагмент
         loadFullFragment(whichFullFragment(R.id.fragment_main));
+
+        if (!app.hasConnection()){
+            showToast(R.string.no_connection);
+        }
 
         db = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "base").build();
     }
@@ -91,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
     public void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame, fragment);
-//        transaction.addToBackStack(null);
         transaction.commit();
     }
 
@@ -139,5 +151,17 @@ public class MainActivity extends AppCompatActivity {
     public void showDialog(String title, String description) {
         CustomDialog dialog = new CustomDialog(title, description);
         dialog.show(getSupportFragmentManager(), "custom");
+    }
+
+    public void showToast(String msg){
+        Toast warring = Toast.makeText(ctx, msg, Toast.LENGTH_SHORT);
+        warring.setGravity(Gravity.CENTER, 0,0);
+        warring.show();
+    }
+
+    public void showToast(int res){
+        Toast warring = Toast.makeText(getApplicationContext(), res, Toast.LENGTH_SHORT);
+        warring.setGravity(Gravity.TOP, 0,160);
+        warring.show();
     }
 }

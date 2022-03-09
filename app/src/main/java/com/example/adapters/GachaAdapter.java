@@ -17,20 +17,41 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.data.remotely.gacha.GachaEntry;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 public class GachaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final Context ctx;
     private List<GachaEntry> models;
     private MainActivity activity;
+    private Picasso picasso;
 
     public GachaAdapter(Context ctx, MainActivity activity, List<GachaEntry> models) {
         this.ctx = ctx;
         this.models = models;
         this.activity = activity;
+
+        HttpLoggingInterceptor logs = new HttpLoggingInterceptor();
+        logs.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(logs)
+                .connectTimeout(10, TimeUnit.MILLISECONDS)
+                .build();
+
+        picasso = new Picasso.Builder(ctx).loggingEnabled(true).indicatorsEnabled(true).build();
     }
 
     @Override
@@ -116,8 +137,10 @@ public class GachaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     ((GachaViewHolder)holder).star3Image.setVisibility(View.GONE);
                 }
 
-                Picasso.with(ctx)
+                picasso.with(ctx)
                         .load("https://sushicat.pp.ua/api" + models.get(position).getImg())
+                        .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                        .networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE)
                         .into(((GachaViewHolder)holder).icon);
 
                 ((GachaViewHolder)holder).title.setText(titleText);

@@ -87,6 +87,7 @@
         <item name="android:backgroundTint">#0000</item>
         <item name="android:enabled">false</item>
         <item name="android:inputType">none</item>
+        <item name="android:maxLines">1</item>
     </style>
 
     <style name="TextView.MatchParent22sp.EditText">
@@ -94,6 +95,7 @@
         <item name="android:backgroundTint">#0000</item>
         <item name="android:enabled">false</item>
         <item name="android:inputType">none</item>
+        <item name="android:maxLines">1</item>
     </style>
 
     <style name="TextView.WrapContent16sp.EditText">
@@ -101,6 +103,7 @@
         <item name="android:backgroundTint">#0000</item>
         <item name="android:enabled">false</item>
         <item name="android:inputType">none</item>
+        <item name="android:maxLines">1</item>
     </style>
 
 </resources>

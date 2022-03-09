@@ -98,7 +98,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     intent.addFlags(intent.FLAG_ACTIVITY_NO_ANIMATION);
                     intent.putExtra("Theme", activity.CURRENT_THEME);
                     intent.putExtra("Position", finalPosition);
-//                    intent.putExtra("Characters", (Serializable) models);
+
                     ctx.startActivity(intent);
                 });
 
