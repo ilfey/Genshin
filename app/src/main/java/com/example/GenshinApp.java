@@ -5,6 +5,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import androidx.room.Room;
+
 import com.example.data.remotely.characters.CharacterEntry;
 import com.example.data.remotely.dictionary.DictionaryEntry;
 import com.example.data.remotely.gacha.GachaEntry;

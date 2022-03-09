@@ -1,5 +1,6 @@
 package com.example.adapters;
 
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -12,13 +13,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.data.remotely.characters.CharacterEntry;
 import com.example.genshin.CharacterActivity;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import okhttp3.logging.HttpLoggingInterceptor;
+
 
 public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -30,6 +34,9 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public CharacterAdapter(Context ctx, List<CharacterEntry> models) {
         this.ctx = ctx;
         this.models = models;
+
+        HttpLoggingInterceptor log = new HttpLoggingInterceptor();
+        log.level(HttpLoggingInterceptor.Level.BODY);
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -73,6 +80,12 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
             default:{
                 position--;
+
+                Glide.with(ctx)
+                        .load(String.format("https://sushicat.pp.ua/api%s", models.get(position).getIco()))
+                        .error(R.drawable.star)
+                        .into(((CharacterViewHolder) holder).ico);
+
                 String nameText = models.get(position).getName();
                 String rarityText = models.get(position).getRarity();
 
@@ -89,11 +102,6 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     ctx.startActivity(intent);
                 });
 
-                System.out.println(models.get(position).getIco());
-
-                Picasso.get()
-                        .load(String.format("https://sushicat.pp.ua/api%s", models.get(position).getIco()))
-                        .into(((CharacterViewHolder) holder).ico);
             }
         }
     }

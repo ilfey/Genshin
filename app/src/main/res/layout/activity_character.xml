@@ -37,207 +37,116 @@
                     android:background="@drawable/cr15dp"
                     android:padding="12dp">
 
-                    <TextView
-                        android:visibility="invisible"
-                        android:id="@+id/subtitle"
-                        style="@style/TextView.MatchParent22sp"
-                        android:layout_alignParentTop="true" />
-
-                    <TextView
+                    <EditText
                         android:id="@+id/title"
-                        style="@style/TextView.MatchParent22sp"
-                        android:layout_alignParentTop="true" />
+                        style="@style/TextView.MatchParent22sp.EditText"
+                        android:enabled="false"
+                        android:inputType="none"
+                        android:padding="0dp" />
 
                     <EditText
-                        android:id="@+id/title_edit"
-                        style="@style/TextView.MatchParent22sp"
-                        android:backgroundTint="#0000"
-                        android:padding="0dp"
-                        android:visibility="gone" />
-
-                    <TextView
                         android:id="@+id/rarityText"
-                        style="@style/TextView.WrapContent16sp"
-                        android:layout_below="@id/subtitle"
+                        style="@style/TextView.WrapContent16sp.EditText"
+                        android:layout_below="@id/title"
                         android:text="@string/rarity" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/rarity"
-                        style="@style/TextView.MatchParent16sp"
-                        android:layout_below="@id/subtitle"
+                        style="@style/TextView.MatchParent16sp.EditText"
+                        android:layout_below="@id/title"
                         android:layout_marginLeft="5dp"
                         android:layout_toEndOf="@+id/rarityText" />
 
                     <EditText
-                        android:id="@+id/rarity_edit"
-                        style="@style/TextView.MatchParent16sp"
-                        android:layout_below="@id/subtitle"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/rarityText"
-                        android:backgroundTint="#0000"
-                        android:padding="0dp"
-                        android:visibility="gone" />
-
-                    <TextView
                         android:id="@+id/weaponText"
-                        style="@style/TextView.WrapContent16sp"
+                        style="@style/TextView.WrapContent16sp.EditText"
                         android:layout_below="@id/rarityText"
                         android:text="@string/weapon" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/weapon"
-                        style="@style/TextView.MatchParent16sp"
+                        style="@style/TextView.MatchParent16sp.EditText"
                         android:layout_below="@id/rarityText"
                         android:layout_marginLeft="5dp"
                         android:layout_toEndOf="@+id/weaponText" />
 
                     <EditText
-                        android:id="@+id/weapon_edit"
-                        style="@style/TextView.MatchParent16sp"
-                        android:layout_below="@id/rarityText"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/weaponText"
-                        android:backgroundTint="#0000"
-                        android:padding="0dp"
-                        android:visibility="gone" />
-
-                    <TextView
                         android:id="@+id/eyeText"
-                        style="@style/TextView.WrapContent16sp"
+                        style="@style/TextView.WrapContent16sp.EditText"
                         android:layout_below="@id/weaponText"
                         android:text="@string/eye" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/eye"
-                        style="@style/TextView.MatchParent16sp"
+                        style="@style/TextView.MatchParent16sp.EditText"
                         android:layout_below="@id/weaponText"
                         android:layout_marginLeft="5dp"
                         android:layout_toEndOf="@+id/eyeText" />
 
                     <EditText
-                        android:id="@+id/eye_edit"
-                        style="@style/TextView.MatchParent16sp"
-                        android:layout_below="@id/weaponText"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/eyeText"
-                        android:backgroundTint="#0000"
-                        android:padding="0dp"
-                        android:visibility="gone" />
-
-                    <TextView
                         android:id="@+id/fullnameText"
-                        style="@style/TextView.WrapContent16sp"
+                        style="@style/TextView.WrapContent16sp.EditText"
                         android:layout_below="@id/eyeText"
                         android:text="@string/full_name" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/fullname"
-                        style="@style/TextView.MatchParent16sp"
+                        style="@style/TextView.MatchParent16sp.EditText"
                         android:layout_below="@id/eyeText"
                         android:layout_marginLeft="5dp"
                         android:layout_toEndOf="@+id/fullnameText" />
 
                     <EditText
-                        android:id="@+id/fullname_edit"
-                        style="@style/TextView.MatchParent16sp"
-                        android:layout_below="@id/eyeText"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/fullnameText"
-                        android:backgroundTint="#0000"
-                        android:padding="0dp"
-                        android:visibility="gone" />
-
-                    <TextView
                         android:id="@+id/sexText"
-                        style="@style/TextView.WrapContent16sp"
+                        style="@style/TextView.WrapContent16sp.EditText"
                         android:layout_below="@id/fullnameText"
                         android:text="@string/gender" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/sex"
-                        style="@style/TextView.MatchParent16sp"
+                        style="@style/TextView.MatchParent16sp.EditText"
                         android:layout_below="@id/fullnameText"
                         android:layout_marginLeft="5dp"
                         android:layout_toEndOf="@+id/sexText" />
 
                     <EditText
-                        android:id="@+id/sex_edit"
-                        style="@style/TextView.MatchParent16sp"
-                        android:layout_below="@id/fullnameText"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/sexText"
-                        android:backgroundTint="#0000"
-                        android:padding="0dp"
-                        android:visibility="gone" />
-
-                    <TextView
                         android:id="@+id/birthdayText"
-                        style="@style/TextView.WrapContent16sp"
+                        style="@style/TextView.WrapContent16sp.EditText"
                         android:layout_below="@id/sexText"
                         android:text="@string/birthday" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/birthday"
-                        style="@style/TextView.MatchParent16sp"
+                        style="@style/TextView.MatchParent16sp.EditText"
                         android:layout_below="@id/sexText"
                         android:layout_marginLeft="5dp"
                         android:layout_toEndOf="@+id/birthdayText" />
 
                     <EditText
-                        android:id="@+id/birthday_edit"
-                        style="@style/TextView.MatchParent16sp"
-                        android:layout_below="@id/sexText"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/birthdayText"
-                        android:backgroundTint="#0000"
-                        android:padding="0dp"
-                        android:visibility="gone" />
-
-                    <TextView
                         android:id="@+id/regionText"
-                        style="@style/TextView.WrapContent16sp"
+                        style="@style/TextView.WrapContent16sp.EditText"
                         android:layout_below="@id/birthdayText"
                         android:text="@string/region" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/region"
-                        style="@style/TextView.MatchParent16sp"
+                        style="@style/TextView.MatchParent16sp.EditText"
                         android:layout_below="@id/birthdayText"
                         android:layout_marginLeft="5dp"
                         android:layout_toEndOf="@+id/regionText" />
 
                     <EditText
-                        android:id="@+id/region_edit"
-                        style="@style/TextView.MatchParent16sp"
-                        android:layout_below="@id/birthday"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/regionText"
-                        android:backgroundTint="#0000"
-                        android:padding="0dp"
-                        android:visibility="gone" />
-
-                    <TextView
                         android:id="@+id/belongingText"
-                        style="@style/TextView.WrapContent16sp"
+                        style="@style/TextView.WrapContent16sp.EditText"
                         android:layout_below="@id/regionText"
                         android:text="@string/belonging" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/belonging"
-                        style="@style/TextView.MatchParent16sp"
+                        style="@style/TextView.MatchParent16sp.EditText"
                         android:layout_below="@id/regionText"
                         android:layout_marginLeft="5dp"
                         android:layout_toEndOf="@+id/belongingText" />
-
-                    <EditText
-                        android:id="@+id/belonging_edit"
-                        style="@style/TextView.MatchParent16sp"
-                        android:layout_below="@id/regionText"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/belongingText"
-                        android:backgroundTint="#0000"
-                        android:padding="0dp"
-                        android:visibility="gone" />
 
                 </RelativeLayout>
 
@@ -250,24 +159,16 @@
                     android:background="@drawable/cr15dp"
                     android:padding="12dp">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/destText"
-                        style="@style/TextView.MatchParent22sp"
+                        style="@style/TextView.MatchParent22sp.EditText"
                         android:text="@string/description" />
 
-                    <TextView
-                        android:id="@+id/dest"
-                        style="@style/TextView.MatchParent16sp"
-                        android:layout_width="match_parent"
-                        android:layout_below="@id/destText" />
-
                     <EditText
-                        android:id="@+id/dest_edit"
-                        style="@style/TextView.MatchParent16sp"
+                        android:id="@+id/dest"
+                        style="@style/TextView.MatchParent16sp.EditText"
                         android:layout_below="@+id/destText"
-                        android:backgroundTint="#0000"
-                        android:padding="0dp"
-                        android:visibility="gone" />
+                        android:layout_marginStart="0dp" />
 
                 </RelativeLayout>
 

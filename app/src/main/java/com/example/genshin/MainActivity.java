@@ -4,14 +4,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.room.Room;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
 
+import com.example.data.locally.AppDataBase;
 import com.example.dialogs.CustomDialog;
 import com.example.genshin.fragments.AboutFragment;
 import com.example.genshin.fragments.CharactersFragment;
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public final String DARK = "Dark";
     public final String LIGHT = "Light";
     public SharedPreferences prefs;
-
+    public AppDataBase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Загружаем главный фрагмент
         loadFullFragment(whichFullFragment(R.id.fragment_main));
+
+        db = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "base").build();
     }
 
     // Метод для создания фрагмента по его id

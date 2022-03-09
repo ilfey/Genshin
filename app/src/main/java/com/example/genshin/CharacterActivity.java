@@ -10,10 +10,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.GenshinApp;
 import com.example.data.remotely.characters.CharacterEntry;
@@ -25,26 +23,16 @@ import java.util.List;
 public class CharacterActivity extends AppCompatActivity {
 
     private ImageView character_logo;
-    private TextView title;
-    private TextView rarity;
-    private TextView weaperon;
-    private TextView eye;
-    private TextView fullname;
-    private TextView sex;
-    private TextView birthday;
-    private TextView region;
-    private TextView belonging;
-    private TextView dest;
-    private EditText titleEdit;
-    private EditText rarityEdit;
-    private EditText weaperonEdit;
-    private EditText eyeEdit;
-    private EditText fullnameEdit;
-    private EditText sexEdit;
-    private EditText birthdayEdit;
-    private EditText regionEdit;
-    private EditText belongingEdit;
-    private EditText destEdit;
+    private EditText title;
+    private EditText rarity;
+    private EditText weaperon;
+    private EditText eye;
+    private EditText fullname;
+    private EditText sex;
+    private EditText birthday;
+    private EditText region;
+    private EditText belonging;
+    private EditText dest;
     private List<CharacterEntry> models;
     private int position = 0;
     private SwipeRefreshLayout refresh;
@@ -90,8 +78,8 @@ public class CharacterActivity extends AppCompatActivity {
             }
         });
 
-        models = ((GenshinApp) getApplication()).characters;
         character_logo = findViewById(R.id.character_logo);
+        models = ((GenshinApp) getApplication()).characters;
         title = findViewById(R.id.title);
         rarity = findViewById(R.id.rarity);
         weaperon = findViewById(R.id.weapon);
@@ -102,16 +90,6 @@ public class CharacterActivity extends AppCompatActivity {
         region = findViewById(R.id.region);
         belonging = findViewById(R.id.belonging);
         dest = findViewById(R.id.dest);
-        titleEdit = findViewById(R.id.title_edit);
-        rarityEdit = findViewById(R.id.rarity_edit);
-        weaperonEdit = findViewById(R.id.weapon_edit);
-        eyeEdit = findViewById(R.id.eye_edit);
-        fullnameEdit = findViewById(R.id.fullname_edit);
-        sexEdit = findViewById(R.id.sex_edit);
-        birthdayEdit = findViewById(R.id.birthday_edit);
-        regionEdit = findViewById(R.id.region_edit);
-        belongingEdit = findViewById(R.id.belonging_edit);
-        destEdit = findViewById(R.id.dest_edit);
 
         refresh = findViewById(R.id.refresh);
         refresh.setColorSchemeResources(R.color.primary);
@@ -126,7 +104,6 @@ public class CharacterActivity extends AppCompatActivity {
         } else {
             refresh.setRefreshing(false);
         }
-
         loadContent();
     }
 
@@ -139,6 +116,8 @@ public class CharacterActivity extends AppCompatActivity {
             menu.findItem(R.id.done).setVisible(true);
             menu.findItem(R.id.cancel).setVisible(true);
             menu.findItem(R.id.edit).setVisible(false);
+            menu.findItem(R.id.undo).setVisible(true);
+            menu.findItem(R.id.redo).setVisible(true);
 
             return onOptionsItemSelected(menuItem);
         });
@@ -147,6 +126,8 @@ public class CharacterActivity extends AppCompatActivity {
             menu.findItem(R.id.edit).setVisible(true);
             menu.findItem(R.id.cancel).setVisible(false);
             menu.findItem(R.id.done).setVisible(false);
+            menu.findItem(R.id.undo).setVisible(false);
+            menu.findItem(R.id.redo).setVisible(false);
 
             return onOptionsItemSelected(menuItem);
         });
@@ -155,6 +136,8 @@ public class CharacterActivity extends AppCompatActivity {
             menu.findItem(R.id.edit).setVisible(true);
             menu.findItem(R.id.cancel).setVisible(false);
             menu.findItem(R.id.done).setVisible(false);
+            menu.findItem(R.id.undo).setVisible(false);
+            menu.findItem(R.id.redo).setVisible(false);
 
             return onOptionsItemSelected(menuItem);
         });
@@ -167,19 +150,17 @@ public class CharacterActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.edit: {
-                changeVisibility(View.GONE, View.VISIBLE);
-                moveText(true);
+                changeVisibility(true);
 
                 return super.onOptionsItemSelected(item);
             }
             case R.id.cancel: {
-                changeVisibility(View.VISIBLE, View.GONE);
+                changeVisibility(false);
 
                 return true;
             }
             case R.id.done: {
-                changeVisibility(View.VISIBLE, View.GONE);
-                moveText(false);
+                changeVisibility(false);
 
                 return true;
             }
@@ -190,7 +171,7 @@ public class CharacterActivity extends AppCompatActivity {
     }
 
     private void loadContent() {
-        Picasso.get().load(String.format("https://sushicat.pp.ua/api%s", models.get(position).getIco())).into(character_logo);
+        Picasso.with(this).load(String.format("https://sushicat.pp.ua/api%s", models.get(position).getIco())).into(character_logo);
 
         title.setText(models.get(position).getName());
         rarity.setText(models.get(position).getRarity());
@@ -203,52 +184,16 @@ public class CharacterActivity extends AppCompatActivity {
         dest.setText(models.get(position).getDesk());
     }
 
-    private void changeVisibility(int text, int editText){
-        title.setVisibility(text);
-        rarity.setVisibility(text);
-        weaperon.setVisibility(text);
-        eye.setVisibility(text);
-        fullname.setVisibility(text);
-        sex.setVisibility(text);
-        birthday.setVisibility(text);
-        region.setVisibility(text);
-        belonging.setVisibility(text);
-        dest.setVisibility(text);
-        titleEdit.setVisibility(editText);
-        rarityEdit.setVisibility(editText);
-        weaperonEdit.setVisibility(editText);
-        eyeEdit.setVisibility(editText);
-        fullnameEdit.setVisibility(editText);
-        sexEdit.setVisibility(editText);
-        birthdayEdit.setVisibility(editText);
-        regionEdit.setVisibility(editText);
-        belongingEdit.setVisibility(editText);
-        destEdit.setVisibility(editText);
-    }
-
-    private void moveText(boolean toEditText){
-        if (toEditText){
-            titleEdit.setText(title.getText());
-            rarityEdit.setText(rarity.getText());
-            weaperonEdit.setText(weaperon.getText());
-            eyeEdit.setText(eye.getText());
-            fullnameEdit.setText(fullname.getText());
-            sexEdit.setText(sex.getText());
-            birthdayEdit.setText(birthday.getText());
-            regionEdit.setText(region.getText());
-            belongingEdit.setText(belonging.getText());
-            destEdit.setText(dest.getText());
-        } else {
-            title.setText(titleEdit.getText());
-            rarity.setText(rarityEdit.getText());
-            weaperon.setText(weaperonEdit.getText());
-            eye.setText(eyeEdit.getText());
-            fullname.setText(fullnameEdit.getText());
-            sex.setText(sexEdit.getText());
-            birthday.setText(birthdayEdit.getText());
-            region.setText(regionEdit.getText());
-            belonging.setText(belongingEdit.getText());
-            dest.setText(destEdit.getText());
-        }
+    private void changeVisibility(boolean editText){
+        title.setEnabled(editText);
+        rarity.setEnabled(editText);
+        weaperon.setEnabled(editText);
+        eye.setEnabled(editText);
+        fullname.setEnabled(editText);
+        sex.setEnabled(editText);
+        birthday.setEnabled(editText);
+        region.setEnabled(editText);
+        belonging.setEnabled(editText);
+        dest.setEnabled(editText);
     }
 }

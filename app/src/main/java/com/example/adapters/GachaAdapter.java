@@ -116,7 +116,7 @@ public class GachaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     ((GachaViewHolder)holder).star3Image.setVisibility(View.GONE);
                 }
 
-                Picasso.get()
+                Picasso.with(ctx)
                         .load("https://sushicat.pp.ua/api" + models.get(position).getImg())
                         .into(((GachaViewHolder)holder).icon);
 
