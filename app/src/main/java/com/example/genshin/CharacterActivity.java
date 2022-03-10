@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -63,8 +64,12 @@ public class CharacterActivity extends AppCompatActivity {
             }
         }
 
+
+
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+
+        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
 
         super.onCreate(savedInstanceState);
@@ -158,6 +163,9 @@ public class CharacterActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
+            case android.R.id.home: {
+                onBackPressed();
+            }
             case R.id.edit: {
                 changeVisibility(true);
 

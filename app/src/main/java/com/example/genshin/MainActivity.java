@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.GenshinApp;
 import com.example.data.locally.AppDataBase;
 import com.example.dialogs.CustomDialog;
+import com.example.dialogs.SortDialog;
 import com.example.genshin.fragments.AboutFragment;
 import com.example.genshin.fragments.CharactersFragment;
 import com.example.genshin.fragments.DictionaryFragment;
@@ -153,6 +154,11 @@ public class MainActivity extends AppCompatActivity {
         dialog.show(getSupportFragmentManager(), "custom");
     }
 
+    public void showSortDialog(){
+        SortDialog dialog = new SortDialog();
+        dialog.show(getSupportFragmentManager(), "Sort");
+    }
+
     public void showToast(String msg){
         Toast warring = Toast.makeText(ctx, msg, Toast.LENGTH_SHORT);
         warring.setGravity(Gravity.CENTER, 0,0);
@@ -160,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showToast(int res){
-        Toast warring = Toast.makeText(getApplicationContext(), res, Toast.LENGTH_SHORT);
+        Toast warring = Toast.makeText(ctx, res, Toast.LENGTH_SHORT);
         warring.setGravity(Gravity.TOP, 0,160);
         warring.show();
     }

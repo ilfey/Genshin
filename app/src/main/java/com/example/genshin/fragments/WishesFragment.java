@@ -15,7 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.GenshinApp;
-import com.example.adapters.GachaAdapter;
+import com.example.adapters.WishesAdapter;
 import com.example.data.remotely.gacha.Gacha;
 import com.example.data.remotely.gacha.GachaEntry;
 import com.example.data.remotely.gacha.GachaResponse;
@@ -35,7 +35,7 @@ public class WishesFragment extends Fragment {
     private MainActivity activity;
     private GenshinApp app;
     private RecyclerView gacha_recycler;
-    private GachaAdapter gachaAdapter;
+    private WishesAdapter wishesAdapter;
     private List<GachaEntry> models = new ArrayList<>();
     private SwipeRefreshLayout refresh;
     private ProgressBar progress;
@@ -43,7 +43,6 @@ public class WishesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_wishes, container, false);
 
         // Получаем нужные объекты
@@ -60,10 +59,10 @@ public class WishesFragment extends Fragment {
         gacha_recycler = view.findViewById(R.id.gacha_recycler);
         refresh = view.findViewById(R.id.refresh);
 
-        gachaAdapter = new GachaAdapter(ctx, activity, models);
+        wishesAdapter = new WishesAdapter(ctx, activity, models);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ctx, RecyclerView.VERTICAL, false);
         gacha_recycler.setLayoutManager(layoutManager);
-        gacha_recycler.setAdapter(gachaAdapter);
+        gacha_recycler.setAdapter(wishesAdapter);
 
         refresh.setOnRefreshListener(() -> {
             new Thread(() -> {
@@ -74,7 +73,7 @@ public class WishesFragment extends Fragment {
                             error.setVisibility(View.GONE);
                             progress.setVisibility(View.GONE);
                             app.gacha = response.body().entries;
-                            gachaAdapter.setListGachaModels(app.gacha);
+                            wishesAdapter.setListGachaModels(app.gacha);
                             refresh.setRefreshing(false);
                         }
                     }
@@ -89,7 +88,7 @@ public class WishesFragment extends Fragment {
             }).start();
         });
 
-        gachaAdapter.setListGachaModels(app.gacha);
+        wishesAdapter.setListGachaModels(app.gacha);
 
         if (!app.connection) {
             view.findViewById(R.id.error).setVisibility(View.VISIBLE);
@@ -103,7 +102,7 @@ public class WishesFragment extends Fragment {
                             error.setVisibility(View.GONE);
                             progress.setVisibility(View.GONE);
                             app.gacha = response.body().entries;
-                            gachaAdapter.setListGachaModels(app.gacha);
+                            wishesAdapter.setListGachaModels(app.gacha);
                             refresh.setRefreshing(false);
                         }
                     }

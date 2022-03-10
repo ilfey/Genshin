@@ -67,7 +67,7 @@ public class CharactersFragment extends Fragment {
         progress = view.findViewById(R.id.progress);
         progress.getIndeterminateDrawable().setColorFilter(0xFF4F46E5, android.graphics.PorterDuff.Mode.MULTIPLY);
         characters_recycler = view.findViewById(R.id.characters_recycler);
-        charactersAdapter = new CharacterAdapter(ctx, menuCharacters);
+        charactersAdapter = new CharacterAdapter(ctx, activity, menuCharacters);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ctx, RecyclerView.VERTICAL, false);
 
 //        RecyclerViewPreloader<ContactsContract.CommonDataKinds.Photo> preloader = new RecyclerViewPreloader<>(Glide.with(this), modelProvider, sizeProvider, 10);
@@ -105,7 +105,7 @@ public class CharactersFragment extends Fragment {
         charactersAdapter.setListCharactersModels(app.characters);
 
         if (!app.hasConnection()) {
-            view.findViewById(R.id.error).setVisibility(View.VISIBLE);
+            error.setVisibility(View.VISIBLE);
         } else {
             progress.setVisibility(View.VISIBLE);
             new Thread(() -> {
@@ -133,25 +133,4 @@ public class CharactersFragment extends Fragment {
 
         return view;
     }
-
-    /*private class MyPreloadModelProvider implements ListPreloader.PreloadModelProvider {
-        @Override
-        @NonNull
-        public List<String> getPreloadItems(int position) {
-            String url = String.format("https://sushicat.pp.ua/api%s", app.characters.get(position).getIco());
-            if (TextUtils.isEmpty(url)) {
-                return Collections.emptyList();
-            }
-            return Collections.singletonList(url);
-        }
-
-        @Nullable
-        @Override
-        public RequestBuilder<?> getPreloadRequestBuilder(@NonNull Object item) {
-            return
-                    Glide.with(ctx)
-                            .load();
-
-        }
-    }*/
 }

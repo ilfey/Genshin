@@ -7,14 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.GenshinApp;
 import com.example.data.remotely.gacha.GachaEntry;
+import com.example.dialogs.SortDialog;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
 import com.squareup.picasso.MemoryPolicy;
@@ -31,27 +35,16 @@ import okhttp3.OkHttpClient;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 
-public class GachaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class WishesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final Context ctx;
     private List<GachaEntry> models;
     private MainActivity activity;
-    private Picasso picasso;
 
-    public GachaAdapter(Context ctx, MainActivity activity, List<GachaEntry> models) {
+    public WishesAdapter(Context ctx, MainActivity activity, List<GachaEntry> models) {
         this.ctx = ctx;
         this.models = models;
         this.activity = activity;
-
-        HttpLoggingInterceptor logs = new HttpLoggingInterceptor();
-        logs.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(logs)
-                .connectTimeout(10, TimeUnit.MILLISECONDS)
-                .build();
-
-        picasso = new Picasso.Builder(ctx).loggingEnabled(true).indicatorsEnabled(true).build();
     }
 
     @Override
@@ -76,25 +69,11 @@ public class GachaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         switch (viewType){
             case 0: {
                 View view = LayoutInflater.from(ctx).inflate(R.layout.sort, parent, false);
-                Spinner sort = view.findViewById(R.id.sort);
+                Button sort = view.findViewById(R.id.sort);
 
-                ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(ctx, R.array.sort_by, android.R.layout.simple_spinner_item);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                // Создаем слушатель событий
-                sort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        String[] items = ctx.getResources().getStringArray(R.array.sort_by);
-//                        activity.showDialog("Вы выбрали", items[position]);
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
+                sort.setOnClickListener(view1 -> {
+                    activity.showSortDialog();
                 });
-                // Устанавливаем адаптер
-                sort.setAdapter(adapter);
 
                 return new SortViewHolder(view);
             }
@@ -137,7 +116,7 @@ public class GachaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     ((GachaViewHolder)holder).star3Image.setVisibility(View.GONE);
                 }
 
-                picasso.with(ctx)
+                Picasso.with(ctx)
                         .load("https://sushicat.pp.ua/api" + models.get(position).getImg())
                         .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                         .networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE)
@@ -176,21 +155,21 @@ public class GachaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         public GachaViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            icon = (ImageView) itemView.findViewById(R.id.model_gacha_icon);
-            title = (TextView) itemView.findViewById(R.id.model_gacha_title);
-            star = (TextView) itemView.findViewById(R.id.model_gacha_star);
-            star1 = (TextView) itemView.findViewById(R.id.model_gacha_star1);
-            star2 = (TextView) itemView.findViewById(R.id.model_gacha_star2);
-            star3 = (TextView) itemView.findViewById(R.id.model_gacha_star3);
-            starImage = (ImageView) itemView.findViewById(R.id.model_gacha_star_image);
-            star1Image = (ImageView) itemView.findViewById(R.id.model_gacha_star1_image);
-            star2Image = (ImageView) itemView.findViewById(R.id.model_gacha_star2_image);
-            star3Image = (ImageView) itemView.findViewById(R.id.model_gacha_star3_image);
+            icon = itemView.findViewById(R.id.model_gacha_icon);
+            title = itemView.findViewById(R.id.model_gacha_title);
+            star = itemView.findViewById(R.id.model_gacha_star);
+            star1 = itemView.findViewById(R.id.model_gacha_star1);
+            star2 = itemView.findViewById(R.id.model_gacha_star2);
+            star3 = itemView.findViewById(R.id.model_gacha_star3);
+            starImage = itemView.findViewById(R.id.model_gacha_star_image);
+            star1Image = itemView.findViewById(R.id.model_gacha_star1_image);
+            star2Image = itemView.findViewById(R.id.model_gacha_star2_image);
+            star3Image = itemView.findViewById(R.id.model_gacha_star3_image);
         }
     }
 
     public final class SortViewHolder extends RecyclerView.ViewHolder{
-        Spinner sort;
+        Button sort;
 
         public SortViewHolder(@NonNull View itemView) {
             super(itemView);

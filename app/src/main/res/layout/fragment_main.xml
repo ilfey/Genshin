@@ -20,7 +20,7 @@
         android:layout_alignParentBottom="true"
         android:background="?android:navigationBarColor"
         app:itemHorizontalTranslationEnabled="true"
-        app:itemIconTint="?colorSecondary"
+        app:itemIconTint="?colorPrimary"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/navigation_bar" />
 

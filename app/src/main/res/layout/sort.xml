@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <Spinner
+
+    <Button
         android:id="@+id/sort"
-        android:layout_marginRight="24dp"
-        style="@style/Spinner" />
+        style="@style/Button"
+        android:layout_gravity="end"
+        android:layout_marginVertical="12dp"
+        android:layout_marginEnd="24dp"
+        android:drawableEnd="@drawable/ic_more"
+        android:drawablePadding="-10dp"
+        android:drawableTint="@android:color/white"
+        android:paddingEnd="15dp"
+        android:text="Сортировка"
+        tools:ignore="RtlSymmetry" />
+
 </LinearLayout>

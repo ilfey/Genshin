@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.data.remotely.characters.CharacterEntry;
+import com.example.dialogs.SortDialog;
 import com.example.genshin.CharacterActivity;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
@@ -31,8 +33,9 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private MainActivity activity;
     private List<CharacterEntry> data;
 
-    public CharacterAdapter(Context ctx, List<CharacterEntry> models) {
+    public CharacterAdapter(Context ctx, MainActivity activity, List<CharacterEntry> models) {
         this.ctx = ctx;
+        this.activity = activity;
         this.models = models;
 
         HttpLoggingInterceptor log = new HttpLoggingInterceptor();
@@ -60,8 +63,14 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         switch (viewType){
             case 0: {
-                View sort = LayoutInflater.from(ctx).inflate(R.layout.sort, parent, false);
-                return new CharacterViewHolder(sort);
+                View view = LayoutInflater.from(ctx).inflate(R.layout.sort, parent, false);
+                Button sort = view.findViewById(R.id.sort);
+
+                sort.setOnClickListener(view1 -> {
+                    activity.showSortDialog();
+                });
+
+                return new CharacterViewHolder(view);
             }
             default: {
                 View characters = LayoutInflater.from(ctx).inflate(R.layout.model_characters, parent, false);
