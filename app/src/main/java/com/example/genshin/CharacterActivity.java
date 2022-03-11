@@ -8,22 +8,21 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.GenshinApp;
 import com.example.data.remotely.characters.CharacterEntry;
 import com.example.dialogs.AddDialog;
 import com.example.listeners.OnSwipeTouchListener;
+import com.example.listeners.TextChanged;
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
 import java.util.List;
 
 public class CharacterActivity extends AppCompatActivity {
@@ -38,8 +37,17 @@ public class CharacterActivity extends AppCompatActivity {
     private EditText sex;
     private EditText birthday;
     private EditText region;
-    private EditText belonging;
+    private EditText affiliation;
     private EditText dest;
+    private EditText rarityText;
+    private EditText weaperonText;
+    private EditText eyeText;
+    private EditText fullnameText;
+    private EditText sexText;
+    private EditText birthdayText;
+    private EditText regionText;
+    private EditText affiliationText;
+    private RelativeLayout destLayout;
     private List<CharacterEntry> models;
     private int position = 0;
     private SwipeRefreshLayout refresh;
@@ -50,7 +58,6 @@ public class CharacterActivity extends AppCompatActivity {
         // получаем аргументы
         Bundle args = getIntent().getExtras();
         position = args.getInt("Position");
-        System.out.println(position);
 
         // устанавливаем тему
         switch (args.getString("Theme")) {
@@ -63,8 +70,6 @@ public class CharacterActivity extends AppCompatActivity {
                 break;
             }
         }
-
-
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
@@ -79,12 +84,19 @@ public class CharacterActivity extends AppCompatActivity {
             @Override
             public void onSwipeLeft() {
                 position++;
+                if (position > models.size() - 1){
+                    position = models.size() - 1;
+                }
                 loadContent();
             }
+
 
             @Override
             public void onSwipeRight() {
                 position--;
+                if (position < 0){
+                    position = 0;
+                }
                 loadContent();
             }
         });
@@ -99,8 +111,28 @@ public class CharacterActivity extends AppCompatActivity {
         sex = findViewById(R.id.sex);
         birthday = findViewById(R.id.birthday);
         region = findViewById(R.id.region);
-        belonging = findViewById(R.id.belonging);
+        affiliation = findViewById(R.id.affiliation);
         dest = findViewById(R.id.dest);
+
+        rarityText = findViewById(R.id.rarity_text);
+        weaperonText = findViewById(R.id.weapon_text);
+        eyeText = findViewById(R.id.eye_text);
+        fullnameText = findViewById(R.id.fullname_text);
+        sexText = findViewById(R.id.sex_text);
+        birthdayText = findViewById(R.id.birthday_text);
+        regionText = findViewById(R.id.region_text);
+        affiliationText = findViewById(R.id.affiliation_text);
+        destLayout = findViewById(R.id.dest_layout);
+
+        rarity.addTextChangedListener(new TextChanged(rarityText));
+        weaperon.addTextChangedListener(new TextChanged(weaperonText));
+        eye.addTextChangedListener(new TextChanged(eyeText));
+        fullname.addTextChangedListener(new TextChanged(fullnameText));
+        sex.addTextChangedListener(new TextChanged(sexText));
+        birthday.addTextChangedListener(new TextChanged(birthdayText));
+        region.addTextChangedListener(new TextChanged(regionText));
+        affiliation.addTextChangedListener(new TextChanged(affiliationText));
+        dest.addTextChangedListener(new TextChanged(destLayout));
 
         refresh = findViewById(R.id.refresh);
         refresh.setColorSchemeResources(R.color.primary);
@@ -115,6 +147,7 @@ public class CharacterActivity extends AppCompatActivity {
         } else {
             refresh.setRefreshing(false);
         }
+
         loadContent();
     }
 
@@ -167,12 +200,13 @@ public class CharacterActivity extends AppCompatActivity {
                 onBackPressed();
             }
             case R.id.edit: {
-                changeVisibility(true);
+                changeEditable(true);
 
                 return super.onOptionsItemSelected(item);
             }
             case R.id.cancel: {
-                changeVisibility(false);
+                changeEditable(false);
+                loadContent();
 
                 return true;
             }
@@ -200,7 +234,7 @@ public class CharacterActivity extends AppCompatActivity {
                 return true;
             }
             case R.id.done: {
-                changeVisibility(false);
+                changeEditable(false);
 
                 return true;
             }
@@ -213,18 +247,31 @@ public class CharacterActivity extends AppCompatActivity {
     private void loadContent() {
         Picasso.with(this).load(String.format("https://sushicat.pp.ua/api%s", models.get(position).getIco())).into(character_logo);
 
-        title.setText(models.get(position).getName());
-        rarity.setText(models.get(position).getRarity());
-        weaperon.setText(models.get(position).getWeapon());
-        eye.setText(models.get(position).getEye());
-        fullname.setText(models.get(position).getFullname());
-        sex.setText(models.get(position).getGender());
-        birthday.setText(models.get(position).getBirthday());
-        region.setText(models.get(position).getRegion());
-        dest.setText(models.get(position).getDesk());
+        String titleString = models.get(position).getName();
+        String rarityString = models.get(position).getRarity();
+        String weaperonString = models.get(position).getWeapon();
+        String eyeString = models.get(position).getEye();
+        String fullnameString = models.get(position).getFullname();
+        String sexString = models.get(position).getGender();
+        String birthdayString = models.get(position).getBirthday();
+        String regionString = models.get(position).getRegion();
+        String affiliationString = models.get(position).getAffiliation();
+        String destString = models.get(position).getDesk();
+
+        title.setText(titleString);
+
+        rarity.setText(rarityString);
+        weaperon.setText(weaperonString);
+        eye.setText(eyeString);
+        fullname.setText(fullnameString);
+        sex.setText(sexString);
+        birthday.setText(birthdayString);
+        region.setText(regionString);
+        affiliation.setText(affiliationString);
+        dest.setText(destString);
     }
 
-    private void changeVisibility(boolean editText){
+    private void changeEditable(boolean editText){
         title.setEnabled(editText);
         rarity.setEnabled(editText);
         weaperon.setEnabled(editText);
@@ -233,7 +280,7 @@ public class CharacterActivity extends AppCompatActivity {
         sex.setEnabled(editText);
         birthday.setEnabled(editText);
         region.setEnabled(editText);
-        belonging.setEnabled(editText);
+        affiliation.setEnabled(editText);
         dest.setEnabled(editText);
     }
 

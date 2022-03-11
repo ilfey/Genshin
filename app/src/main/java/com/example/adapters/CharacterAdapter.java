@@ -104,7 +104,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 int finalPosition = position;
                 holder.itemView.setOnClickListener(view -> {
                     Intent intent = new Intent(ctx, CharacterActivity.class);
-                    intent.addFlags(intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                    intent.addFlags(intent.FLAG_ACTIVITY_NO_ANIMATION);
                     intent.putExtra("Theme", activity.CURRENT_THEME);
                     intent.putExtra("Position", finalPosition);
 

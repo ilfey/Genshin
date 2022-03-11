@@ -68,60 +68,46 @@ public class DictionaryFragment extends Fragment {
 
         dictionaryAdapter = new DictionaryAdapter(ctx, dictionaryModels);
         dictionary_recycler.setAdapter(dictionaryAdapter);
-
+//        dictionary_recycler.setHasFixedSize(true);
         refresh.setOnRefreshListener(() -> {
             new Thread(() -> {
-                app.retrofit.create(Dictionary.class).getDictionary().enqueue(new Callback<DictionaryResponse>() {
-                    @Override
-                    public void onResponse(@NonNull Call<DictionaryResponse> call, @NonNull Response<DictionaryResponse> response) {
-                        if (response.code() == 200 && response.body() != null) {
-                            progress.setVisibility(View.GONE);
-                            error.setVisibility(View.GONE);
-                            app.dictionary = response.body().entries;
-                            dictionaryAdapter.setListDictionaryModels(app.dictionary);
-                            refresh.setRefreshing(false);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull Call<DictionaryResponse> call, @NonNull Throwable t) {
-                        progress.setVisibility(View.GONE);
-                        error.setVisibility(View.VISIBLE);
-                        refresh.setRefreshing(false);
-                    }
-                });
+                load();
             }).start();
         });
 
-        dictionaryAdapter.setListDictionaryModels(app.dictionary);
+//        dictionaryAdapter.setListDictionaryModels(app.dictionary);
 
         if (!app.hasConnection()) {
             view.findViewById(R.id.error).setVisibility(View.VISIBLE);
         } else {
             view.findViewById(R.id.progress).setVisibility(View.VISIBLE);
             new Thread(() -> {
-                app.retrofit.create(Dictionary.class).getDictionary().enqueue(new Callback<DictionaryResponse>() {
-                    @Override
-                    public void onResponse(Call<DictionaryResponse> call, Response<DictionaryResponse> response) {
-                        if (response.code() == 200 && response.body() != null) {
-                            error.setVisibility(View.GONE);
-                            progress.setVisibility(View.GONE);
-                            app.dictionary = response.body().entries;
-                            dictionaryAdapter.setListDictionaryModels(app.dictionary);
-                            refresh.setRefreshing(false);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<DictionaryResponse> call, Throwable t) {
-                        progress.setVisibility(View.GONE);
-                        error.setVisibility(View.VISIBLE);
-                        refresh.setRefreshing(false);
-                    }
-                });
+                load();
             }).start();
         }
-
         return view;
+    }
+
+    void load(){
+        app.retrofit.create(Dictionary.class).getDictionary().enqueue(new Callback<DictionaryResponse>() {
+            @Override
+            public void onResponse(Call<DictionaryResponse> call, Response<DictionaryResponse> response) {
+                if (response.code() == 200 && response.body() != null) {
+                    error.setVisibility(View.GONE);
+                    progress.setVisibility(View.GONE);
+                    app.dictionary = response.body().entries;
+                    dictionaryAdapter.setListDictionaryModels(app.dictionary);
+                    dictionaryAdapter.notifyDataSetChanged();
+                    refresh.setRefreshing(false);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DictionaryResponse> call, Throwable t) {
+                progress.setVisibility(View.GONE);
+                error.setVisibility(View.VISIBLE);
+                refresh.setRefreshing(false);
+            }
+        });
     }
 }

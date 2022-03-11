@@ -11,16 +11,16 @@
     <string name="from_the_end_of_the_alphabet">С конца алфавита</string>
     <string name="by_the_elements">По стихиям</string>
     <string name="by_if_in_bd">По ID в БД</string>
-    <string name="rarity">Редкость:</string>
-    <string name="weapon">Оружие:</string>
+    <string name="rarity_with_colon">Редкость:</string>
+    <string name="weapon_with_colon">Оружие:</string>
     <string name="gender">Пол:</string>
-    <string name="birthday">День рождения:</string>
+    <string name="birthday_with_colon">День рождения:</string>
     <string name="change_theme">Сменить тему</string>
-    <string name="full_name">Полное имя:</string>
+    <string name="full_name_with_colon">Полное имя:</string>
     <string name="welcome">Добро пожаловать!!!</string>
     <string name="belonging">Принадлежность:</string>
-    <string name="region">Регион:</string>
-    <string name="eye">Глаз Бога:</string>
+    <string name="region_with_colon">Регион:</string>
+    <string name="eye_with_colon">Глаз Бога:</string>
     <string name="settings">Настройки</string>
     <string name="wishes">Молитвы</string>
     <string name="dictionary">Хиличурлский</string>
@@ -35,6 +35,7 @@
         <item>По стихиям</item>
         <item>По ID в БД</item>
     </string-array>
+
     <string name="login">Войти</string>
     <string name="password">Пароль</string>
     <string name="username">Имя пользователя</string>
@@ -44,4 +45,13 @@
     <string name="undo">Назад</string>
     <string name="redo">Вперед</string>
     <string name="no_connection">Нет подключения.</string>
+
+    <string name="rarity">Редкость</string>
+    <string name="weapon">Оружие</string>
+    <string name="eye">Глаз бога</string>
+    <string name="full_name">Полное имя</string>
+    <string name="sex">Мужской</string>
+    <string name="birthday">День рождения</string>
+    <string name="region">Регион</string>
+    <string name="affiliation">Принадлежность</string>
 </resources>
