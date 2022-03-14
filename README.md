@@ -1,5 +1,5 @@
-# [![Геншину](https://img.shields.io/badge/Genshin-blue?style=for-the-badge&logo=genshin&logoColor=white)](https://genshin-journey.ml)
-Спасибо большое `Prezident123#9662` - разработчику сайта, за то что разрешил использовать его сайт в виде макета.
+# [![Геншину](https://img.shields.io/badge/Genshin%20Journey-blue?style=for-the-badge&logo=genshin-journey&logoColor=white)](https://genshin-journey.ml)
+Спасибо большое `Aferist123#9662` - разработчику сайта, за то что разрешил использовать его сайт в виде макета.
 
 # Используемые библиотеки:
 
