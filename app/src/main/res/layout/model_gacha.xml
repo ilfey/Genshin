@@ -18,13 +18,17 @@
 
     <TextView
         android:id="@+id/model_gacha_title"
-        style="@style/TextView.WrapContent22sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
         android:layout_below="@+id/model_gacha_icon" />
 
 
     <TextView
         android:id="@+id/model_gacha_star"
-        style="@style/TextView.WrapContent16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
         android:layout_below="@+id/model_gacha_title"/>
 
     <ImageView
@@ -35,7 +39,9 @@
 
     <TextView
         android:id="@+id/model_gacha_star1"
-        style="@style/TextView.WrapContent16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
         android:layout_below="@+id/model_gacha_star"/>
 
     <ImageView
@@ -46,7 +52,9 @@
 
     <TextView
         android:id="@+id/model_gacha_star2"
-        style="@style/TextView.WrapContent16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
         android:layout_below="@+id/model_gacha_star1"/>
 
     <ImageView
@@ -57,7 +65,9 @@
 
     <TextView
         android:id="@+id/model_gacha_star3"
-        style="@style/TextView.WrapContent16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
         android:layout_below="@+id/model_gacha_star2"/>
 
     <ImageView

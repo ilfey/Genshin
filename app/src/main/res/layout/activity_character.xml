@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,15 +8,18 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none">
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -28,156 +32,222 @@
                     android:layout_marginVertical="24dp"
                     android:src="@mipmap/tartalia_full" />
 
-                <RelativeLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/entry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/character_logo"
                     android:layout_marginHorizontal="12dp"
                     android:background="@drawable/cr15dp"
-                    android:padding="12dp">
+                    android:padding="12dp"
+                    app:layout_constraintTop_toBottomOf="@id/character_logo">
 
                     <EditText
                         android:id="@+id/title"
-                        style="@style/TextView.MatchParent22sp.EditText"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:enabled="false"
                         android:inputType="none"
-                        android:padding="0dp" />
+                        android:padding="0dp"
+                        android:textSize="22sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
                         android:id="@+id/rarity_text"
-                        style="@style/TextView.WrapContent16sp.EditText"
-                        android:layout_below="@id/title"
-                        android:text="@string/rarity_with_colon" />
+                        style="@style/EditText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rarity_with_colon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/title" />
 
                     <EditText
                         android:id="@+id/rarity"
-                        style="@style/TextView.MatchParent16sp.EditText"
-                        android:layout_below="@id/title"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/rarity_text" />
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_toEndOf="@+id/rarity_text"
+                        app:layout_constraintStart_toEndOf="@+id/rarity_text"
+                        app:layout_constraintTop_toBottomOf="@id/title" />
 
                     <EditText
                         android:id="@+id/weapon_text"
-                        style="@style/TextView.WrapContent16sp.EditText"
-                        android:layout_below="@id/rarity_text"
-                        android:text="@string/weapon_with_colon" />
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/weapon_with_colon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rarity_text" />
 
                     <EditText
+
                         android:id="@+id/weapon"
-                        style="@style/TextView.MatchParent16sp.EditText"
-                        android:layout_below="@id/rarity_text"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/weapon_text" />
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_toEndOf="@+id/weapon_text"
+                        app:layout_constraintStart_toEndOf="@+id/weapon_text"
+                        app:layout_constraintTop_toBottomOf="@id/rarity_text" />
 
                     <EditText
                         android:id="@+id/eye_text"
-                        style="@style/TextView.WrapContent16sp.EditText"
-                        android:layout_below="@id/weapon_text"
-                        android:text="@string/eye_with_colon" />
+                        style="@style/EditText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/eye_with_colon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/weapon_text" />
 
                     <EditText
                         android:id="@+id/eye"
-                        style="@style/TextView.MatchParent16sp.EditText"
-                        android:layout_below="@id/weapon_text"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/eye_text" />
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_toEndOf="@+id/eye_text"
+                        app:layout_constraintStart_toEndOf="@+id/eye_text"
+                        app:layout_constraintTop_toBottomOf="@id/weapon_text" />
 
                     <EditText
                         android:id="@+id/fullname_text"
-                        style="@style/TextView.WrapContent16sp.EditText"
-                        android:layout_below="@id/eye_text"
-                        android:text="@string/full_name_with_colon" />
+                        style="@style/EditText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/full_name_with_colon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/eye_text" />
 
                     <EditText
                         android:id="@+id/fullname"
-                        style="@style/TextView.MatchParent16sp.EditText"
-                        android:layout_below="@id/eye_text"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/fullname_text" />
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_toEndOf="@+id/fullname_text"
+                        app:layout_constraintStart_toEndOf="@+id/fullname_text"
+                        app:layout_constraintTop_toBottomOf="@id/eye_text" />
 
                     <EditText
                         android:id="@+id/sex_text"
-                        style="@style/TextView.WrapContent16sp.EditText"
-                        android:layout_below="@id/fullname_text"
-                        android:text="@string/gender" />
+                        style="@style/EditText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gender"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fullname_text" />
 
                     <EditText
                         android:id="@+id/sex"
-                        style="@style/TextView.MatchParent16sp.EditText"
-                        android:layout_below="@id/fullname_text"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/sex_text" />
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_toEndOf="@+id/sex_text"
+                        app:layout_constraintStart_toEndOf="@+id/sex_text"
+                        app:layout_constraintTop_toBottomOf="@id/fullname_text" />
 
                     <EditText
                         android:id="@+id/birthday_text"
-                        style="@style/TextView.WrapContent16sp.EditText"
-                        android:layout_below="@id/sex_text"
-                        android:text="@string/birthday_with_colon" />
+                        style="@style/EditText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/birthday_with_colon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sex_text" />
 
                     <EditText
                         android:id="@+id/birthday"
-                        style="@style/TextView.MatchParent16sp.EditText"
-                        android:layout_below="@id/sex_text"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/birthday_text" />
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_toEndOf="@+id/birthday_text"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/birthday_text"
+                        app:layout_constraintTop_toBottomOf="@id/sex_text" />
 
                     <EditText
                         android:id="@+id/region_text"
-                        style="@style/TextView.WrapContent16sp.EditText"
-                        android:layout_below="@id/birthday_text"
-                        android:text="@string/region_with_colon" />
+                        style="@style/EditText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/region_with_colon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/birthday_text" />
 
                     <EditText
                         android:id="@+id/region"
-                        style="@style/TextView.MatchParent16sp.EditText"
-                        android:layout_below="@id/birthday_text"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/region_text" />
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_toEndOf="@+id/region_text"
+                        app:layout_constraintStart_toEndOf="@+id/region_text"
+                        app:layout_constraintTop_toBottomOf="@id/birthday_text" />
 
                     <EditText
                         android:id="@+id/affiliation_text"
-                        style="@style/TextView.WrapContent16sp.EditText"
-                        android:layout_below="@id/region_text"
-                        android:text="@string/belonging" />
+                        style="@style/EditText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/belonging"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/region_text" />
 
                     <EditText
                         android:id="@+id/affiliation"
-                        style="@style/TextView.MatchParent16sp.EditText"
-                        android:layout_below="@id/region_text"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/affiliation_text" />
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_toEndOf="@+id/affiliation_text"
+                        app:layout_constraintStart_toEndOf="@+id/affiliation_text"
+                        app:layout_constraintTop_toBottomOf="@id/region_text" />
 
-                </RelativeLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <RelativeLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/dest_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/entry"
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginTop="24dp"
                     android:background="@drawable/cr15dp"
-                    android:padding="12dp">
+                    android:padding="12dp"
+                    app:layout_constraintTop_toBottomOf="@+id/entry">
 
                     <EditText
                         android:id="@+id/destText"
-                        style="@style/TextView.MatchParent22sp.EditText"
-                        android:text="@string/description" />
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/description"
+                        android:textSize="22sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
                         android:id="@+id/dest"
-                        style="@style/TextView.MatchParent16sp.EditText"
-                        android:layout_below="@+id/destText"
-                        android:layout_marginStart="0dp"
-                        android:singleLine="false" />
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:singleLine="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/destText" />
 
-                </RelativeLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

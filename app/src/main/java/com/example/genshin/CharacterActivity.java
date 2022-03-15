@@ -3,6 +3,7 @@ package com.example.genshin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
@@ -47,7 +48,7 @@ public class CharacterActivity extends AppCompatActivity {
     private EditText birthdayText;
     private EditText regionText;
     private EditText affiliationText;
-    private RelativeLayout destLayout;
+    private ConstraintLayout destLayout;
     private List<CharacterEntry> models;
     private int position = 0;
     private SwipeRefreshLayout refresh;

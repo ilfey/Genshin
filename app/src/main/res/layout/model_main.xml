@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="24dp"
     android:layout_marginBottom="12dp"
+    android:padding="12dp"
     android:background="@drawable/cr15dp">
 
     <ImageView
         android:id="@+id/model_main_logo"
         android:layout_width="76dp"
         android:layout_height="76dp"
-        android:layout_margin="12dp"
-        android:src="@mipmap/character" />
+        android:src="@mipmap/character"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:layout_marginStart="12dp"
         android:id="@+id/model_main_title"
-        style="@style/TextView.MatchParent22sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="24dp"/>
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/model_main_logo"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

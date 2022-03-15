@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_about"
     android:layout_width="match_parent"
@@ -26,29 +27,42 @@
                 android:layout_marginTop="50dp"
                 android:src="@mipmap/about" />
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/project"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/paimon"
                 android:layout_marginVertical="12dp"
+                android:layout_marginTop="166dp"
                 android:background="@drawable/cr15dp"
                 android:padding="24dp">
 
                 <TextView
                     android:id="@+id/about_project"
-                    style="@style/TextView.MatchParent22sp"
-                    android:text="@string/about_title" />
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about_title"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TextView.MatchParent16sp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/about_project"
-                    android:text="@string/about_content" />
+                    android:text="@string/about_content"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/about_project" />
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                style="@style/TextView.MatchParent16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/project"
                 android:text="@string/rights"
                 android:textAlignment="center"

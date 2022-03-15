@@ -11,15 +11,21 @@
 
     <TextView
         android:id="@+id/model_dictionary_title"
-        style="@style/TextView.MatchParent22sp"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"/>
 
     <TextView
         android:id="@+id/model_dictionary_content"
-        style="@style/TextView.MatchParent16sp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/model_dictionary_description"
-        style="@style/TextView.MatchParent16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
         android:textColor="@color/text_description" />
 
 </LinearLayout>
