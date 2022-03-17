@@ -30,7 +30,10 @@
                     android:layout_height="320dp"
                     android:layout_alignParentTop="true"
                     android:layout_marginVertical="24dp"
-                    android:src="@mipmap/tartalia_full" />
+                    android:src="@mipmap/tartalia_full"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/entry"
@@ -46,8 +49,6 @@
                         style="@style/EditText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:enabled="false"
-                        android:inputType="none"
                         android:padding="0dp"
                         android:textSize="22sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -70,6 +71,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:layout_toEndOf="@+id/rarity_text"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/rarity_text"
                         app:layout_constraintTop_toBottomOf="@id/title" />
 
@@ -90,6 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:layout_toEndOf="@+id/weapon_text"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/weapon_text"
                         app:layout_constraintTop_toBottomOf="@id/rarity_text" />
 
@@ -109,6 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:layout_toEndOf="@+id/eye_text"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/eye_text"
                         app:layout_constraintTop_toBottomOf="@id/weapon_text" />
 
@@ -128,6 +132,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:layout_toEndOf="@+id/fullname_text"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/fullname_text"
                         app:layout_constraintTop_toBottomOf="@id/eye_text" />
 
@@ -147,6 +152,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:layout_toEndOf="@+id/sex_text"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/sex_text"
                         app:layout_constraintTop_toBottomOf="@id/fullname_text" />
 
@@ -186,6 +192,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:layout_toEndOf="@+id/region_text"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/region_text"
                         app:layout_constraintTop_toBottomOf="@id/birthday_text" />
 
@@ -205,8 +212,15 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:layout_toEndOf="@+id/affiliation_text"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/affiliation_text"
                         app:layout_constraintTop_toBottomOf="@id/region_text" />
+
+                    <androidx.constraintlayout.widget.Group
+                        android:id="@+id/edit_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:constraint_referenced_ids="title,rarity,weapon,eye,fullname,sex,birthday,region,affiliation" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -218,7 +232,8 @@
                     android:layout_marginTop="24dp"
                     android:background="@drawable/cr15dp"
                     android:padding="12dp"
-                    app:layout_constraintTop_toBottomOf="@+id/entry">
+                    app:layout_constraintTop_toBottomOf="@+id/entry"
+                    tools:layout_editor_absoluteX="12dp">
 
                     <EditText
                         android:id="@+id/destText"
