@@ -2,37 +2,24 @@ package com.example.genshin.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.provider.ContactsContract;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.ListPreloader;
-import com.bumptech.glide.RequestBuilder;
 import com.example.GenshinApp;
 import com.example.adapters.CharacterAdapter;
-import com.example.adapters.RecyclerViewPreloader;
-import com.example.data.remotely.characters.CharacterEntry;
 import com.example.data.remotely.characters.Characters;
-import com.example.data.remotely.characters.CharactersResponse;
+import com.example.data.remotely.characters.CharactersResponses;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -46,7 +33,7 @@ public class CharactersFragment extends Fragment {
     private GenshinApp app;
     private RecyclerView characters_recycler;
     private CharacterAdapter charactersAdapter;
-    private List<CharacterEntry> menuCharacters = new ArrayList<>();
+    private List<CharactersResponses.Character> menuCharacters = new ArrayList<>();
     private SwipeRefreshLayout refresh;
     private ProgressBar progress;
     private TextView error;
@@ -80,20 +67,20 @@ public class CharactersFragment extends Fragment {
 
         refresh.setOnRefreshListener(() -> {
             new Thread(() -> {
-                app.retrofit.create(Characters.class).getCharacters().enqueue(new Callback<CharactersResponse>() {
+                app.retrofit.create(Characters.class).getCharacters().enqueue(new Callback<List<CharactersResponses.Character>>() {
                     @Override
-                    public void onResponse(Call<CharactersResponse> call, Response<CharactersResponse> response) {
+                    public void onResponse(Call<List<CharactersResponses.Character>> call, Response<List<CharactersResponses.Character>> response) {
                         if (response.code() == 200 && response.body() != null) {
                             error.setVisibility(View.GONE);
                             progress.setVisibility(View.GONE);
-                            app.characters = response.body().entries;
+                            app.characters = response.body();
                             charactersAdapter.setListCharactersModels(app.characters);
                             refresh.setRefreshing(false);
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<CharactersResponse> call, Throwable t) {
+                    public void onFailure(Call<List<CharactersResponses.Character>> call, Throwable t) {
                         progress.setVisibility(View.GONE);
                         error.setVisibility(View.VISIBLE);
                         refresh.setRefreshing(false);
@@ -109,20 +96,20 @@ public class CharactersFragment extends Fragment {
         } else {
             progress.setVisibility(View.VISIBLE);
             new Thread(() -> {
-                app.retrofit.create(Characters.class).getCharacters().enqueue(new Callback<CharactersResponse>() {
+                app.retrofit.create(Characters.class).getCharacters().enqueue(new Callback<List<CharactersResponses.Character>>() {
                     @Override
-                    public void onResponse(Call<CharactersResponse> call, Response<CharactersResponse> response) {
+                    public void onResponse(Call<List<CharactersResponses.Character>> call, Response<List<CharactersResponses.Character>> response) {
                         if (response.code() == 200 && response.body() != null) {
                             error.setVisibility(View.GONE);
                             progress.setVisibility(View.GONE);
-                            app.characters = response.body().entries;
+                            app.characters = response.body();
                             charactersAdapter.setListCharactersModels(app.characters);
                             refresh.setRefreshing(false);
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<CharactersResponse> call, Throwable t) {
+                    public void onFailure(Call<List<CharactersResponses.Character>> call, Throwable t) {
                         progress.setVisibility(View.GONE);
                         error.setVisibility(View.VISIBLE);
                         refresh.setRefreshing(false);

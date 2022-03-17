@@ -1,15 +1,33 @@
 package com.example.data.remotely.dictionary;
 
+import androidx.annotation.NonNull;
+
+import java.util.List;
+
 import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
+import retrofit2.http.PATCH;
+import retrofit2.http.POST;
 
 public interface Dictionary {
 
-    @GET("./collections/get/dict?token=a4191046104f8f3674f788e804c2d0")
-    @Headers({
-        "Content-Type: application/json",
-        "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36"
-    })
-    public Call<DictionaryResponse> getDictionary();
+    @GET("./api/dictionary")
+    public Call<List<DictionaryResponses.Word>> getDictionary();
+
+    @GET("./api/dictionary")
+    public Call<List<DictionaryResponses.Word>> getDictionary(@Body @NonNull DictionaryRequests.GetDictionary body);
+
+    @GET("./api/dictionary")
+    public Call<DictionaryResponses.Word> getWord(@Body @NonNull DictionaryRequests.GetWord body);
+
+    @POST("./api/dictionary")
+    public Call<Object> postWord(@Body @NonNull DictionaryRequests.GetWord body);
+
+    @DELETE("./api/dictionary")
+    public Call<Object> deleteWord(@Body @NonNull DictionaryRequests.DeleteWord body);
+
+    @PATCH("./api/dictionary")
+    public Call<Object> patchWord(@Body @NonNull DictionaryRequests.PatchWord body);
 }

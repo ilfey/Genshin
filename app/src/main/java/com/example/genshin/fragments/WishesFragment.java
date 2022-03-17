@@ -16,9 +16,8 @@ import android.widget.TextView;
 
 import com.example.GenshinApp;
 import com.example.adapters.WishesAdapter;
-import com.example.data.remotely.gacha.Gacha;
-import com.example.data.remotely.gacha.GachaEntry;
-import com.example.data.remotely.gacha.GachaResponse;
+import com.example.data.remotely.wishes.Wishes;
+import com.example.data.remotely.wishes.WishesResponses;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
 
@@ -36,7 +35,7 @@ public class WishesFragment extends Fragment {
     private GenshinApp app;
     private RecyclerView gacha_recycler;
     private WishesAdapter wishesAdapter;
-    private List<GachaEntry> models = new ArrayList<>();
+    private List<WishesResponses.Wish> models = new ArrayList<>();
     private SwipeRefreshLayout refresh;
     private ProgressBar progress;
     private TextView error;
@@ -66,20 +65,20 @@ public class WishesFragment extends Fragment {
 
         refresh.setOnRefreshListener(() -> {
             new Thread(() -> {
-                app.retrofit.create(Gacha.class).getGacha().enqueue(new Callback<GachaResponse>() {
+                app.retrofit.create(Wishes.class).getWishes().enqueue(new Callback<List<WishesResponses.Wish>>() {
                     @Override
-                    public void onResponse(Call<GachaResponse> call, Response<GachaResponse> response) {
+                    public void onResponse(Call<List<WishesResponses.Wish>> call, Response<List<WishesResponses.Wish>> response) {
                         if (response.code() == 200 && response.body() != null) {
                             error.setVisibility(View.GONE);
                             progress.setVisibility(View.GONE);
-                            app.gacha = response.body().entries;
+                            app.gacha = response.body();
                             wishesAdapter.setListGachaModels(app.gacha);
                             refresh.setRefreshing(false);
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<GachaResponse> call, Throwable t) {
+                    public void onFailure(Call<List<WishesResponses.Wish>> call, Throwable t) {
                         progress.setVisibility(View.GONE);
                         error.setVisibility(View.VISIBLE);
                         refresh.setRefreshing(false);
@@ -95,20 +94,20 @@ public class WishesFragment extends Fragment {
         } else {
             view.findViewById(R.id.progress).setVisibility(View.VISIBLE);
             new Thread(() -> {
-                app.retrofit.create(Gacha.class).getGacha().enqueue(new Callback<GachaResponse>() {
+                app.retrofit.create(Wishes.class).getWishes().enqueue(new Callback<List<WishesResponses.Wish>>() {
                     @Override
-                    public void onResponse(Call<GachaResponse> call, Response<GachaResponse> response) {
+                    public void onResponse(Call<List<WishesResponses.Wish>> call, Response<List<WishesResponses.Wish>> response) {
                         if (response.code() == 200 && response.body() != null) {
                             error.setVisibility(View.GONE);
                             progress.setVisibility(View.GONE);
-                            app.gacha = response.body().entries;
+                            app.gacha = response.body();
                             wishesAdapter.setListGachaModels(app.gacha);
                             refresh.setRefreshing(false);
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<GachaResponse> call, Throwable t) {
+                    public void onFailure(Call<List<WishesResponses.Wish>> call, Throwable t) {
                         progress.setVisibility(View.GONE);
                         error.setVisibility(View.VISIBLE);
                         refresh.setRefreshing(false);

@@ -4,14 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.widget.Toast;
 
-import androidx.room.Room;
-
-import com.example.data.remotely.characters.CharacterEntry;
-import com.example.data.remotely.dictionary.DictionaryEntry;
-import com.example.data.remotely.gacha.GachaEntry;
-import com.example.genshin.R;
+import com.example.data.remotely.characters.CharactersResponses;
+import com.example.data.remotely.dictionary.DictionaryResponses;
+import com.example.data.remotely.wishes.WishesResponses;
 
 import java.util.List;
 
@@ -23,9 +19,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class GenshinApp extends Application {
 
     public Retrofit retrofit;
-    public List<CharacterEntry> characters;
-    public List<DictionaryEntry> dictionary;
-    public List<GachaEntry> gacha;
+    public List<CharactersResponses.Character> characters;
+    public List<DictionaryResponses.Word> dictionary;
+    public List<WishesResponses.Wish> gacha;
     public boolean connection;
 
     @Override
@@ -41,7 +37,7 @@ public class GenshinApp extends Application {
 
         retrofit = new Retrofit.Builder()
                 .client(http)
-                .baseUrl("https://sushicat.pp.ua/api/genshin/api/")
+                .baseUrl("http://192.168.14.44:6240/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }

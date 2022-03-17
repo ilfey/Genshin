@@ -9,39 +9,28 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.GenshinApp;
-import com.example.data.remotely.gacha.GachaEntry;
-import com.example.dialogs.SortDialog;
+import com.example.data.remotely.wishes.WishesResponses;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Response;
-import okhttp3.logging.HttpLoggingInterceptor;
 
 public class WishesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final Context ctx;
-    private List<GachaEntry> models;
+    private List<WishesResponses.Wish> models;
     private MainActivity activity;
 
-    public WishesAdapter(Context ctx, MainActivity activity, List<GachaEntry> models) {
+    public WishesAdapter(Context ctx, MainActivity activity, List<WishesResponses.Wish> models) {
         this.ctx = ctx;
         this.models = models;
         this.activity = activity;
@@ -57,7 +46,7 @@ public class WishesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setListGachaModels(List<GachaEntry> listGachaModels) {
+    public void setListGachaModels(List<WishesResponses.Wish> listGachaModels) {
         this.models = listGachaModels;
         notifyDataSetChanged();
     }
@@ -94,10 +83,12 @@ public class WishesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 position--;
 
                 String titleText = models.get(position).getName();
-                String starText = models.get(position).getCh5star();
-                String star1Text = models.get(position).getCh4star1();
-                String star2Text = models.get(position).getCh4star2();
-                String star3Text = models.get(position).getCh4star3();
+                String starText = String.valueOf(models.get(position).getRate_5());
+                String star1Text = String.valueOf(models.get(position).getRate_5());
+//                String star2Text = models.get(position).getCh4star2();
+//                String star3Text = models.get(position).getCh4star3();
+                String star2Text = null;
+                String star3Text = null;
 
                 if (starText == null) {
                     ((GachaViewHolder)holder).star.setVisibility(View.GONE);
@@ -117,7 +108,7 @@ public class WishesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 }
 
                 Picasso.with(ctx)
-                        .load("https://sushicat.pp.ua/api" + models.get(position).getImg())
+                        .load("https://sushicat.pp.ua/api" + models.get(position).getPoster())
                         .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                         .networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE)
                         .into(((GachaViewHolder)holder).icon);

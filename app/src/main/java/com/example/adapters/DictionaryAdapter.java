@@ -1,8 +1,6 @@
 package com.example.adapters;
 
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,27 +9,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.data.remotely.dictionary.DictionaryEntry;
+import com.example.data.remotely.dictionary.DictionaryResponses;
 import com.example.genshin.R;
 import com.example.listeners.TextChanged;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
 public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.DictionaryViewHolder> {
 
     private Context ctx;
-    private List<DictionaryEntry> models;
+    private List<DictionaryResponses.Word> models;
     private View view;
 
-    public DictionaryAdapter(Context ctx, List<DictionaryEntry> models) {
+    public DictionaryAdapter(Context ctx, List<DictionaryResponses.Word> models) {
         this.ctx = ctx;
         this.models = models;
 //        setHasStableIds(true);
     }
 
-    public void setListDictionaryModels(List<DictionaryEntry> listDictionaryModels) {
+    public void setListDictionaryModels(List<DictionaryResponses.Word> listDictionaryModels) {
         this.models = listDictionaryModels;
 //        notifyDataSetChanged();
     }

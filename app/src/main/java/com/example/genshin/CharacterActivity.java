@@ -15,11 +15,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.GenshinApp;
-import com.example.data.remotely.characters.CharacterEntry;
+import com.example.data.remotely.characters.CharactersResponses;
 import com.example.dialogs.AddDialog;
 import com.example.listeners.OnSwipeTouchListener;
 import com.example.listeners.TextChanged;
@@ -43,7 +42,7 @@ public class CharacterActivity extends AppCompatActivity {
     private EditText dest;
     private Group editGroup;
     private ConstraintLayout destLayout;
-    private List<CharacterEntry> models;
+    private List<CharactersResponses.Character> models;
     private int position = 0;
     private SwipeRefreshLayout refresh;
 
@@ -231,20 +230,20 @@ public class CharacterActivity extends AppCompatActivity {
     }
 
     private void loadContent() {
-        Picasso.with(this).load(String.format("https://sushicat.pp.ua/api%s", models.get(position).getIco())).into(character_logo);
+        Picasso.with(this).load(String.format("https://sushicat.pp.ua/api%s", models.get(position).getCard())).into(character_logo);
 
         String titleString = models.get(position).getName();
-        String rarityString = models.get(position).getRarity();
+        String rarityString = String.valueOf(models.get(position).getRarity());
         String weaperonString = models.get(position).getWeapon();
         String eyeString = models.get(position).getEye();
-        String fullnameString = models.get(position).getFullname();
-        String sexString = models.get(position).getGender();
+        String fullnameString = models.get(position).getFull_name();
+        String sexString = models.get(position).getSex();
         String birthdayString = models.get(position).getBirthday();
         String regionString = models.get(position).getRegion();
         String affiliationString = models.get(position).getAffiliation();
-        String destString = models.get(position).getDesk();
+        String destString = models.get(position).getDescription();
 
-        CharacterEntry entry = models.get(position);
+        CharactersResponses.Character entry = models.get(position);
 
         /*for (int id : editGroup.getReferencedIds()){
             EditText view = findViewById(id);

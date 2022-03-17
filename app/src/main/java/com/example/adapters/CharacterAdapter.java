@@ -15,8 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.data.remotely.characters.CharacterEntry;
-import com.example.dialogs.SortDialog;
+import com.example.data.remotely.characters.CharactersResponses;
 import com.example.genshin.CharacterActivity;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
@@ -29,11 +28,11 @@ import okhttp3.logging.HttpLoggingInterceptor;
 public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final Context ctx;
-    private List<CharacterEntry> models;
+    private List<CharactersResponses.Character> models;
     private MainActivity activity;
-    private List<CharacterEntry> data;
+    private List<CharactersResponses.Character> data;
 
-    public CharacterAdapter(Context ctx, MainActivity activity, List<CharacterEntry> models) {
+    public CharacterAdapter(Context ctx, MainActivity activity, List<CharactersResponses.Character> models) {
         this.ctx = ctx;
         this.activity = activity;
         this.models = models;
@@ -43,7 +42,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setListCharactersModels(List<CharacterEntry> entries) {
+    public void setListCharactersModels(List<CharactersResponses.Character> entries) {
         this.models = entries;
         notifyDataSetChanged();
     }
@@ -91,12 +90,12 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 position--;
 
                 Glide.with(ctx)
-                        .load(String.format("https://sushicat.pp.ua/api%s", models.get(position).getIco()))
+                        .load(String.format("https://sushicat.pp.ua/api%s", models.get(position).getCard()))
                         .error(R.drawable.star)
                         .into(((CharacterViewHolder) holder).ico);
 
                 String nameText = models.get(position).getName();
-                String rarityText = models.get(position).getRarity();
+                String rarityText = String.valueOf(models.get(position).getRarity());
 
                 ((CharacterViewHolder) holder).name.setText(nameText);
                 ((CharacterViewHolder) holder).rarity.setText(rarityText);

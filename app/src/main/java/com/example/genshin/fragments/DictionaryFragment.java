@@ -3,25 +3,21 @@ package com.example.genshin.fragments;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.GenshinApp;
 import com.example.adapters.DictionaryAdapter;
 import com.example.data.remotely.dictionary.Dictionary;
-import com.example.data.remotely.dictionary.DictionaryEntry;
-import com.example.data.remotely.dictionary.DictionaryResponse;
+import com.example.data.remotely.dictionary.DictionaryResponses;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
 
@@ -39,7 +35,7 @@ public class DictionaryFragment extends Fragment {
     private GenshinApp app;
     private RecyclerView dictionary_recycler;
     private DictionaryAdapter dictionaryAdapter;
-    private List<DictionaryEntry> dictionaryModels = new ArrayList<>();
+    private List<DictionaryResponses.Word> dictionaryModels = new ArrayList<>();
     private SwipeRefreshLayout refresh;
     private ProgressBar progress;
     private TextView error;
@@ -89,13 +85,13 @@ public class DictionaryFragment extends Fragment {
     }
 
     void load(){
-        app.retrofit.create(Dictionary.class).getDictionary().enqueue(new Callback<DictionaryResponse>() {
+        app.retrofit.create(Dictionary.class).getDictionary().enqueue(new Callback<List<DictionaryResponses.Word>>() {
             @Override
-            public void onResponse(Call<DictionaryResponse> call, Response<DictionaryResponse> response) {
+            public void onResponse(Call<List<DictionaryResponses.Word>> call, Response<List<DictionaryResponses.Word>> response) {
                 if (response.code() == 200 && response.body() != null) {
                     error.setVisibility(View.GONE);
                     progress.setVisibility(View.GONE);
-                    app.dictionary = response.body().entries;
+                    app.dictionary = response.body();
                     dictionaryAdapter.setListDictionaryModels(app.dictionary);
                     dictionaryAdapter.notifyDataSetChanged();
                     refresh.setRefreshing(false);
@@ -103,7 +99,7 @@ public class DictionaryFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<DictionaryResponse> call, Throwable t) {
+            public void onFailure(Call<List<DictionaryResponses.Word>> call, Throwable t) {
                 progress.setVisibility(View.GONE);
                 error.setVisibility(View.VISIBLE);
                 refresh.setRefreshing(false);

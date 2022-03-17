@@ -1,15 +1,33 @@
 package com.example.data.remotely.characters;
 
+import androidx.annotation.NonNull;
+
+import java.util.List;
+
 import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
+import retrofit2.http.PATCH;
+import retrofit2.http.POST;
 
 public interface Characters {
+    @GET("./api/characters")
+    public Call<List<CharactersResponses.Character>> getCharacters();
 
-    @GET("./collections/get/charactersv2?token=a4191046104f8f3674f788e804c2d0")
-    @Headers({
-        "Content-Type: application/json",
-        "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36"
-    })
-    public Call<CharactersResponse> getCharacters();
+    @GET("./api/characters")
+    public Call<List<CharactersResponses.Character>> getCharacters(@Body @NonNull CharactersRequests.GetCharacters body);
+
+    @GET("./api/characters")
+    public Call<CharactersResponses.Character> getCharacter(@Body @NonNull CharactersRequests.GetCharacter body);
+
+    @POST("./api/characters")
+    public Call<Object> postCharacter(@Body @NonNull CharactersRequests.PostCharacter body);
+
+    @DELETE("./api/characters")
+    public Call<Object> deleteCharacter(@Body @NonNull CharactersRequests.DeleteCharacter body);
+
+    @PATCH("./api/characters")
+    public Call<Object> patchCharacter(@Body @NonNull CharactersRequests.PatchCharacter body);
+
 }
