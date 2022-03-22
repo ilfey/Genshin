@@ -108,7 +108,7 @@ public class WishesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 }
 
                 Picasso.with(ctx)
-                        .load("https://sushicat.pp.ua/api" + models.get(position).getPoster())
+                        .load(models.get(position).getPoster())
                         .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                         .networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE)
                         .into(((GachaViewHolder)holder).icon);

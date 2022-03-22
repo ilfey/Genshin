@@ -20,6 +20,8 @@ import com.example.data.remotely.dictionary.Dictionary;
 import com.example.data.remotely.dictionary.DictionaryResponses;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
+import com.example.genshin.databinding.FragmentDictionaryBinding;
+import com.example.genshin.databinding.FragmentWishesBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,7 @@ import retrofit2.Response;
 
 public class DictionaryFragment extends Fragment {
 
+    private FragmentDictionaryBinding binding;
     private Context ctx;
     private MainActivity activity;
     private GenshinApp app;
@@ -42,8 +45,8 @@ public class DictionaryFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
+        binding = FragmentDictionaryBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
         // Получаем нужные объекты
         ctx = getContext();
@@ -52,58 +55,87 @@ public class DictionaryFragment extends Fragment {
 
         app.hasConnection();
 
-        refresh = view.findViewById(R.id.refresh);
-        refresh.setColorSchemeResources(R.color.primary);
-        error = view.findViewById(R.id.error);
-        progress = view.findViewById(R.id.progress);
-        progress.getIndeterminateDrawable().setColorFilter(0xFF4F46E5, android.graphics.PorterDuff.Mode.MULTIPLY);
-        dictionary_recycler = view.findViewById(R.id.dictionary_recycler);
+        binding.refresh.setColorSchemeResources(R.color.primary);
+        binding.progress.getIndeterminateDrawable().setColorFilter(0xFF4F46E5, android.graphics.PorterDuff.Mode.MULTIPLY);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ctx, RecyclerView.VERTICAL, false);
-        dictionary_recycler.setLayoutManager(layoutManager);
+        binding.dictionaryRecycler.setLayoutManager(layoutManager);
 
         dictionaryAdapter = new DictionaryAdapter(ctx, dictionaryModels);
-        dictionary_recycler.setAdapter(dictionaryAdapter);
+        binding.dictionaryRecycler.setAdapter(dictionaryAdapter);
 //        dictionary_recycler.setHasFixedSize(true);
-        refresh.setOnRefreshListener(() -> {
+        binding.refresh.setOnRefreshListener(() -> {
             new Thread(() -> {
-                load();
+                app.retrofit.create(Dictionary.class).getDictionary().enqueue(new Callback<List<DictionaryResponses.Word>>() {
+                    @Override
+                    public void onResponse(Call<List<DictionaryResponses.Word>> call, Response<List<DictionaryResponses.Word>> response) {
+                        switch (response.code()) {
+                            case 200: {
+                                binding.error.setVisibility(View.GONE);
+                                app.dictionary = response.body();
+                                dictionaryAdapter.setListDictionaryModels(app.dictionary);
+                                binding.refresh.setRefreshing(false);
+                                return;
+                            }
+                            case 404: {
+                                binding.error.setVisibility(View.VISIBLE);
+                                binding.refresh.setRefreshing(false);
+                                return;
+                            }
+                            default: {
+                                binding.error.setVisibility(View.VISIBLE);
+                                binding.refresh.setRefreshing(false);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<DictionaryResponses.Word>> call, Throwable t) {
+                        progress.setVisibility(View.GONE);
+                        error.setVisibility(View.VISIBLE);
+                        refresh.setRefreshing(false);
+                    }
+                });
             }).start();
         });
 
-//        dictionaryAdapter.setListDictionaryModels(app.dictionary);
+        dictionaryAdapter.setListDictionaryModels(app.dictionary);
 
         if (!app.hasConnection()) {
-            view.findViewById(R.id.error).setVisibility(View.VISIBLE);
+            binding.error.setVisibility(View.VISIBLE);
         } else {
-            view.findViewById(R.id.progress).setVisibility(View.VISIBLE);
+            binding.progress.setVisibility(View.VISIBLE);
             new Thread(() -> {
-                load();
+                app.retrofit.create(Dictionary.class).getDictionary().enqueue(new Callback<List<DictionaryResponses.Word>>() {
+                    @Override
+                    public void onResponse(Call<List<DictionaryResponses.Word>> call, Response<List<DictionaryResponses.Word>> response) {
+                        switch (response.code()) {
+                            case 200: {
+                                binding.error.setVisibility(View.GONE);
+                                binding.progress.setVisibility(View.GONE);
+                                app.dictionary = response.body();
+                                dictionaryAdapter.setListDictionaryModels(app.dictionary);
+                                return;
+                            }
+                            case 404: {
+                                binding.error.setVisibility(View.VISIBLE);
+                                binding.progress.setVisibility(View.GONE);
+                                return;
+                            }
+                            default: {
+                                binding.error.setVisibility(View.VISIBLE);
+                                binding.progress.setVisibility(View.GONE);
+                            }
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<List<DictionaryResponses.Word>> call, Throwable t) {
+                        binding.progress.setVisibility(View.GONE);
+                        binding.error.setVisibility(View.VISIBLE);
+                    }
+                });
             }).start();
         }
         return view;
-    }
-
-    void load(){
-        app.retrofit.create(Dictionary.class).getDictionary().enqueue(new Callback<List<DictionaryResponses.Word>>() {
-            @Override
-            public void onResponse(Call<List<DictionaryResponses.Word>> call, Response<List<DictionaryResponses.Word>> response) {
-                if (response.code() == 200 && response.body() != null) {
-                    error.setVisibility(View.GONE);
-                    progress.setVisibility(View.GONE);
-                    app.dictionary = response.body();
-                    dictionaryAdapter.setListDictionaryModels(app.dictionary);
-                    dictionaryAdapter.notifyDataSetChanged();
-                    refresh.setRefreshing(false);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<DictionaryResponses.Word>> call, Throwable t) {
-                progress.setVisibility(View.GONE);
-                error.setVisibility(View.VISIBLE);
-                refresh.setRefreshing(false);
-            }
-        });
     }
 }

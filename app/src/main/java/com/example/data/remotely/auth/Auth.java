@@ -11,4 +11,6 @@ public interface Auth {
             "Content-Type: application/json"
     })
     public Call<Object> login(@Body LoginBody body);
+
+    public Call<Object> logout();
 }

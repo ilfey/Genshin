@@ -230,7 +230,7 @@ public class CharacterActivity extends AppCompatActivity {
     }
 
     private void loadContent() {
-        Picasso.with(this).load(String.format("https://sushicat.pp.ua/api%s", models.get(position).getCard())).into(character_logo);
+        Picasso.with(this).load(models.get(position).getCard()).into(character_logo);
 
         String titleString = models.get(position).getName();
         String rarityString = String.valueOf(models.get(position).getRarity());

@@ -37,7 +37,7 @@ public class GenshinApp extends Application {
 
         retrofit = new Retrofit.Builder()
                 .client(http)
-                .baseUrl("http://192.168.14.44:6240/")
+                .baseUrl("http://192.168.14.44/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }

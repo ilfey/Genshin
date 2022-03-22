@@ -20,6 +20,8 @@ import com.example.data.remotely.wishes.Wishes;
 import com.example.data.remotely.wishes.WishesResponses;
 import com.example.genshin.MainActivity;
 import com.example.genshin.R;
+import com.example.genshin.databinding.FragmentCharactersBinding;
+import com.example.genshin.databinding.FragmentWishesBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,8 @@ import retrofit2.Response;
 
 public class WishesFragment extends Fragment {
 
+
+    private FragmentWishesBinding binding;
     private Context ctx;
     private MainActivity activity;
     private GenshinApp app;
@@ -42,49 +46,53 @@ public class WishesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_wishes, container, false);
+        binding = FragmentWishesBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
         // Получаем нужные объекты
         ctx = getContext();
         activity = (MainActivity) getActivity();
         app = (GenshinApp) (activity != null ? activity.getApplication() : null);
 
-        // Получаем элементы
-        refresh = view.findViewById(R.id.refresh);
-        refresh.setColorSchemeResources(R.color.primary);
-        error = view.findViewById(R.id.error);
-        progress = view.findViewById(R.id.progress);
-        progress.getIndeterminateDrawable().setColorFilter(0xFF4F46E5, android.graphics.PorterDuff.Mode.MULTIPLY);
-        gacha_recycler = view.findViewById(R.id.gacha_recycler);
-        refresh = view.findViewById(R.id.refresh);
+        binding.refresh.setColorSchemeResources(R.color.primary);
+        binding.progress.getIndeterminateDrawable().setColorFilter(0xFF4F46E5, android.graphics.PorterDuff.Mode.MULTIPLY);
 
         wishesAdapter = new WishesAdapter(ctx, activity, models);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ctx, RecyclerView.VERTICAL, false);
-        gacha_recycler.setLayoutManager(layoutManager);
-        gacha_recycler.setAdapter(wishesAdapter);
+        binding.gachaRecycler.setLayoutManager(layoutManager);
+        binding.gachaRecycler.setAdapter(wishesAdapter);
 
-        refresh.setOnRefreshListener(() -> {
-            new Thread(() -> {
-                app.retrofit.create(Wishes.class).getWishes().enqueue(new Callback<List<WishesResponses.Wish>>() {
-                    @Override
-                    public void onResponse(Call<List<WishesResponses.Wish>> call, Response<List<WishesResponses.Wish>> response) {
-                        if (response.code() == 200 && response.body() != null) {
-                            error.setVisibility(View.GONE);
-                            progress.setVisibility(View.GONE);
+        binding.refresh.setOnRefreshListener(() -> {
+            app.retrofit.create(Wishes.class).getWishes().enqueue(new Callback<List<WishesResponses.Wish>>() {
+                @Override
+                public void onResponse(Call<List<WishesResponses.Wish>> call, Response<List<WishesResponses.Wish>> response) {
+                    switch (response.code()) {
+                        case 200: {
+                            binding.error.setVisibility(View.GONE);
                             app.gacha = response.body();
                             wishesAdapter.setListGachaModels(app.gacha);
-                            refresh.setRefreshing(false);
+                            binding.refresh.setRefreshing(false);
+                            return;
+                        }
+                        case 404: {
+                            binding.error.setVisibility(View.VISIBLE);
+                            binding.refresh.setRefreshing(false);
+                            return;
+                        }
+                        default: {
+                            binding.error.setVisibility(View.VISIBLE);
+                            binding.refresh.setRefreshing(false);
                         }
                     }
+                }
 
-                    @Override
-                    public void onFailure(Call<List<WishesResponses.Wish>> call, Throwable t) {
-                        progress.setVisibility(View.GONE);
-                        error.setVisibility(View.VISIBLE);
-                        refresh.setRefreshing(false);
-                    }
-                });
-            }).start();
+                @Override
+                public void onFailure(Call<List<WishesResponses.Wish>> call, Throwable t) {
+                    binding.progress.setVisibility(View.GONE);
+                    binding.error.setVisibility(View.VISIBLE);
+                    binding.refresh.setRefreshing(false);
+                }
+            });
         });
 
         wishesAdapter.setListGachaModels(app.gacha);
@@ -93,27 +101,36 @@ public class WishesFragment extends Fragment {
             view.findViewById(R.id.error).setVisibility(View.VISIBLE);
         } else {
             view.findViewById(R.id.progress).setVisibility(View.VISIBLE);
-            new Thread(() -> {
-                app.retrofit.create(Wishes.class).getWishes().enqueue(new Callback<List<WishesResponses.Wish>>() {
-                    @Override
-                    public void onResponse(Call<List<WishesResponses.Wish>> call, Response<List<WishesResponses.Wish>> response) {
-                        if (response.code() == 200 && response.body() != null) {
-                            error.setVisibility(View.GONE);
-                            progress.setVisibility(View.GONE);
+            app.retrofit.create(Wishes.class).getWishes().enqueue(new Callback<List<WishesResponses.Wish>>() {
+                @Override
+                public void onResponse(Call<List<WishesResponses.Wish>> call, Response<List<WishesResponses.Wish>> response) {
+                    switch (response.code()) {
+                        case 200: {
+                            binding.error.setVisibility(View.GONE);
+                            binding.progress.setVisibility(View.GONE);
                             app.gacha = response.body();
                             wishesAdapter.setListGachaModels(app.gacha);
-                            refresh.setRefreshing(false);
+                            return;
+                        }
+                        case 404: {
+                            binding.error.setVisibility(View.VISIBLE);
+                            binding.progress.setVisibility(View.GONE);
+                            return;
+                        }
+                        default: {
+                            binding.error.setVisibility(View.VISIBLE);
+                            binding.progress.setVisibility(View.GONE);
                         }
                     }
+                }
 
-                    @Override
-                    public void onFailure(Call<List<WishesResponses.Wish>> call, Throwable t) {
-                        progress.setVisibility(View.GONE);
-                        error.setVisibility(View.VISIBLE);
-                        refresh.setRefreshing(false);
-                    }
-                });
-            }).start();
+                @Override
+                public void onFailure(Call<List<WishesResponses.Wish>> call, Throwable t) {
+                    binding.progress.setVisibility(View.GONE);
+                    binding.error.setVisibility(View.VISIBLE);
+                    binding.refresh.setRefreshing(false);
+                }
+            });
         }
 
         return view;

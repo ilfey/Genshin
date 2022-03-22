@@ -1,5 +1,6 @@
 package com.example.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,12 +25,12 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Di
     public DictionaryAdapter(Context ctx, List<DictionaryResponses.Word> models) {
         this.ctx = ctx;
         this.models = models;
-//        setHasStableIds(true);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setListDictionaryModels(List<DictionaryResponses.Word> listDictionaryModels) {
         this.models = listDictionaryModels;
-//        notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
     @NonNull

@@ -90,7 +90,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 position--;
 
                 Glide.with(ctx)
-                        .load(String.format("https://sushicat.pp.ua/api%s", models.get(position).getCard()))
+                        .load(String.format(models.get(position).getCard()))
                         .error(R.drawable.star)
                         .into(((CharacterViewHolder) holder).ico);
 
