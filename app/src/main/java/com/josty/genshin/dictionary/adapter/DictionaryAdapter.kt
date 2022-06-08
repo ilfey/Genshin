@@ -14,7 +14,7 @@ class DictionaryAdapter(private var list: List<DictionaryListItem>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(list[position])
-    override fun getItemCount() = if (list.isEmpty()) list.size else 0
+    override fun getItemCount() = if (list.isNotEmpty()) list.size else 0
 
 
     inner class ViewHolder(private val binding: ItemDictionaryBinding) :

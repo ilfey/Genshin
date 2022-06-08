@@ -14,7 +14,7 @@ class CharactersAdapter(private var list: List<CharactersListItem>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(list[position])
-    override fun getItemCount(): Int = if (list.isEmpty()) list.size else 0
+    override fun getItemCount(): Int = if (list.isNotEmpty()) list.size else 0
 
 
     inner class ViewHolder(private val binding: ItemCharactersBinding) :
