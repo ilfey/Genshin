@@ -14,9 +14,10 @@ class DictionaryAdapter(private var list: List<DictionaryListItem>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(list[position])
-
     override fun getItemCount() = if (list.isEmpty()) list.size else 0
-    inner class ViewHolder(val binding: ItemDictionaryBinding) :
+
+
+    inner class ViewHolder(private val binding: ItemDictionaryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: DictionaryListItem) {
             binding.title.text = item.title

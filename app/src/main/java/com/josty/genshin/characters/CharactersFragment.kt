@@ -14,6 +14,9 @@ class CharactersFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCharactersBinding.inflate(layoutInflater)
+
+        binding.charactersRecycler
+
         return binding.root
     }
 }
