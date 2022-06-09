@@ -29,29 +29,37 @@
             android:textSize="22sp"
             tools:text="Title" />
 
-        <include
+        <TextView
             android:id="@+id/star"
-            layout="@layout/wishes_star_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            app:drawableEndCompat="@drawable/ic_star"
+            tools:text="Text" />
 
-        <include
+        <TextView
             android:id="@+id/star1"
-            layout="@layout/wishes_star_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            app:drawableEndCompat="@drawable/ic_star"
+            tools:text="Text" />
 
-        <include
+        <TextView
             android:id="@+id/star2"
-            layout="@layout/wishes_star_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            app:drawableEndCompat="@drawable/ic_star"
+            tools:text="Text" />
 
-        <include
+        <TextView
             android:id="@+id/star3"
-            layout="@layout/wishes_star_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            app:drawableEndCompat="@drawable/ic_star"
+            tools:text="Text" />
 
     </LinearLayout>
 
