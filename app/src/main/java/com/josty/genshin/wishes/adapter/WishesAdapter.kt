@@ -22,10 +22,10 @@ class WishesAdapter(private var list: List<WishesListItem>) :
         fun bind(item: WishesListItem) {
 //            binding.icon
 //            TODO fill ImageView
-            binding.star.starText.text = item.star
-            binding.star1.starText.text = item.star1
-            binding.star2.starText.text = item.star2
-            binding.star3.starText.text = item.star3
+            binding.star.text = item.star
+            binding.star1.text = item.star1
+            binding.star2.text = item.star2
+            binding.star3.text = item.star3
         }
     }
 }
