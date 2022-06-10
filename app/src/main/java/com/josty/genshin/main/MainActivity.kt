@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.josty.genshin.R
-import com.josty.genshin.characters.CharactersFragment
+import com.josty.genshin.characters.ui.CharactersFragment
 import com.josty.genshin.databinding.ActivityMainBinding
 import com.josty.genshin.dictionary.ui.DictionaryFragment
 import com.josty.genshin.wishes.WishesFragment
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.pager.adapter = pagerAdapter
         binding.pager.setCurrentItem(currentFragment, false)
-        binding.pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+        binding.pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 currentFragment = position

@@ -1,5 +1,5 @@
-package com.josty.genshin.dictionary.domain
+package com.josty.genshin.characters.domain
 
-class DictionaryRepository {
+class CharactersRepository {
 //    TODO create CharactersRepository remotely with retrofit or okhttp and locally with room
 }

@@ -5,7 +5,7 @@
     android:id="@+id/fragment_characters"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".characters.CharactersFragment">
+    tools:context=".characters.ui.CharactersFragment">
 
     <!--    TODO add plug-->
 
@@ -34,7 +34,7 @@
         app:layout_scrollFlags="scroll|enterAlways">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/characters_recycler"
+            android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
