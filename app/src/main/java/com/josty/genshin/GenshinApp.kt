@@ -1,4 +1,22 @@
 package com.josty.genshin
 
-class GenshinApp {
+import android.app.Application
+import com.josty.genshin.dictionary.dictionaryModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
+
+class GenshinApp : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        initKoin()
+    }
+
+    private fun initKoin() {
+        startKoin {
+            androidContext(this@GenshinApp)
+            modules(
+                dictionaryModule
+            )
+        }
+    }
 }
