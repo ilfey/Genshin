@@ -4,7 +4,10 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.josty.genshin.R
 import com.josty.genshin.databinding.ItemCharactersBinding
+import com.squareup.picasso.Picasso
+
 
 class CharactersAdapter(private var list: List<CharactersListItem>? = null) :
     RecyclerView.Adapter<CharactersAdapter.ViewHolder>() {
@@ -30,8 +33,10 @@ class CharactersAdapter(private var list: List<CharactersListItem>? = null) :
         fun bind(item: CharactersListItem) {
             binding.title.text = item.title
             binding.star.text = item.star
-//            binding.icon
-//            TODO fill ImageView
+            Picasso.get()
+                .load(item.icon)
+                .error(R.drawable.ic_error)
+                .into(binding.icon)
         }
     }
 }
