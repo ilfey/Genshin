@@ -13,7 +13,7 @@ import com.josty.genshin.R
 import com.josty.genshin.characters.ui.CharactersFragment
 import com.josty.genshin.databinding.ActivityMainBinding
 import com.josty.genshin.dictionary.ui.DictionaryFragment
-import com.josty.genshin.wishes.WishesFragment
+import com.josty.genshin.wishes.ui.WishesFragment
 
 
 const val DARK = "DARK"
@@ -29,9 +29,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
         prefs = getSharedPreferences("LocalStorage", Context.MODE_PRIVATE);
 
         if (!prefs.getBoolean("isVisited", false)) {
@@ -48,6 +45,9 @@ class MainActivity : AppCompatActivity() {
             DARK -> setTheme(R.style.AppTheme_Dark, DARK)
             LIGHT -> setTheme(R.style.AppTheme_Light, LIGHT)
         }
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         binding.pager.adapter = pagerAdapter
         binding.pager.setCurrentItem(currentFragment, false)
