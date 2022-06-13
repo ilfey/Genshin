@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.josty.genshin.databinding.ItemDictionaryBinding
+import com.josty.genshin.dictionary.data.DictionaryEntity
 
-class DictionaryAdapter(private var list: List<DictionaryListItem>? = null) :
+class DictionaryAdapter(private var list: List<DictionaryEntity>? = null) :
     RecyclerView.Adapter<DictionaryAdapter.ViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(l: List<DictionaryListItem>) {
+    fun setList(l: List<DictionaryEntity>) {
         list = l
         notifyDataSetChanged()
     }
@@ -27,7 +28,7 @@ class DictionaryAdapter(private var list: List<DictionaryListItem>? = null) :
 
     inner class ViewHolder(private val binding: ItemDictionaryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: DictionaryListItem) {
+        fun bind(item: DictionaryEntity) {
             binding.title.text = item.title
             binding.content.text = item.content
             binding.description.text = item.description

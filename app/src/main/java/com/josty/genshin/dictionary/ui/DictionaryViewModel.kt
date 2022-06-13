@@ -2,10 +2,19 @@ package com.josty.genshin.dictionary.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.josty.genshin.dictionary.adapter.DictionaryListItem
+import androidx.lifecycle.viewModelScope
+import com.josty.genshin.dictionary.data.DictionaryEntity
+import com.josty.genshin.dictionary.domain.DictionaryRepository
+import kotlinx.coroutines.launch
 
-class DictionaryViewModel : ViewModel() {
-    var list = MutableLiveData<List<DictionaryListItem>>()
+class DictionaryViewModel(
+    private val repository: DictionaryRepository
+) : ViewModel() {
+    var list = MutableLiveData<List<DictionaryEntity>>()
 
-    fun getDictionary(): Unit = TODO("create getDictionaryItems") // list.value = ...
+    fun getDictionary() {
+        viewModelScope.launch {
+            list.value = repository.getAllWords()
+        }
+    }
 }

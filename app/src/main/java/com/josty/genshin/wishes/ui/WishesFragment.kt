@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.josty.genshin.R
 import com.josty.genshin.characters.adapter.CharactersAdapter
 import com.josty.genshin.databinding.FragmentWishesBinding
@@ -22,6 +23,8 @@ class WishesFragment : Fragment() {
         binding = FragmentWishesBinding.inflate(layoutInflater)
 
         adapter = WishesAdapter()
+        binding.recycler.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.recycler.adapter = adapter
         viewModel.list.observe(viewLifecycleOwner) {
             adapter.setList(it)
