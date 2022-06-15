@@ -5,15 +5,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.josty.genshin.R
+import com.josty.genshin.characters.data.CharactersEntity
 import com.josty.genshin.databinding.ItemCharactersBinding
 import com.squareup.picasso.Picasso
 
 
-class CharactersAdapter(private var list: List<CharactersListItem>? = null) :
+class CharactersAdapter(private var list: List<CharactersEntity>? = null) :
     RecyclerView.Adapter<CharactersAdapter.ViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(l: List<CharactersListItem>) {
+    fun setList(l: List<CharactersEntity>) {
         list = l
         notifyDataSetChanged()
     }
@@ -30,11 +31,11 @@ class CharactersAdapter(private var list: List<CharactersListItem>? = null) :
 
     inner class ViewHolder(private val binding: ItemCharactersBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: CharactersListItem) {
-            binding.title.text = item.title
-            binding.star.text = item.star
+        fun bind(item: CharactersEntity) {
+            binding.title.text = item.name
+            binding.star.text = item.rarity.toString()
             Picasso.get()
-                .load(item.icon)
+                .load(item.card)
                 .error(R.drawable.ic_error)
                 .into(binding.icon)
         }

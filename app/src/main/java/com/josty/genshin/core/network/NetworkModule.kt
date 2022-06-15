@@ -17,7 +17,7 @@ val networkModule
         single {
             Retrofit.Builder().apply {
                 client(get())
-                baseUrl("https://sushicat.pp.ua/api/genshin/api/")
+                baseUrl("http://api.josty.ml/")
                 addConverterFactory(GsonConverterFactory.create())
             }.build()
         }

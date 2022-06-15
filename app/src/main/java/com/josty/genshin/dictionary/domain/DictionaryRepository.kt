@@ -4,7 +4,6 @@ import android.util.Log
 import com.josty.genshin.core.database.GenshinDatabase
 import com.josty.genshin.dictionary.data.DictionaryEntity
 import com.josty.genshin.dictionary.data.DictionaryRequests
-import com.josty.genshin.dictionary.data.DictionaryResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,20 +17,20 @@ class DictionaryRepository(
     suspend fun getAllWords(): List<DictionaryEntity> {
 //        TODO add choice between local and remote database
         return suspendCoroutine { continuation ->
-            retrofit.getDictionary().enqueue(object : Callback<DictionaryResponse> {
-                override fun onFailure(call: Call<DictionaryResponse>, t: Throwable) {
+            retrofit.getDictionary().enqueue(object : Callback<List<DictionaryEntity>> {
+                override fun onFailure(call: Call<List<DictionaryEntity>>, t: Throwable) {
                     Log.e("[Dictionary]", t.toString())
+                    // TODO add error handler
                 }
 
                 override fun onResponse(
-                    call: Call<DictionaryResponse>,
-                    response: Response<DictionaryResponse>
+                    call: Call<List<DictionaryEntity>>,
+                    response: Response<List<DictionaryEntity>>
                 ) {
-                    continuation.resume(response.body()!!.entries)
+                    continuation.resume(response.body()!!)
                 }
             })
         }
     }
-
     suspend fun getWord(id: Long): DictionaryEntity? = db.dictionaryDao.find(id)
 }

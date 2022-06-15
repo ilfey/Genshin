@@ -27,6 +27,7 @@ class CharactersFragment : Fragment() {
         viewModel.list.observe(viewLifecycleOwner) {
             adapter.setList(it)
         }
+        viewModel.getCharacters()
         return binding.root
     }
 }
