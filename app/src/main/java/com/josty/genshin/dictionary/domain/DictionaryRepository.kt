@@ -1,31 +1,36 @@
 package com.josty.genshin.dictionary.domain
 
+import android.util.Log
 import com.josty.genshin.core.database.GenshinDatabase
 import com.josty.genshin.dictionary.data.DictionaryEntity
-import okhttp3.*
+import com.josty.genshin.dictionary.data.DictionaryRequests
+import com.josty.genshin.dictionary.data.DictionaryResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class DictionaryRepository(
     private val db: GenshinDatabase,
-    private val okHttp: OkHttpClient
+    private val retrofit: DictionaryRequests
 ) {
     suspend fun getAllWords(): List<DictionaryEntity> {
-//        TODO add json converter for remotely database and choice
-
-        /*val request = Request.Builder()
-            .get()
-            .header("Content-Type", "application/json")
-            .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36")
-            .url("https://sushicat.pp.ua/api/genshin/api/collections/get/dict?token=a4191046104f8f3674f788e804c2d0")
-        val call = okHttp.newCall(request.build()).enqueue(
-            object : Callback{
-                override fun onFailure(call: Call, e: IOException) {}
-
-                override fun onResponse(call: Call, response: Response) {
-                    entries = Gson().fromJson(response.body.toString(), mResponse::class.java).entries
+//        TODO add choice between local and remote database
+        return suspendCoroutine { continuation ->
+            retrofit.getDictionary().enqueue(object : Callback<DictionaryResponse> {
+                override fun onFailure(call: Call<DictionaryResponse>, t: Throwable) {
+                    Log.e("[Dictionary]", t.toString())
                 }
-            }
-        )*/
-        return db.dictionaryDao.findAll()
+
+                override fun onResponse(
+                    call: Call<DictionaryResponse>,
+                    response: Response<DictionaryResponse>
+                ) {
+                    continuation.resume(response.body()!!.entries)
+                }
+            })
+        }
     }
 
     suspend fun getWord(id: Long): DictionaryEntity? = db.dictionaryDao.find(id)
