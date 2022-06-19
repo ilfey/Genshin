@@ -14,6 +14,7 @@ import com.josty.genshin.characters.ui.CharactersFragment
 import com.josty.genshin.databinding.ActivityMainBinding
 import com.josty.genshin.dictionary.ui.DictionaryFragment
 import com.josty.genshin.wishes.ui.WishesFragment
+import com.newrelic.agent.android.NewRelic
 
 
 const val DARK = "DARK"
@@ -69,6 +70,10 @@ class MainActivity : AppCompatActivity() {
             currentFragment = id
             binding.pager.setCurrentItem(id, true)
         }*/
+
+        NewRelic.withApplicationToken(
+            "AA5f9fdbde573b65e65e7c21b31f6bd29763a6d812-NRMA"
+        ).start(applicationContext)
     }
 
     private fun setTheme(id: Int, theme: String) {
