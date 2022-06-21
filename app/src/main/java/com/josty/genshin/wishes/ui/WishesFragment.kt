@@ -1,34 +1,32 @@
 package com.josty.genshin.wishes.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.josty.genshin.R
-import com.josty.genshin.characters.adapter.CharactersAdapter
-import com.josty.genshin.databinding.FragmentWishesBinding
+import com.josty.genshin.list.ui.ListFragment
 import com.josty.genshin.wishes.adapter.WishesAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class WishesFragment : Fragment() {
-    private val viewModel by viewModel<WishesViewModel>()
-    private lateinit var binding: FragmentWishesBinding
-    private lateinit var adapter: WishesAdapter
+class WishesFragment : ListFragment() {
+
+    override val viewModel by viewModel<WishesViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentWishesBinding.inflate(layoutInflater)
+        super.onCreateView(inflater, container, savedInstanceState)
 
-        adapter = WishesAdapter()
-        binding.recycler.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        binding.recycler.adapter = adapter
+        val listAdapter = WishesAdapter()
+        binding.recycler.adapter = listAdapter
+
         viewModel.list.observe(viewLifecycleOwner) {
-            adapter.setList(it)
+            listAdapter.setList(it)
         }
+
+        viewModel.getWishes()
+
         return binding.root
     }
 }

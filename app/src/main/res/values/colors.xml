@@ -6,6 +6,7 @@
     <color name="nav_bg">#F3F4F6</color>
     <color name="item_bg">#F9FAFB</color>
     <color name="primary">#4F46E5</color>
+    <color name="on_primary">#FFF</color>
 
     <color name="text">#000</color>
     <color name="text_description">#6B7280</color>

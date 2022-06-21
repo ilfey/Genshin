@@ -14,20 +14,23 @@ class DictionaryRepository(
     private val db: GenshinDatabase,
     private val retrofit: DictionaryRequests
 ) {
-    suspend fun getAllWords(): List<DictionaryEntity> {
+    suspend fun getAllWords(): List<DictionaryEntity>? {
 //        TODO add choice between local and remote database
         return suspendCoroutine { continuation ->
             retrofit.getDictionary().enqueue(object : Callback<List<DictionaryEntity>> {
                 override fun onFailure(call: Call<List<DictionaryEntity>>, t: Throwable) {
                     Log.e("[Dictionary]", t.toString())
                     // TODO add error handler
+                    continuation.resume(listOf())
                 }
 
                 override fun onResponse(
                     call: Call<List<DictionaryEntity>>,
                     response: Response<List<DictionaryEntity>>
                 ) {
-                    continuation.resume(response.body()!!)
+                    if (response.body() == null)
+                        continuation.resume(listOf())
+                    else continuation.resume(response.body())
                 }
             })
         }

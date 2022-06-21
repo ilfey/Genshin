@@ -8,14 +8,17 @@ import com.josty.genshin.characters.data.CharactersDao
 import com.josty.genshin.characters.data.CharactersEntity
 import com.josty.genshin.dictionary.data.DictionaryDao
 import com.josty.genshin.dictionary.data.DictionaryEntity
+import com.josty.genshin.wishes.data.WishesDao
+import com.josty.genshin.wishes.data.WishesEntity
 
 @Database(
-    entities = [CharactersEntity::class, DictionaryEntity::class], // TODO add more Entities and Data Access Objects
+    entities = [CharactersEntity::class, DictionaryEntity::class, WishesEntity::class],
     version = 1
 )
 abstract class GenshinDatabase : RoomDatabase() {
     abstract val charactersDao: CharactersDao
     abstract val dictionaryDao: DictionaryDao
+    abstract val wishesDao: WishesDao
 }
 
 fun buildDatabase(context: Context): GenshinDatabase =

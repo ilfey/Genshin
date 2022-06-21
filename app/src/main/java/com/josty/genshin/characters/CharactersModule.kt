@@ -11,7 +11,7 @@ val charactersModule = module {
     factory {
         CharactersRepository(get(), get<Retrofit>().create(CharactersRequests::class.java))
     }
-    viewModel() {
+    viewModel {
         CharactersViewModel(get())
     }
 }

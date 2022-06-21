@@ -8,15 +8,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val networkModule
     get() = module {
-//        TODO choice okhttp or retrofit
         single {
-            OkHttpClient.Builder().apply {
+            val client = OkHttpClient.Builder().apply {
                 addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             }.build()
-        }
-        single {
+
             Retrofit.Builder().apply {
-                client(get())
+                client(client)
                 baseUrl("http://api.josty.ml/")
                 addConverterFactory(GsonConverterFactory.create())
             }.build()

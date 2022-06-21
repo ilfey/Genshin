@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/from_rare_to_less"
+        android:title="@string/from_rare_to_less"/>
+
+    <item
+        android:id="@+id/from_less_rare"
+        android:title="@string/from_less_rare"/>
+
+    <item
+        android:id="@+id/alphabetically"
+        android:title="@string/alphabetically"/>
+
+    <item
+        android:id="@+id/from_the_end_of_the_alphabet"
+        android:title="@string/from_the_end_of_the_alphabet"/>
+
+    <item
+        android:id="@+id/by_the_elements"
+        android:title="@string/by_the_elements"/>
+
+    <item
+        android:id="@+id/by_id_in_bd"
+        android:title="@string/by_id_in_bd"/>
+</menu>

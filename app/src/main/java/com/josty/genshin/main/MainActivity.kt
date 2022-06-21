@@ -4,6 +4,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -21,7 +24,7 @@ const val DARK = "DARK"
 const val LIGHT = "LIGHT"
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     private val pagerAdapter: FragmentStateAdapter = ViewPagerAdapter(this)
     private var currentFragment: Int = 0
     private lateinit var binding: ActivityMainBinding
@@ -50,15 +53,24 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.pager.adapter = pagerAdapter
-        binding.pager.setCurrentItem(currentFragment, false)
-        binding.pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                currentFragment = position
-                Log.d("POS", position.toString())
-            }
-        })
+        with(binding.pager){
+            adapter = pagerAdapter
+            setCurrentItem(currentFragment, false)
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    currentFragment = position
+                    Log.d("POS", position.toString())
+                }
+            })
+        }
+
+        binding.sort.setOnClickListener {
+            val popup = PopupMenu(this, it)
+            popup.menuInflater.inflate(R.menu.sorting, popup.menu)
+            popup.setOnMenuItemClickListener { this@MainActivity.onMenuItemClick(it) }
+            popup.show()
+        }
 //        TODO fix BottomNavigationView
         /*binding.navigation.setOnNavigationItemReselectedListener { item ->
             val id = when (item.itemId) {
@@ -87,6 +99,49 @@ class MainActivity : AppCompatActivity() {
         edit.putInt("LastFragment", currentFragment)
         edit.apply()
         super.onStop()
+    }
+
+//    TODO add sorting
+    override fun onMenuItemClick(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.from_rare_to_less -> {
+                Log.d("[Popup]", "Clicked id: from_rare_to_less")
+                Toast.makeText(this, R.string.from_rare_to_less, Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+            R.id.from_less_rare -> {
+                Log.d("[Popup]", "Clicked id: from_less_rare")
+                Toast.makeText(this, R.string.from_less_rare, Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+            R.id.alphabetically -> {
+                Log.d("[Popup]", "Clicked id: alphabetically")
+                Toast.makeText(this, R.string.alphabetically, Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+            R.id.from_the_end_of_the_alphabet -> {
+                Log.d("[Popup]", "Clicked id: from_the_end_of_the_alphabet")
+                Toast.makeText(this, R.string.from_the_end_of_the_alphabet, Toast.LENGTH_SHORT)
+                    .show()
+                return true
+            }
+
+            R.id.by_the_elements -> {
+                Log.d("[Popup]", "Clicked id: by_the_elements")
+                Toast.makeText(this, R.string.by_the_elements, Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+            R.id.by_id_in_bd -> {
+                Log.d("[Popup]", "Clicked id: by_id_in_bd")
+                Toast.makeText(this, R.string.by_id_in_bd, Toast.LENGTH_SHORT).show()
+                return true
+            }
+            else -> return false
+        }
     }
 
     private inner class ViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {

@@ -20,6 +20,7 @@
         <entry key="..\:/Users/locadm/AndroidStudioProjects/Genshin/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/locadm/AndroidStudioProjects/Genshin/app/src/main/res/layout/fragment_characters.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/locadm/AndroidStudioProjects/Genshin/app/src/main/res/layout/fragment_dictionary.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/locadm/AndroidStudioProjects/Genshin/app/src/main/res/layout/fragment_list.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/locadm/AndroidStudioProjects/Genshin/app/src/main/res/layout/fragment_wishes.xml" value="0.14207650273224043" />
         <entry key="..\:/Users/locadm/AndroidStudioProjects/Genshin/app/src/main/res/layout/image_star.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/locadm/AndroidStudioProjects/Genshin/app/src/main/res/layout/item_characters.xml" value="0.24166666666666667" />
@@ -27,9 +28,15 @@
         <entry key="..\:/Users/locadm/AndroidStudioProjects/Genshin/app/src/main/res/layout/item_wishes.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/locadm/AndroidStudioProjects/Genshin/app/src/main/res/layout/wishes_star_text.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/locadm/AndroidStudioProjects/Genshin/app/src/main/res/menu/navigation_bar.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/locadm/AndroidStudioProjects/Genshin/app/src/main/res/menu/sorting.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/locadm/AndroidStudioProjects/Genshin/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
     </option>
+  </component>
+  <component name="EntryPointsManager">
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="android.annotation.SuppressLint" />
+    </list>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

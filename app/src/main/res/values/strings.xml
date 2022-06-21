@@ -15,7 +15,7 @@
     <string name="alphabetically">По алфавиту</string>
     <string name="from_the_end_of_the_alphabet">С конца алфавита</string>
     <string name="by_the_elements">По стихиям</string>
-    <string name="by_if_in_bd">По ID в БД</string>
+    <string name="by_id_in_bd">По ID в БД</string>
     <string name="rarity_with_colon">Редкость:</string>
     <string name="weapon_with_colon">Оружие:</string>
     <string name="gender">Пол:</string>
